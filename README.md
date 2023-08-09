@@ -2,14 +2,27 @@
 
 OuviP2 é parte de meu trabalho de conclusão de curso em análise e desenvolvimento de siistema, onde é apresentado uma proposta de aplicação web para reportar problemas urbanos da cidade de Pedro II - PI, Brasil. Espera-se com este sistema, facilitar a comunicação entre a população e a ouvidoria local, fazendo com que o cidadão possa expressar pontos onde a cidade ainda deve melhorar.
 
-## Seções:
+## 🏳️ Seções:
 - Oque é a OuviP2;
 - Reportes;
 - Contatos;
 
-## Usuários:
+## 👤 Usuários:
 - Admin;
 - Cidadão;
+
+## ⚠️ Informações importantes para o usuário 'Cidadão':
+- Nome Completo;
+- Endereço;
+- Email;
+- Senha;
+
+## ⚠️ Informações importantes para o Reporte:
+- Tipo de problema;
+- Localização;
+- Nome de usuário que reportou o problema;
+- Informações adicionais;
+- Relevância;
 
 
 ### Notion:
