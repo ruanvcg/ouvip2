@@ -4,8 +4,10 @@ OuviP2 é parte de meu trabalho de conclusão de curso em análise e desenvolvim
 
 ## 🏳️ Seções:
 - Oque é a OuviP2;
-- Reportes;
+- Login / Signup;
+- Reportar;
 - Contatos;
+- Admin;
 
 ## 👤 Usuários:
 - Admin;
@@ -23,11 +25,6 @@ OuviP2 é parte de meu trabalho de conclusão de curso em análise e desenvolvim
 - Localização;
 - Nome de usuário que reportou o problema;
 - Informações adicionais;
-- Relevância;
-
-
-### Notion:
-https://www.notion.so/OuviP2-b36dc04474ae4de79ead7c1a8a65f796
 
 ### Figma:
 https://www.figma.com/file/SqFWhGEvQTtn323ruqUUVy/OuviP2?type=design&node-id=0%3A1&mode=design&t=UanjvKREeRSkuJLR-1
