@@ -19,6 +19,7 @@ OuviP2 é parte de meu trabalho de conclusão de curso em análise e desenvolvim
 
 ## ⚠️ Informações importantes para o Reporte:
 - Tipo de problema;
+- Categoria;
 - Localização;
 - Nome de usuário que reportou o problema;
 - Informações adicionais;
