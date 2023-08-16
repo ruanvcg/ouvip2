@@ -1,1 +1,11 @@
-<p>login works!</p>
+<h2>Login</h2>
+
+<form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off">
+    <label for="email">Email</label>
+    <input type="email" name="email" formControlName="email" autocomplete="off">
+
+    <label for="senha">Senha</label>
+    <input type="password" name="senha" formControlName="senha" autocomplete="off">
+
+    <button type="submit">Login</button>
+</form>

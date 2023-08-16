@@ -28,4 +28,20 @@ export class ApiService{
             return Users;
         }));
     }
+
+    public userlogin(email: string, senha: string){
+        // alert(email);
+        return this.httpClient.post<any>(
+            this.baseUrl + '/login.php', { email, senha}
+        ).pipe(map(Users => {
+            //console.log(Users.email);
+            this.setToken(Users.email);
+            //this.getLoggeddInName.emit(true);
+            return Users;
+        }));
+    }
+
+    setToken(token: string){
+        localStorage.setItem('token', token);
+    }
 }

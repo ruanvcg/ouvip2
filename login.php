@@ -15,7 +15,7 @@
 
         if($nums>0)
         {
-            $data = array('message'=>'success');
+            $data = array('message'=>'success', 'email'=>$email);
             echo json_encode($data);
         }else{
             $data = array('message'=>'failed');
