@@ -11,15 +11,25 @@
 
         $sql = "SELECT * FROM usuarios where email='$email' and senha='$senha'";
         $result = mysqli_query($mysqli, $sql);
-        $nums = mysqli_num_rows($result);
+        $numsUser = mysqli_num_rows($result);
 
-        if($nums>0)
+        if($numsUser>0)
         {
-            $data = array('message'=>'success', 'email'=>$email);
+            $data = array('message'=>'user success', 'email'=>$email);
             echo json_encode($data);
         }else{
-            $data = array('message'=>'failed');
-            echo json_encode($data);
+            $sqla = "SELECT * FROM admins where email='$email' and senha='$senha'";
+            $result = mysqli_query($mysqli, $sqla);
+            $numsAdmin = mysqli_num_rows($result);
+
+            if($numsAdmin>0)
+            {
+                $data = array('message'=>'admin success', 'email'=>$email);
+                echo json_encode($data);
+            }else{
+                $data = array('message'=>'failed');
+                echo json_encode($data);
+            }
         }
     }
 ?>

@@ -32,7 +32,7 @@ export class ApiService{
     public userlogin(email: string, senha: string){
         // alert(email);
         return this.httpClient.post<any>(
-            this.baseUrl + '/login.php', { email, senha}
+            this.baseUrl + '/login.php', { email, senha }
         ).pipe(map(Users => {
             //console.log(Users.email);
             this.setToken(Users.email);

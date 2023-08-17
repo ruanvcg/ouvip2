@@ -31,9 +31,11 @@ export class LoginComponent implements OnInit{
     this.dataService.userlogin(this.angForm.value.email, this.angForm.value.senha).pipe(first()).subscribe(
       data => {
         console.log(data);
-        if(data.message=='success'){
+        if(data.message=='user success'){
           //const redirect = this.dataService.redirectUrl ? this.dataService.redirectUrl : '/userpage';
           this.router.navigate(['/userpage']);
+        } else if (data.message=='admin success'){
+          this.router.navigate(['/adminpage']);
         }
       },
       error => {
