@@ -36,36 +36,37 @@ export class LoginComponent implements OnInit {
 
     this.loginInProgress = true;
 
-    this.dataService.adminlogin(email, senha)
+    this.dataService.userlogin(email, senha)
       .pipe(first())
       .subscribe(
-        data => {
-          console.log(data);
-          if (data.message === 'admin success') {
-            this.router.navigate(['/adminpage']);
-          }
-          this.loginInProgress = false;
-        },
-        error => {
-          if (error.status !== 403) {
-            this.dataService.userlogin(email, senha)
+        userData => {
+          console.log(userData);
+          if (userData.message === 'user success') {
+            this.router.navigate(['/userpage']);
+          } else if (userData.message === 'admin success') {
+            this.dataService.adminlogin(email, senha)
               .pipe(first())
               .subscribe(
-                userData => {
-                  console.log(userData);
-                  if (userData.message === 'user success') {
-                    this.router.navigate(['/userpage']);
+                data => {
+                  console.log(data);
+                  if (data.message === 'admin success') {
+                    this.router.navigate(['/adminpage']);
                   }
                   this.loginInProgress = false;
                 },
-                userError => {
-                  alert("Email ou Senha incorretos!");
+                error => {
+                  alert('Email ou Senha incorretos!');
                   this.loginInProgress = false;
                 }
               );
           } else {
+            alert('Email ou Senha incorretos!');
             this.loginInProgress = false;
           }
+        },
+        userError => {
+          alert('Email ou Senha incorretos!');
+          this.loginInProgress = false;
         }
       );
   }

@@ -16,7 +16,7 @@ export class AdminpageComponent implements OnInit{
   ngOnInit(): void{
     this.auth = localStorage.getItem('tokenAdmin');
   
-    if(!this.auth){
+    if(!this.auth || this.auth == undefined || this.auth == null){
       this.router.navigate(['/login']);
     }
   }

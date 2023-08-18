@@ -1,3 +1,4 @@
+import { NONE_TYPE } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -16,7 +17,7 @@ export class UserpageComponent implements OnInit{
   ngOnInit(): void{
     this.auth = localStorage.getItem('tokenUser');
   
-    if(!this.auth){
+    if(!this.auth || this.auth == undefined || this.auth == null || this.auth == NONE_TYPE){
       this.router.navigate(['/login']);
     }
   }
