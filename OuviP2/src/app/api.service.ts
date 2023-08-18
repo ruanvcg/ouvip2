@@ -35,13 +35,29 @@ export class ApiService{
             this.baseUrl + '/login.php', { email, senha }
         ).pipe(map(Users => {
             //console.log(Users.email);
-            this.setToken(Users.email);
+            this.setUserToken(Users.email);
             //this.getLoggeddInName.emit(true);
             return Users;
         }));
     }
 
-    setToken(token: string){
-        localStorage.setItem('token', token);
+    public adminlogin(email: string, senha: string){
+        // alert(email);
+        return this.httpClient.post<any>(
+            this.baseUrl + '/login.php', { email, senha }
+        ).pipe(map(Admins => {
+            //console.log(Admins.email);
+            this.setAdminToken(Admins.email);
+            //this.getLoggeddInName.emit(true);
+            return Admins;
+        }));
+    }
+
+    setUserToken(token: string){
+        localStorage.setItem('tokenUser', token);
+    }
+
+    setAdminToken(token: string){
+        localStorage.setItem('tokenAdmin', token);
     }
 }

@@ -14,7 +14,7 @@ export class UserpageComponent implements OnInit{
   ){}
   
   ngOnInit(): void{
-    this.auth = localStorage.getItem('token');
+    this.auth = localStorage.getItem('tokenUser');
   
     if(!this.auth){
       this.router.navigate(['/login']);
