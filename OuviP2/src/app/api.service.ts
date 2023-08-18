@@ -8,8 +8,11 @@ import { Users } from './users';
 })
 
 export class ApiService{
+    redirectUrl!: string;
 
-    baseUrl: string = "http://localhost/OuviP2/"
+    baseUrl: string = "http://localhost/OuviP2/";
+
+    @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
 
     constructor(private httpClient: HttpClient){}
 
@@ -36,6 +39,7 @@ export class ApiService{
         ).pipe(map(response => {
             if (response.message === 'user success') {
                 this.setUserToken(response.email);
+                this.getLoggedInName.emit(true);
                 return { success: true, message: 'Login bem-sucedido' };
             } else {
                 return { success: false, message: 'Email ou senha incorretos' };
@@ -50,6 +54,7 @@ export class ApiService{
         ).pipe(map(response => {
             if (response.message === 'admin success') {
                 this.setAdminToken(response.email);
+                this.getLoggedInName.emit(true);
                 return { success: true, message: 'Login bem-sucedido' };
             } else {
                 return { success: false, message: 'Email ou senha incorretos' };
@@ -57,11 +62,36 @@ export class ApiService{
         }));
     }
 
+    isLoggedIn(){
+        const userToken = this.getUserToken();
+        const adminToken = this.getAdminToken();
+
+        if(userToken != null || adminToken != null){
+            return true;
+        }
+
+        return false;
+    }
+
     setUserToken(token: string){
         localStorage.setItem('tokenUser', token);
     }
+    getUserToken(){
+        return localStorage.getItem('tokenUser');
+    }
+    deleteUserToken(){
+        localStorage.removeItem('tokenUser');
+    }
+
+
 
     setAdminToken(token: string){
         localStorage.setItem('tokenAdmin', token);
+    }
+    getAdminToken(){
+        return localStorage.getItem('tokenAdmin');
+    }
+    deleteAdminToken(){
+        localStorage.removeItem('tokenAdmin');
     }
 }
