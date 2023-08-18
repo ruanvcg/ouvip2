@@ -33,11 +33,13 @@ export class ApiService{
         // alert(email);
         return this.httpClient.post<any>(
             this.baseUrl + '/login.php', { email, senha }
-        ).pipe(map(Users => {
-            //console.log(Users.email);
-            this.setUserToken(Users.email);
-            //this.getLoggeddInName.emit(true);
-            return Users;
+        ).pipe(map(response => {
+            if (response.message === 'user success') {
+                this.setUserToken(response.email);
+                return { success: true, message: 'Login bem-sucedido' };
+            } else {
+                return { success: false, message: 'Email ou senha incorretos' };
+            }
         }));
     }
 
@@ -45,11 +47,13 @@ export class ApiService{
         // alert(email);
         return this.httpClient.post<any>(
             this.baseUrl + '/login.php', { email, senha }
-        ).pipe(map(Admins => {
-            //console.log(Admins.email);
-            this.setAdminToken(Admins.email);
-            //this.getLoggeddInName.emit(true);
-            return Admins;
+        ).pipe(map(response => {
+            if (response.message === 'admin success') {
+                this.setAdminToken(response.email);
+                return { success: true, message: 'Login bem-sucedido' };
+            } else {
+                return { success: false, message: 'Email ou senha incorretos' };
+            }
         }));
     }
 

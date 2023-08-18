@@ -24,11 +24,11 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   postdata() {
     if (this.loginInProgress) {
-      return; // Avoid multiple login attempts
+      return; // Evitar múltiplas tentativas de login
     }
 
     const email = this.angForm.value.email;
@@ -39,35 +39,33 @@ export class LoginComponent implements OnInit {
     this.dataService.userlogin(email, senha)
       .pipe(first())
       .subscribe(
-        userData => {
-          console.log(userData);
-          if (userData.message === 'user success') {
+        response => {
+          if (response.success) {
             this.router.navigate(['/userpage']);
-          } else if (userData.message === 'admin success') {
+          } else {
             this.dataService.adminlogin(email, senha)
               .pipe(first())
               .subscribe(
-                data => {
-                  console.log(data);
-                  if (data.message === 'admin success') {
+                adminResponse => {
+                  if (adminResponse.success) {
                     this.router.navigate(['/adminpage']);
+                  } else {
+                    alert(adminResponse.message);
+                    this.loginInProgress = false;
                   }
-                  this.loginInProgress = false;
                 },
                 error => {
-                  alert('Email ou Senha incorretos!');
+                  alert('Ocorreu um erro ao fazer login como administrador');
                   this.loginInProgress = false;
                 }
               );
-          } else {
-            alert('Email ou Senha incorretos!');
-            this.loginInProgress = false;
           }
         },
         userError => {
-          alert('Email ou Senha incorretos!');
+          alert('Ocorreu um erro ao fazer login como usuário');
           this.loginInProgress = false;
         }
       );
   }
+
 }
