@@ -1,36 +1,43 @@
 import { Injectable, Output, EventEmitter } from "@angular/core";
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { HttpClient } from "@angular/common/http";
-import { Users } from './users';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
+export class ApiService {
+  redirectUrl!: string;
 
-export class ApiService{
-    redirectUrl!: string;
+  baseUrl: string = "http://localhost/OuviP2/";
 
-    baseUrl: string = "http://localhost/OuviP2/";
+  @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
 
-    @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
+  constructor(private httpClient: HttpClient) {}
 
-    constructor(private httpClient: HttpClient){}
-
-    public userregistration(
-        nome: string, 
-        cpf: string, 
-        email: string, 
-        telefone: string, 
-        senha: string
-    ){
-        return this.httpClient.post<any>(this.baseUrl + '/register.php', 
-        {
-            nome, cpf, email, telefone, senha
+  public userregistration(
+    nome: string, 
+    cpf: string, 
+    email: string, 
+    telefone: string, 
+    senha: string
+  ): Observable<any> {
+    return this.httpClient.post<any>(this.baseUrl + '/register.php', 
+      { nome, cpf, email, telefone, senha }
+    ).pipe(
+      map(response => {
+        if (response.message === 'success') {
+          return { success: true, message: 'Usuário registrado com sucesso.' };
+        } else {
+          return { success: false, message: 'Erro ao registrar usuário. Verifique se já não há um usuário cadastrado com o CPF ou Email fornecido.' };
         }
-        ).pipe(map(Users => {
-            return Users;
-        }));
-    }
+      }),
+      catchError(error => {
+        console.error('Erro na requisição:', error);
+        return throwError('Erro na requisição.');
+      })
+    );
+  }
 
     public userlogin(email: string, senha: string){
         // alert(email);

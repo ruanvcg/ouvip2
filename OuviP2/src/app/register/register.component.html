@@ -1,6 +1,6 @@
 <h2>Criar conta</h2>
 
-<form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off">
+<form [formGroup]="angForm" (ngSubmit)="postdata()" autocomplete="off">
     <label for="nome">Nome Completo</label>
     <input type="text" name="nome" formControlName="nome" autocomplete="off">
 
@@ -14,7 +14,7 @@
     <input type="text" name="telefone" formControlName="telefone" autocomplete="off">
 
     <label for="nome">Senha</label>
-    <input type="text" name="senha" formControlName="senha" autocomplete="off">
+    <input type="password" name="senha" formControlName="senha" autocomplete="off">
 
     <button type="submit">Criar conta</button>
 </form>
