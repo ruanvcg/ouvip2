@@ -7,7 +7,7 @@
     {
         $request = json_decode($postdata);
         $email = mysqli_real_escape_string($mysqli, trim($request->email));
-        $senha = mysqli_real_escape_string($mysqli, trim($request->senha));
+        $senha = md5(mysqli_real_escape_string($mysqli, trim($request->senha)));
     
         $sql = "SELECT * FROM usuarios WHERE email=? AND senha=?";
         $stmt = mysqli_prepare($mysqli, $sql);

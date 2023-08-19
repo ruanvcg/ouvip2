@@ -7,7 +7,7 @@
     {
         $request = json_decode($postdata);
         $nome = trim($request->nome);
-        $cpf = trim($request->cpf);
+        $cpf = sha1(trim($request->cpf));
         $email = trim($request->email);
         $telefone = trim($request->telefone);
         $senha = sha1($request->senha);
