@@ -1,18 +1,18 @@
 <?php
-    include_once("db_connect.php");
+    include_once("db_connect.php"); // Include the database connection script
 
-    $postdata = file_get_contents("php://input");
+    $postdata = file_get_contents("php://input"); // Retrieve data from the request body
 
     if(isset($postdata) && !empty($postdata))
     {
-        $request = json_decode($postdata);
-        $nome = trim($request->nome);
-        $cpf = sha1(trim($request->cpf));
-        $email = trim($request->email);
-        $telefone = trim($request->telefone);
-        $senha = sha1($request->senha);
+        $request = json_decode($postdata); // Decode the JSON data from the request
+        $nome = trim($request->nome); // Sanitize and extract the 'nome' field
+        $cpf = sha1(trim($request->cpf)); // Sanitize and hash the 'cpf' field
+        $email = trim($request->email); // Sanitize and extract the 'email' field
+        $telefone = trim($request->telefone); // Sanitize and extract the 'telefone' field
+        $senha = sha1($request->senha); // Hash the 'senha' field
 
-        // Verificar se já existe um usuário com o mesmo CPF
+        // Check if a user with the same CPF already exists
         $checkCpfSql = "SELECT COUNT(*) AS count FROM usuarios WHERE cpf = ?";
         $checkCpfStmt = $mysqli->prepare($checkCpfSql);
         $checkCpfStmt->bind_param("s", $cpf);
@@ -26,7 +26,7 @@
             exit();
         }
 
-        // Verificar se já existe um usuário com o mesmo email
+        // Check if a user with the same email already exists
         $checkEmailSql = "SELECT COUNT(*) AS count FROM usuarios WHERE email = ?";
         $checkEmailStmt = $mysqli->prepare($checkEmailSql);
         $checkEmailStmt->bind_param("s", $email);
@@ -40,6 +40,7 @@
             exit();
         }
 
+        // Insert user data into the 'usuarios' table
         $insertSql = "INSERT INTO usuarios(
             nome, 
             cpf, 
@@ -59,6 +60,6 @@
             echo json_encode($data);
         }
 
-        $stmt->close();
+        $stmt->close(); // Close the prepared statement
     }    
 ?>
