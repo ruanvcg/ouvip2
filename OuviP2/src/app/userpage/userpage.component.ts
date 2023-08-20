@@ -13,11 +13,11 @@ export class UserpageComponent implements OnInit{
   constructor(
     private router: Router
   ){}
-  
-  ngOnInit(): void{
-    this.auth = localStorage.getItem('tokenUser');
-  
-    if(!this.auth || this.auth == undefined || this.auth == null || this.auth == NONE_TYPE){
+
+  ngOnInit(): void {
+    this.auth = sessionStorage.getItem('tokenUser');
+
+    if (!this.auth || this.auth == undefined || this.auth == null || this.auth == NONE_TYPE) {
       this.router.navigate(['/login']);
     }
   }

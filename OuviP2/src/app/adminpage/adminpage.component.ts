@@ -12,11 +12,11 @@ export class AdminpageComponent implements OnInit{
   constructor(
     private router: Router
   ){}
-  
-  ngOnInit(): void{
-    this.auth = localStorage.getItem('tokenAdmin');
-  
-    if(!this.auth || this.auth == undefined || this.auth == null){
+
+  ngOnInit(): void {
+    this.auth = sessionStorage.getItem('tokenAdmin');
+
+    if (!this.auth || this.auth == undefined || this.auth == null) {
       this.router.navigate(['/login']);
     }
   }
