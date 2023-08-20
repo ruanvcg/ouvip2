@@ -1,17 +1,4 @@
-<nav>
-    <a routerLink="home" routerLinkActive="active">OuviP2</a>
-
-    <div>
-        <ul>
-            <li><a routerLink="home" *ngIf="loginbtn" routerLinkActive="active">Inicio</a></li>
-            <li><a routerLink="login" *ngIf="loginbtn" routerLinkActive="active">Login</a></li>
-            <li><a routerLink="registration" *ngIf="loginbtn" routerLinkActive="active">Register</a></li>
-            <li><button type="button" (click)="logout()" *ngIf="logoutbtn">Logout</button></li>
-
-        </ul>
-    </div>
-</nav>
-
+<app-header></app-header>
 
 
 <router-outlet></router-outlet>
