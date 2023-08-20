@@ -18,30 +18,34 @@ export class RegisterComponent implements OnInit {
     private dataService: ApiService,
     private router: Router
   ) {
+    // Initialize the form with FormBuilder
     this.angForm = this.fb.group({
       nome: ['', Validators.required],
-      cpf: ['', [Validators.required, this.validateCpf]],
-      email: ['', [Validators.required, Validators.email]],
-      telefone: ['', [Validators.required, this.validateTelefone]],
+      cpf: ['', [Validators.required, this.validateCpf]], // Validate CPF using custom validator
+      email: ['', [Validators.required, Validators.email]], // Validate email format
+      telefone: ['', [Validators.required, this.validateTelefone]], // Validate telefone format
       senha: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
 
   ngOnInit(): void {}
 
+  // Custom validator function for CPF
   validateCpf(control: any) {
     if (cpf.isValid(control.value)) {
-      return null;
+      return null; // Valid CPF
     } else {
-      return { cpfInvalido: true };
+      return { cpfInvalido: true }; // Invalid CPF
     }
   }
 
+  // Custom validator function for telefone
   validateTelefone(control: FormControl) {
     const telefonePattern = /^\(\d{2}\)\d{4}-\d{4}$/;
     return telefonePattern.test(control.value) ? null : { telefoneInvalido: true };
   }
 
+  // Handle form submission
   postdata() {
     const nomeControl = this.angForm.get('nome');
     const cpfControl = this.angForm.get('cpf');
@@ -49,39 +53,41 @@ export class RegisterComponent implements OnInit {
     const telefoneControl = this.angForm.get('telefone');
     const senhaControl = this.angForm.get('senha');
 
+    // Validate form fields
     if (nomeControl?.invalid) {
-      alert("Por favor, informe um nome válido.");
+      alert("Porfavor, insira um nome válido.");
       return;
     }
 
     if (cpfControl?.invalid) {
-      alert("Por favor, informe um CPF válido. Lembre-se de utilizar o formato: (xxx.xxx.xxx-xx)");
+      alert("Porfavor, informe um CPF válido. Lembre-se de usar o formato: (xxx.xxx.xxx-xx)");
       return;
     }
 
     if (emailControl?.invalid) {
       if (emailControl?.hasError('required')) {
-        alert("O campo de e-mail é obrigatório.");
+        alert("O campo email é obrigatório.");
       } else if (emailControl?.hasError('email')) {
-        alert("Por favor, informe um e-mail válido.");
+        alert("Porfavor, informe um email válido.");
       }
       return;
     }
 
     if (telefoneControl?.invalid) {
-      alert("Por favor, informe um telefone válido no formato: (xx)xxxx-xxxx.");
+      alert("Informe um número de telefone válido no formato: (xx)xxxx-xxxx.");
       return;
     }
 
     if (senhaControl?.invalid) {
       if (senhaControl?.hasError('required')) {
-        alert("O campo de senha é obrigatório.");
+        alert("O campo de Senha é obrigatório.");
       } else if (senhaControl?.hasError('minlength')) {
-        alert("A senha deve ter pelo menos 8 caracteres.");
+        alert("A sua senha deve ter no mínimo 8 caracteres.");
       }
       return;
     }
 
+    // Submit registration data to the service
     this.dataService.userregistration(
       this.angForm.value.nome,
       this.angForm.value.cpf,
@@ -92,13 +98,13 @@ export class RegisterComponent implements OnInit {
       data => {
         if (data.success) {
           alert(data.message);
-          this.router.navigate(['login']);
+          this.router.navigate(['login']); // Navigate to login page on successful registration
         } else {
           alert(data.message);
         }
       },
       error => {
-        alert("Erro ao registrar-se.");
+        alert("Erro encontrado durante o registro.");
       }
     );
   }

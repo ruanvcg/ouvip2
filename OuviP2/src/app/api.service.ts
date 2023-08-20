@@ -9,12 +9,13 @@ import { Observable, throwError } from 'rxjs';
 export class ApiService {
   redirectUrl!: string;
 
-  baseUrl: string = "http://localhost/OuviP2/";
+  baseUrl: string = "http://localhost/OuviP2/OuviP2/php"; // Base URL for the API
 
-  @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
+  @Output() getLoggedInName: EventEmitter<any> = new EventEmitter(); // Event emitter for indicating logged-in status
 
   constructor(private httpClient: HttpClient) { }
 
+  // Method for user registration
   public userregistration(
     nome: string,
     cpf: string,
@@ -23,83 +24,90 @@ export class ApiService {
     senha: string
   ): Observable<any> {
     return this.httpClient.post<any>(this.baseUrl + '/register.php',
-      { nome, cpf, email, telefone, senha }
+      { nome, cpf, email, telefone, senha } // Sending registration data
     ).pipe(
       map(response => {
         if (response.message === 'success') {
           return { success: true, message: 'Usuário registrado com sucesso.' };
         } else {
-          return { success: false, message: 'Erro ao registrar usuário. Verifique se já não há um usuário cadastrado com o CPF ou Email fornecido.' };
+          return { success: false, message: 'Erro ao registrar usuário. Verifique se já existe um usuário cadastrado com o CPF ou Email fornecido.' };
         }
       }),
       catchError(error => {
-        console.error('Erro na requisição:', error);
-        return throwError('Erro na requisição.');
+        console.error('Request error:', error);
+        return throwError('Request error.');
       })
     );
   }
 
+  // Method for user login
   public userlogin(email: string, senha: string) {
-    // alert(email);
     return this.httpClient.post<any>(
-      this.baseUrl + '/login.php', { email, senha }
+      this.baseUrl + '/login.php', { email, senha } // Sending login credentials
     ).pipe(map(response => {
       if (response.message === 'user success') {
-        this.setUserToken(response.email);
-        this.getLoggedInName.emit(true);
-        return { success: true, message: 'Login bem-sucedido' };
+        this.setUserToken(response.email); // Set user token in session storage
+        this.getLoggedInName.emit(true); // Emit event indicating user is logged in
+        return { success: true, message: 'Login realizado com sucesso.' };
       } else {
-        return { success: false, message: 'Email ou senha incorretos' };
+        return { success: false, message: 'Email ou senha incorretos!' };
       }
     }));
   }
 
+  // Method for admin login
   public adminlogin(email: string, senha: string) {
-    // alert(email);
     return this.httpClient.post<any>(
-      this.baseUrl + '/login.php', { email, senha }
+      this.baseUrl + '/login.php', { email, senha } // Sending admin login credentials
     ).pipe(map(response => {
       if (response.message === 'admin success') {
-        this.setAdminToken(response.email);
-        this.getLoggedInName.emit(true);
-        return { success: true, message: 'Login bem-sucedido' };
+        this.setAdminToken(response.email); // Set admin token in session storage
+        this.getLoggedInName.emit(true); // Emit event indicating admin is logged in
+        return { success: true, message: 'Login realizado com sucesso.' };
       } else {
-        return { success: false, message: 'Email ou senha incorretos' };
+        return { success: false, message: 'Email ou senha incorretos!' };
       }
     }));
   }
 
+  // Method to check if user or admin is logged in
   isLoggedIn() {
-    const userToken = this.getUserToken();
-    const adminToken = this.getAdminToken();
+    const userToken = this.getUserToken(); // Get user token from session storage
+    const adminToken = this.getAdminToken(); // Get admin token from session storage
 
     if (userToken != null || adminToken != null) {
-      return true;
+      return true; // User or admin is logged in
     }
 
-    return false;
+    return false; // Neither user nor admin is logged in
   }
 
+  // Method to set user token in session storage
   setUserToken(token: string) {
     sessionStorage.setItem('tokenUser', token);
   }
 
+  // Method to get user token from session storage
   getUserToken() {
     return sessionStorage.getItem('tokenUser');
   }
 
+  // Method to delete user token from session storage
   deleteUserToken() {
     sessionStorage.removeItem('tokenUser');
   }
 
+  // Method to set admin token in session storage
   setAdminToken(token: string) {
     sessionStorage.setItem('tokenAdmin', token);
   }
 
+  // Method to get admin token from session storage
   getAdminToken() {
     return sessionStorage.getItem('tokenAdmin');
   }
 
+  // Method to delete admin token from session storage
   deleteAdminToken() {
     sessionStorage.removeItem('tokenAdmin');
   }

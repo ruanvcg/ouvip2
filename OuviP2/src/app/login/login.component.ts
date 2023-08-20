@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
     private dataService: ApiService,
     private router: Router
   ) {
+    // Initialize the form with FormBuilder
     this.angForm = this.fb.group({
       email: ['', [Validators.required, Validators.minLength(1), Validators.email]],
       senha: ['', Validators.required]
@@ -26,9 +27,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  // Handle form submission
   postdata() {
     if (this.loginInProgress) {
-      return; // Evitar múltiplas tentativas de login
+      return; // Avoid multiple login attempts
     }
 
     const email = this.angForm.value.email;
@@ -36,33 +38,35 @@ export class LoginComponent implements OnInit {
 
     this.loginInProgress = true;
 
+    // Attempt user login first
     this.dataService.userlogin(email, senha)
       .pipe(first())
       .subscribe(
         response => {
           if (response.success) {
-            this.router.navigate(['/userpage']);
+            this.router.navigate(['/userpage']); // Navigate to user page on successful login
           } else {
+            // If user login fails, attempt admin login
             this.dataService.adminlogin(email, senha)
               .pipe(first())
               .subscribe(
                 adminResponse => {
                   if (adminResponse.success) {
-                    this.router.navigate(['/adminpage']);
+                    this.router.navigate(['/adminpage']); // Navigate to admin page on successful login
                   } else {
                     alert(adminResponse.message);
                     this.loginInProgress = false;
                   }
                 },
                 error => {
-                  alert('Ocorreu um erro ao fazer login como administrador');
+                  alert('An error occurred while logging in as an administrator');
                   this.loginInProgress = false;
                 }
               );
           }
         },
         userError => {
-          alert('Ocorreu um erro ao fazer login como usuário');
+          alert('An error occurred while logging in as a user');
           this.loginInProgress = false;
         }
       );
