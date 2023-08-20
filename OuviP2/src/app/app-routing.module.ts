@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { UserpageComponent } from './userpage/userpage.component';
 import { AdminpageComponent } from './adminpage/adminpage.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegisterComponent},
   { path: 'userpage', component: UserpageComponent, canActivate: [GuardGuard]}, 
-  { path: 'adminpage', component: AdminpageComponent, canActivate: [ GuardGuard ]}
+  { path: 'adminpage', component: AdminpageComponent, canActivate: [ GuardGuard ]},
+  { path: "**", component: PageNotFoundComponent}
 ];
 
 @NgModule({
