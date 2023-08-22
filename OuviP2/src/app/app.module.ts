@@ -11,6 +11,8 @@ import { UserpageComponent } from './userpage/userpage.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ReportFormComponent } from './userpage/report-form/report-form.component';
+import { UserpageRoutingModule } from './userpage/userpage-routing.module';
 
 
 @NgModule({
@@ -21,11 +23,13 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     UserpageComponent,
     RegisterComponent,
     LoginComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ReportFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    UserpageRoutingModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule

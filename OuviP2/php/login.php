@@ -7,7 +7,7 @@
     {
         $request = json_decode($postdata); // Decode the JSON data from the request
         $email = mysqli_real_escape_string($mysqli, trim($request->email)); // Sanitize and extract email
-        $senha = md5(mysqli_real_escape_string($mysqli, trim($request->senha))); // Sanitize and encrypt password
+        $senha = sha1(mysqli_real_escape_string($mysqli, trim($request->senha))); // Sanitize and encrypt password
     
         // SQL query to check if the user's email and password exist in the 'usuarios' table
         $sql = "SELECT * FROM usuarios WHERE email=? AND senha=?";
