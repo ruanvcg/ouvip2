@@ -6,25 +6,29 @@
     if(isset($postdata) && !empty($postdata))
     {
         $request = json_decode($postdata); // Decode the JSON data from the request
+        
         $nome = trim($request->nome); // Sanitize and extract the 'nome' field
-        $cpf = sha1(trim($request->cpf)); // Sanitize and hash the 'cpf' field
+        $cpf = trim($request->cpf); // Sanitize and extract the 'cpf' field
         $email = trim($request->email); // Sanitize and extract the 'email' field
         $telefone = trim($request->telefone); // Sanitize and extract the 'telefone' field
         $senha = sha1($request->senha); // Hash the 'senha' field
 
-        // Check if a user with the same CPF already exists
-        $checkCpfSql = "SELECT COUNT(*) AS count FROM usuarios WHERE cpf = ?";
-        $checkCpfStmt = $mysqli->prepare($checkCpfSql);
-        $checkCpfStmt->bind_param("s", $cpf);
-        $checkCpfStmt->execute();
-        $checkCpfResult = $checkCpfStmt->get_result();
-        $checkCpfRow = $checkCpfResult->fetch_assoc();
 
-        if ($checkCpfRow['count'] > 0) {
+        // Check if a user with the same hashed CPF already exists
+        $checkSql = "SELECT COUNT(*) AS count FROM usuarios WHERE cpf = ?";
+        $checkStmt = $mysqli->prepare($checkSql);
+        $checkStmt->bind_param("s", $cpf);
+        $checkStmt->execute();
+        $checkResult = $checkStmt->get_result();
+        $checkRow = $checkResult->fetch_assoc();
+
+        if ($checkRow['count'] > 0) {
             $data = array('message' => 'failed', 'error' => 'CPF already exists');
             echo json_encode($data);
             exit();
         }
+
+
 
         // Check if a user with the same email already exists
         $checkEmailSql = "SELECT COUNT(*) AS count FROM usuarios WHERE email = ?";

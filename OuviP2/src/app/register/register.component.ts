@@ -20,11 +20,11 @@ export class RegisterComponent implements OnInit {
   ) {
     // Initialize the form with FormBuilder
     this.angForm = this.fb.group({
-      nome: ['', Validators.required],
-      cpf: ['', [Validators.required, this.validateCpf]], // Validate CPF using custom validator
-      email: ['', [Validators.required, Validators.email]], // Validate email format
-      telefone: ['', [Validators.required, this.validateTelefone]], // Validate telefone format
-      senha: ['', [Validators.required, Validators.minLength(8)]]
+      nome: ['', [Validators.required, Validators.maxLength(255)]], // Added maxLength validation
+      cpf: ['', [Validators.required, this.validateCpf]],
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(255)]], // Added maxLength validation
+      telefone: ['', [Validators.required, this.validateTelefone]],
+      senha: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(255)]] // Added maxLength validation
     });
   }
 

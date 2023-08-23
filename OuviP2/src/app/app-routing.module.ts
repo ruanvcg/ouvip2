@@ -9,6 +9,7 @@ import { UserpageComponent } from './userpage/userpage.component';
 import { AdminpageComponent } from './adminpage/adminpage.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ReportFormComponent } from './userpage/report-form/report-form.component';
+import { ReportListComponent } from './adminpage/report-list/report-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'registration', component: RegisterComponent},
   { path: 'userpage', component: UserpageComponent, canActivate: [GuardGuard]},
   { path: 'userpage/report', component: ReportFormComponent, canActivate: [GuardGuard] },
-  { path: 'adminpage', component: AdminpageComponent, canActivate: [ GuardGuard ]},
+  { path: 'adminpage', component: AdminpageComponent, canActivate: [ GuardGuard ] },
+  { path: 'adminpage/reports', component: ReportListComponent, canActivate: [ GuardGuard ] },
   { path: "**", component: PageNotFoundComponent}
 ];
 

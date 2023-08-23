@@ -9,7 +9,7 @@ import { Observable, throwError } from 'rxjs';
 export class ApiService {
   redirectUrl!: string;
 
-  baseUrl: string = "http://localhost/OuviP2/OuviP2/php"; // Base URL for the API
+  baseUrl: string = "http://localhost/OuviP2/OuviP2/php/"; // Base URL for the API
 
   @Output() getLoggedInName: EventEmitter<any> = new EventEmitter(); // Event emitter for indicating logged-in status
 
@@ -69,6 +69,12 @@ export class ApiService {
       }
     }));
   }
+
+  // Method to get a reports
+  get_reports(){
+    return this.httpClient.get(this.baseUrl+'view_reports.php');
+  }
+
 
   // Method to check if user or admin is logged in
   isLoggedIn() {

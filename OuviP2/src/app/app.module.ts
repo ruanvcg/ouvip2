@@ -12,7 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ReportFormComponent } from './userpage/report-form/report-form.component';
-import { UserpageRoutingModule } from './userpage/userpage-routing.module';
+import { ReportListComponent } from './adminpage/report-list/report-list.component';
 
 
 @NgModule({
@@ -24,12 +24,12 @@ import { UserpageRoutingModule } from './userpage/userpage-routing.module';
     RegisterComponent,
     LoginComponent,
     PageNotFoundComponent,
-    ReportFormComponent
+    ReportFormComponent,
+    ReportListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    UserpageRoutingModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule
