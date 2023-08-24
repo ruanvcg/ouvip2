@@ -1,6 +1,6 @@
 # OuviP2
 
-OuviP2 é parte de meu trabalho de conclusão de curso em análise e desenvolvimento de sistemas, onde é apresentado uma proposta de aplicação web para reportar problemas urbanos da cidade de Pedro II - PI, Brasil. Espera-se com este sistema, facilitar a comunicação entre a população e a ouvidoria local, fazendo com que o cidadão possa expressar pontos onde a cidade ainda deve melhorar.
+OuviP2 é parte do meu Trabalho de Conclusão de Curso em Análise e Desenvolvimento de Sistemas. Este sistema propõe uma solução para a cidade de Pedro II, localizada no estado do Piauí, Brasil. Através desta plataforma web, busca-se estabelecer uma maneira eficiente e direta para que os cidadãos possam reportar problemas urbanos e contribuir para o aprimoramento contínuo da cidade.
 
 ## 🏳️ Seções:
 - Oque é a OuviP2;
