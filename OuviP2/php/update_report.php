@@ -1,40 +1,43 @@
 <?php
+    header("Access-Control-Allow-Origin: *");
+    header('Access-Control-Allow-Credentials: true');
+    header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+    header("Content-Type: application/json; charset=UTF-8");
+    
+    // Pegar o corpo da solicitação
+    $postdata = file_get_contents("php://input");
+    $request = json_decode($postdata);
 
-    // check if form was submitted
-    if($_POST){
-        include 'db_connect.php';
+    if ($request) {
+        include("db_connect.php"); // Include the database connection script
 
-        try{
+        try {
             // write update query
-            // in this case, it seemed like we have so many fields to pass and 
-            // it is better to label them and not use question marks
-            $query = "UPDATE reportes 
-                        SET status_reporte=:status_reporte 
-                        WHERE id = :id";
-    
-            // prepare query for excecution
+            $query = "UPDATE reportes SET status_reporte = ? WHERE id = ?";
+
+            // prepare query for execution
             $stmt = $mysqli->prepare($query);
-    
-            // posted values
-            $id = $_POST['id'];
-            $status_reporte = $_POST['status_reporte'];
-    
+
+            // Pegar os valores do JSON
+            $id = $request->id;
+            $status_reporte = $request->status_reporte;
+
             // bind the parameters
-            $stmt->bindParam(':id', $id);
-            $stmt->bindParam(':status_reporte', $status_reporte);
-            
+            $stmt->bind_param('si', $status_reporte, $id);
+
             // Execute the query
-            if($stmt->execute()){
-                echo json_encode(array('result'=>'success'));
-            }else{
-                echo json_encode(array('result'=>'fail'));
+            if ($stmt->execute()) {
+                echo json_encode(array('result' => 'success'));
+            } else {
+                echo json_encode(array('result' => 'fail'));
             }
-            
         }
-        
+
         // show errors
-        catch(PDOException $exception){
+        catch (PDOException $exception) {
             die('ERROR: ' . $exception->getMessage());
         }
     }
+
 ?>

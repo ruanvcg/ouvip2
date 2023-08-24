@@ -5,7 +5,7 @@
     // delete message prompt will be here
     
     // select all data
-    $query = "SELECT tipo_problema, categoria, nome FROM reportes ORDER BY id DESC";
+    $query = "SELECT tipo_reporte, categoria, nome FROM reportes ORDER BY id DESC";
     $stmt = $mysqli->prepare($query);
     $stmt->execute();
     
