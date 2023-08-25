@@ -3,7 +3,7 @@
     $id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: Record ID not found.');
 
     // Include the database connection
-    include 'db_connect.php';
+    include '../db_connect.php';
 
     // Read current record's data
     try {

@@ -1,6 +1,6 @@
 <?php
     // include database connection
-    include 'db_connect.php';
+    include '../db_connect.php';
     
     // delete message prompt will be here
     

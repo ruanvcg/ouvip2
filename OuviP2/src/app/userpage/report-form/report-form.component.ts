@@ -1,6 +1,7 @@
 import { NONE_TYPE } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CrudReportService } from 'src/app/services/crud-report.service';
 
 @Component({
   selector: 'app-report-form',
@@ -10,7 +11,8 @@ import { Router } from '@angular/router';
 export class ReportFormComponent {
   auth: any;
   constructor(
-    private router: Router
+    private router: Router,
+    private crudReportService: CrudReportService
   ){}
 
   ngOnInit(): void {

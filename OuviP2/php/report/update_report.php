@@ -10,7 +10,7 @@
     $request = json_decode($postdata);
 
     if ($request) {
-        include("db_connect.php"); // Include the database connection script
+        include("../db_connect.php"); // Include the database connection script
 
         try {
             // write update query

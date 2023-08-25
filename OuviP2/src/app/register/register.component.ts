@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { ApiService } from '../api.service';
+import { ApiService } from '../services/login.service';
 import { cpf } from 'cpf-cnpj-validator';
 
 @Component({

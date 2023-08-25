@@ -70,11 +70,6 @@ export class ApiService {
     }));
   }
 
-  // Method to get a reports
-  get_reports(){
-    return this.httpClient.get(this.baseUrl+'view_reports.php');
-  }
-
 
   // Method to check if user or admin is logged in
   isLoggedIn() {

@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ReportFormComponent } from './userpage/report-form/report-form.component';
 import { ReportListComponent } from './adminpage/report-list/report-list.component';
+import { ReportViewComponent } from './adminpage/report-view/report-view.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ReportListComponent } from './adminpage/report-list/report-list.compone
     LoginComponent,
     PageNotFoundComponent,
     ReportFormComponent,
-    ReportListComponent
+    ReportListComponent,
+    ReportViewComponent
   ],
   imports: [
     BrowserModule,

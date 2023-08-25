@@ -1,7 +1,7 @@
 <?php
 
-// include database connection
-include 'db_connect.php';
+
+include("../db_connect.php"); // Include the database connection script
 
 try {
     // get record ID
