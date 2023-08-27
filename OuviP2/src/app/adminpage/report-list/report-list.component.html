@@ -1,6 +1,6 @@
 <section>
   <div *ngFor="let report of reportList">
-    <h2>{{ report.tipo_reporte }}</h2>
+    <h2>{{ report.tipoReporte }}</h2>
     <h4>{{ report.categoria }}</h4>
     <p>{{ report.nome }}</p>
     <button class="btn-details" (click)="viewReportDetails(report.id)">Ver detalhes</button>

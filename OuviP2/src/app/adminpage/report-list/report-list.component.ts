@@ -29,7 +29,7 @@ export class ReportListComponent implements OnInit {
 
   getReportList() {
     this.reportListSubscribe = this.crudReportService.loadReports().subscribe(res => {
-      this.reportList = res;
+      this.reportList = res.body; // Use res.body to access the array of reports
       console.log('res', res);
     });
   }

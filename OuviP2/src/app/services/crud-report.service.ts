@@ -11,16 +11,36 @@ export class CrudReportService {
 
   constructor(private httpClient: HttpClient) { }
 
-  loadReports(){
+  public loadReports(){
     const url = this.baseUrl + 'view_reports.php';
     return this.httpClient.get<any[]>(url, { observe: 'response' }).pipe(map(response => response));
   }
 
-  createReport(reportData: FormData): Observable<any> {
-    const url = this.baseUrl + 'create_report.php';
-    return this.httpClient.post(url, reportData).pipe(
+  // Method for user registration
+  public createReport(
+    usuarioId: number,
+    nome: string,
+    cpf: string,
+    tipoReporte: string,
+    categoria: string,
+    endereco: string,
+    numero: number,
+    descricao: string,
+    statusReporte: string
+  ): Observable<any> {
+    return this.httpClient.post<any>(this.baseUrl + 'create_report.php',
+      { usuarioId, nome, cpf, tipoReporte, categoria, endereco, numero, descricao, statusReporte } // Sending registration data
+    ).pipe(
+      map(response => {
+        if (response.message === 'success') {
+          return { success: true, message: 'Reporte enviado com sucesso.' };
+        } else {
+          return { success: false, message: 'Erro ao enviar o reporte' };
+        }
+      }),
       catchError(error => {
-        throw error;
+        console.error('Request error:', error);
+        return throwError('Request error.');
       })
     );
   }

@@ -24,76 +24,97 @@ export class ReportFormComponent {
     private crudReportService: CrudReportService,
     private formBuilder: FormBuilder,
     private loginService: ApiService,
-  ){}
+  ){
+    // Set user information
+    this.userIdd = this.loginService.getTokenUserId();
+    this.userNamed = this.loginService.getTokenUserName();
+    this.userCpfd = this.loginService.getTokenUserCpf();
+    
+    this.reportForm = this.formBuilder.group({
+      usuarioId: [this.userIdd, Validators.required],
+      nome: [this.userNamed, Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z ]+$/)])],
+      cpf: [this.userCpfd, Validators.required],
+      tipoReporte: ['', Validators.compose([Validators.required, Validators.maxLength(100),Validators.pattern(/^[a-zA-Z ]+$/)])],
+      categoria: ['', Validators.compose([Validators.required, Validators.maxLength(30), Validators.pattern(/^[a-zA-Z ]+$/)])],
+      descricao: ['', Validators.compose([Validators.required, Validators.maxLength(3000)])],
+      endereco: ['', Validators.compose([Validators.required, Validators.maxLength(150)])],
+      numero: ['', Validators.maxLength(999)],
+      statusReporte: ['Encaminhado']
+    });
+  }
 
   ngOnInit(): void {
     this.auth = sessionStorage.getItem('tokenUser');
 
     if (!this.auth || this.auth == undefined || this.auth == null) {
       this.router.navigate(['/login']);
-    }else{
-       // Set user information
-      this.userIdd = this.loginService.getTokenUserId();
-      this.userNamed = this.loginService.getTokenUserName();
-      this.userCpfd = this.loginService.getTokenUserCpf();
-      
-      // Check if user information is available before creating the form
-      if (this.userIdd && this.userNamed && this.userCpfd) {
-        this.createReportForm(); // Call this method here
-      } else {
-        // Handle the case where user information is not available
-        alert('Erro ao obter informações do usuário.');
-      }
     }
-  }
-
-  createReportForm(){
-    this.reportForm = this.formBuilder.group({
-      'usuarioId': [this.userIdd, Validators.required],
-      'nome': [this.userNamed, Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z ]+$/)])],
-      'cpf': [this.userCpfd, Validators.required],
-      'tipoReporte': ['', Validators.compose([Validators.required, Validators.maxLength(100),Validators.pattern(/^[a-zA-Z ]+$/)])],
-      'categoria': ['', Validators.compose([Validators.required, Validators.maxLength(30), Validators.pattern(/^[a-zA-Z ]+$/)])],
-      'descricao': ['', Validators.compose([Validators.required, Validators.maxLength(3000)])],
-      'endereco': ['', Validators.compose([Validators.required, Validators.maxLength(150)])],
-      'numero': ['', Validators.maxLength(999)],
-      'statusReporte': ['Encaminhado']
-    });
   }
 
   // Handle form submission
   postdata(values:any) {
-    let formData = new FormData();
+    const usuarioIdControl = this.reportForm.get('usuarioId');
+    const nomeControl = this.reportForm.get('nome');
+    const cpfControl = this.reportForm.get('cpf');
+    const tipoReporteControl = this.reportForm.get('tipoReporte');
+    const categoriaControl = this.reportForm.get('categoria');
+    const descricaoControl = this.reportForm.get('descricao');
+    const enderecoControl = this.reportForm.get('endereco');
+    const numeroControl = this.reportForm.get('numero');
+    const statusReporteControl = this.reportForm.get('statusReporte');
 
-    formData.append('usuarioId', values.usuarioId);
-    formData.append('nome', values.nome);
-    formData.append('cpf', values.cpf);
-    formData.append('tipoReporte', values.tipoReporte);
-    formData.append('categoria', values.categoria);
-    formData.append('descricao', values.descricao);
-    formData.append('endereco', values.endereco);
-    formData.append('numero', values.numero);
-    formData.append('statusReporte', values.statusReporte);
+    if (tipoReporteControl?.invalid) {
+      if (tipoReporteControl?.hasError('required')) {
+        alert("O campo Tipo Reporte é obrigatório.");
+      }
+      return;
+    }
 
-    // Log all values in formData
-    formData.forEach((value, key) => {
-      console.log(`Key: ${key}, Value: ${value}`);
-    });
+    if (categoriaControl?.invalid) {
+      if (categoriaControl?.hasError('required')) {
+        alert("O campo Categoria é obrigatório.");
+      }
+      return;
+    }
 
-    this.crudReportService.createReport(formData).subscribe(
-      response => {
-        if (response && (response.message === 'success' || response === 'success')) {
-          // Redirect to userpage on success
-          this.router.navigate(['/userpage']);
+    if (descricaoControl?.invalid) {
+      if (descricaoControl?.hasError('required')) {
+        alert("O campo Categoria é obrigatório.");
+      }
+      return;
+    }
+
+    if (enderecoControl?.invalid) {
+      if (enderecoControl?.hasError('required')) {
+        alert("O campo Tipo Reporte é obrigatório.");
+      }
+      return;
+    }
+
+    // Submit registration data to the service
+    this.crudReportService.createReport(
+      this.reportForm.value.usuarioId,
+      this.reportForm.value.nome,
+      this.reportForm.value.cpf,
+      this.reportForm.value.tipoReporte,
+      this.reportForm.value.categoria,
+      this.reportForm.value.endereco,
+      this.reportForm.value.numero,
+      this.reportForm.value.descricao,
+      this.reportForm.value.statusReporte
+    ).pipe(first()).subscribe(
+      data => {
+        if (data.success) {
+          alert(data.message);
+          this.router.navigate(['userpage']); // Navigate to login page on successful registration
         } else {
-          // Handle failure
-          alert('Falha ao criar o relatório.');
+          alert(data.message);
         }
       },
       error => {
-        // Handle error
-        alert('Erro ao se comunicar com o servidor.');
+        alert("Erro encontrado durante o registro.");
       }
     );
+    
   }
 }
