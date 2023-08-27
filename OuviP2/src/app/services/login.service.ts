@@ -47,6 +47,7 @@ export class ApiService {
     ).pipe(map(response => {
       if (response.message === 'user success') {
         this.setUserToken(response.email); // Set user token in session storage
+        this.setUserInfo(response.nome, response.cpf, response.id);
         this.getLoggedInName.emit(true); // Emit event indicating user is logged in
         return { success: true, message: 'Login realizado com sucesso.' };
       } else {
@@ -88,6 +89,24 @@ export class ApiService {
     sessionStorage.setItem('tokenUser', token);
   }
 
+  setUserInfo(tokenUserName: string, tokenUserCpf: string, tokenUserId: string){
+    sessionStorage.setItem('tokenUserName', tokenUserName);
+    sessionStorage.setItem('tokenUserCpf', tokenUserCpf);
+    sessionStorage.setItem('tokenUserId', tokenUserId)
+  }
+  getTokenUserName(){
+    console.log(sessionStorage.getItem('tokenUserName'));
+    return sessionStorage.getItem('tokenUserName');
+  }
+  getTokenUserId(){
+    console.log(sessionStorage.getItem('tokenUserId'));
+    return sessionStorage.getItem('tokenUserId');
+
+  }
+  getTokenUserCpf(){
+    console.log(sessionStorage.getItem('tokenUserCpf'));
+    return sessionStorage.getItem('tokenUserCpf');
+  }
   // Method to get user token from session storage
   getUserToken() {
     return sessionStorage.getItem('tokenUser');

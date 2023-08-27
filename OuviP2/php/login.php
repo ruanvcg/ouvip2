@@ -21,7 +21,14 @@
     
         if($numsUser > 0)
         {
-            $data = array('message' => 'user success', 'email' => $email); // User login success response
+            $userRow = mysqli_fetch_assoc($result); // Fetch the user data
+            $data = array(
+                'message' => 'user success',
+                'email' => $email,
+                'id' => $userRow['usuarioId'],
+                'nome' => $userRow['nome'], // Assuming 'nome' is the field name for the name
+                'cpf' => $userRow['cpf'] // Assuming 'cpf' is the field name for the CPF
+            );
             echo json_encode($data); // Send JSON response
         }
         else

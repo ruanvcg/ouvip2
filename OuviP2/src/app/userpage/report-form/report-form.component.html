@@ -1,1 +1,39 @@
-<p>report-form works!</p>
+<h2>Reportar</h2>
+
+<form [formGroup]="reportForm" (ngSubmit)="postdata(reportForm.value)">
+
+    <label for="tipo-reporte">Tipo Reporte</label>
+    <input type="text" id="tipoReporte" name="tipoReporte" formControlName="tipoReporte" required>
+
+    <br>
+    
+    <label for="Categoria">Categoria</label>
+    <input type="text" name="categoria" formControlName="categoria" list="categorias" id="categoria" required>
+    <datalist id="categorias">
+      <option value="Reclamação">
+      <option value="Sugestão">
+      <option value="Solicitação">
+      <option value="Elogio">
+    </datalist>
+
+    <br>
+
+    <label for="descricao">Descrição</label>
+    <textarea name="descricao" id="descricao" formControlName="descricao" cols="30" rows="10" minlength="20" maxlength="3000" required></textarea>
+
+    <br>
+
+    <label for="endereco">Endereço</label>
+    <input type="text" id="endereco" name="endereco" formControlName="endereco" required>
+
+    <br>
+
+    <label for="numero">Número</label>
+    <input type="number" id="numero" formControlName="numero" name="numero">
+
+    <br>
+
+    <input type="hidden" value="Encaminhado" id="statusReporte" name="statusReporte" formControlName="statusReporte" readonly>
+
+    <button type="submit">Reportar</button>
+</form>

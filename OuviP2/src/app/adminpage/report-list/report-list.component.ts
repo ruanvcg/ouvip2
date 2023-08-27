@@ -7,18 +7,15 @@ import { CrudReportService } from 'src/app/services/crud-report.service';
   templateUrl: './report-list.component.html',
   styleUrls: ['./report-list.component.css']
 })
-
-export class ReportListComponent implements OnInit{
-  
+export class ReportListComponent implements OnInit {
   auth: any;
   reportList: any = [];
   reportListSubscribe: any;
 
-
   constructor(
     private crudReportService: CrudReportService,
     private router: Router
-  ){}
+  ) {}
 
   ngOnInit(): void {
     this.auth = sessionStorage.getItem('tokenAdmin');
@@ -30,11 +27,16 @@ export class ReportListComponent implements OnInit{
     this.getReportList();
   }
 
-  getReportList(){
+  getReportList() {
     this.reportListSubscribe = this.crudReportService.loadReports().subscribe(res => {
       this.reportList = res;
-
       console.log('res', res);
-    })
+    });
+  }
+
+  viewReportDetails(reportId: number) {
+    console.log('Clicked report ID:', reportId);
+    // Navigate to the details page, passing the report ID as a parameter
+    this.router.navigate(['adminpage/report-list/report-view/', reportId]);
   }
 }
