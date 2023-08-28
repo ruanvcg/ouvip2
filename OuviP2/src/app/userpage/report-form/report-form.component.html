@@ -1,25 +1,25 @@
 <h2>Reportar</h2>
 
-<form [formGroup]="reportForm" (ngSubmit)="postdata(reportForm.value)">
+<form [formGroup]="reportForm" (ngSubmit)="postdata()">
 
     <label for="tipo-reporte">Tipo Reporte</label>
     <input type="text" id="tipoReporte" name="tipoReporte" formControlName="tipoReporte" required>
 
     <br>
     
-    <label for="Categoria">Categoria</label>
-    <input type="text" name="categoria" formControlName="categoria" list="categorias" id="categoria" required>
-    <datalist id="categorias">
-      <option value="Reclamação">
-      <option value="Sugestão">
-      <option value="Solicitação">
-      <option value="Elogio">
-    </datalist>
+    <label for="categoria">Categoria</label>
+    <select name="categoria" id="categoria" required formControlName="categoria">
+      <option value="Reclamação">Reclamação</option>
+      <option value="Sugestão">Sugestão</option>
+      <option value="Solicitação">Solicitação</option>
+      <option value="Elogio">Elogio</option>
+    </select>
+
 
     <br>
 
     <label for="descricao">Descrição</label>
-    <textarea name="descricao" id="descricao" formControlName="descricao" cols="30" rows="10" minlength="20" maxlength="3000" required></textarea>
+    <textarea name="descricao" id="descricao" formControlName="descricao" cols="30" rows="10" maxlength="3000" required></textarea>
 
     <br>
 

@@ -36,6 +36,9 @@ export class HeaderComponent {
     // Clear both admin and user tokens
     this.dataService.deleteAdminToken();
     this.dataService.deleteUserToken();
+    this.dataService.deleteTokenUserId();
+    this.dataService.deleteTokenUserName();
+    this.dataService.deleteTokenUserCpf();
 
     // Refresh the page to update the login status
     window.location.href = window.location.href;

@@ -116,6 +116,15 @@ export class ApiService {
   deleteUserToken() {
     sessionStorage.removeItem('tokenUser');
   }
+  deleteTokenUserName(){
+    sessionStorage.removeItem('tokenUserName');
+  }
+  deleteTokenUserCpf(){
+    sessionStorage.removeItem('tokenUserCpf');
+  }
+  deleteTokenUserId(){
+    sessionStorage.removeItem('tokenUserId');
+  }
 
   // Method to set admin token in session storage
   setAdminToken(token: string) {
