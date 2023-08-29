@@ -45,4 +45,13 @@ export class CrudReportService {
     );
   }
   
+  public getReportDetails(id: number): Observable<any> {
+    const url = `${this.baseUrl}view_one_report.php?id=${id}`;
+    return this.httpClient.get<any>(url).pipe(
+      catchError(error => {
+        console.error('Request error:', error);
+        return throwError('Request error.');
+      })
+    );
+  }
 }

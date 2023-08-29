@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'userpage/report-form', component: ReportFormComponent, canActivate: [GuardGuard] },
   { path: 'adminpage', component: AdminpageComponent, canActivate: [ GuardGuard ] },
   { path: 'adminpage/report-list', component: ReportListComponent, canActivate: [ GuardGuard ] },
-  { path: 'adminpage/report-list/report-view', component: ReportViewComponent },
+  { path: 'adminpage/report-list/report-view/:id', component: ReportViewComponent, canActivate: [GuardGuard] },
   { path: "**", component: PageNotFoundComponent}
 ];
 

@@ -1,4 +1,5 @@
 <?php
+    header("Access-Control-Allow-Origin: *");
 
     $id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: Record ID not found.');
 
@@ -8,7 +9,7 @@
     // Read current record's data
     try {
         // Prepare select query
-        $query = "SELECT id, nome, cpf, tipo_reporte, categoria, endereco, numero, descricao, status_reporte, data_reporte FROM reportes WHERE id = ? LIMIT 0,1";
+        $query = "SELECT id, nome, cpf, tipoReporte, categoria, endereco, numero, descricao, statusReporte, dataReporte FROM reportes WHERE id = ? LIMIT 0,1";
         $stmt = $mysqli->prepare($query);
 
         // This is the first question mark
