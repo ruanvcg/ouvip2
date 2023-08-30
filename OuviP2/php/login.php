@@ -25,6 +25,7 @@
             $data = array(
                 'message' => 'user success',
                 'email' => $email,
+                'telefone' => $userRow['telefone'],
                 'id' => $userRow['usuarioId'],
                 'nome' => $userRow['nome'], // Assuming 'nome' is the field name for the name
                 'cpf' => $userRow['cpf'] // Assuming 'cpf' is the field name for the CPF

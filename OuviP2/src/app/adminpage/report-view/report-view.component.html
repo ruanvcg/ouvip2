@@ -1,16 +1,16 @@
-<!-- report-details.component.html -->
+
 <h2>Detalhes do Reporte</h2>
 <div *ngIf="reportDetails">
   <p><strong>Id(Protocolo):</strong> {{ reportDetails.id }}</p>
   <p><strong>Tipo de Reporte:</strong> {{ reportDetails.tipoReporte }}</p>
   <p><strong>Categoria:</strong> {{ reportDetails.categoria }}</p>
   <p><strong>Nome:</strong> {{ reportDetails.nome }}, {{reportDetails.cpf}}</p>
+  <p><strong>Contato:</strong> {{ reportDetails.email}}, {{reportDetails.telefone}}</p>
   <p><strong>Descrição:</strong> {{ reportDetails.descricao }}</p>
   <p><strong>Endereço:</strong> {{ reportDetails.endereco }} , n° {{ reportDetails.numero }}</p>
   <p><strong>Descrição:</strong> {{ reportDetails.descricao }}</p>
   <p><strong>Data:</strong> {{ reportDetails.dataReporte }}</p>
   <p><strong>Status do reporte:</strong> {{ reportDetails.statusReporte }}</p>
-  <!-- Outras informações do relatório aqui -->
 </div>
 
 <!--

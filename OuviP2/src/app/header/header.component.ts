@@ -39,6 +39,7 @@ export class HeaderComponent {
     this.dataService.deleteTokenUserId();
     this.dataService.deleteTokenUserName();
     this.dataService.deleteTokenUserCpf();
+    this.dataService.deleteTokenUserPhone();
 
     // Refresh the page to update the login status
     window.location.href = window.location.href;

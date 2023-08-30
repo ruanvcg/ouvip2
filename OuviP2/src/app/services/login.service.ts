@@ -47,7 +47,7 @@ export class ApiService {
     ).pipe(map(response => {
       if (response.message === 'user success') {
         this.setUserToken(response.email); // Set user token in session storage
-        this.setUserInfo(response.nome, response.cpf, response.id);
+        this.setUserInfo(response.nome, response.cpf, response.telefone, response.id);
         this.getLoggedInName.emit(true); // Emit event indicating user is logged in
         return { success: true, message: 'Login realizado com sucesso.' };
       } else {
@@ -89,9 +89,10 @@ export class ApiService {
     sessionStorage.setItem('tokenUser', token);
   }
 
-  setUserInfo(tokenUserName: string, tokenUserCpf: string, tokenUserId: string){
+  setUserInfo(tokenUserName: string, tokenUserCpf: string, tokenUserPhone: string, tokenUserId: string){
     sessionStorage.setItem('tokenUserName', tokenUserName);
     sessionStorage.setItem('tokenUserCpf', tokenUserCpf);
+    sessionStorage.setItem('tokenUserPhone', tokenUserPhone);
     sessionStorage.setItem('tokenUserId', tokenUserId)
   }
   getTokenUserName(){
@@ -107,6 +108,10 @@ export class ApiService {
     console.log(sessionStorage.getItem('tokenUserCpf'));
     return sessionStorage.getItem('tokenUserCpf');
   }
+  getTokenUserPhone(){
+    console.log(sessionStorage.getItem('tokenUserPhone'));
+    return sessionStorage.getItem('tokenUserPhone');
+  }
   // Method to get user token from session storage
   getUserToken() {
     return sessionStorage.getItem('tokenUser');
@@ -121,6 +126,9 @@ export class ApiService {
   }
   deleteTokenUserCpf(){
     sessionStorage.removeItem('tokenUserCpf');
+  }
+  deleteTokenUserPhone(){
+    sessionStorage.removeItem('tokenUserPhone');
   }
   deleteTokenUserId(){
     sessionStorage.removeItem('tokenUserId');

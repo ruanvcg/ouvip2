@@ -18,6 +18,8 @@ export class ReportFormComponent {
   reportForm: FormGroup;
   userCpfd: string | null = null; // Store user CPF here
   userNamed: string | null = null; // Store user name here
+  userEmaild: string | null = null; // Store user Email here
+  userPhoned: string | null = null; // Store user Phone here
   userIdd: string | null = null; // Store user ID here
 
   constructor(
@@ -30,11 +32,15 @@ export class ReportFormComponent {
     this.userIdd = this.loginService.getTokenUserId();
     this.userNamed = this.loginService.getTokenUserName();
     this.userCpfd = this.loginService.getTokenUserCpf();
+    this.userEmaild = this.loginService.getUserToken();
+    this.userPhoned = this.loginService.getTokenUserPhone();
 
     this.reportForm = this.formBuilder.group({
       usuarioId: [this.userIdd],
       nome: [this.userNamed],
       cpf: [this.userCpfd],
+      email: [this.userEmaild],
+      telefone: [this.userPhoned],
       tipoReporte: ['', [Validators.required, Validators.maxLength(100), Validators.pattern(/^[\p{L} ]+$/u)]],
       categoria: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^[\p{L} ]+$/u)]],
       descricao: ['', [Validators.required, Validators.maxLength(3000)]],
@@ -116,6 +122,8 @@ export class ReportFormComponent {
         this.reportForm.value.usuarioId,
         this.reportForm.value.nome,
         this.reportForm.value.cpf,
+        this.reportForm.value.email,
+        this.reportForm.value.telefone,
         this.reportForm.value.tipoReporte,
         this.reportForm.value.categoria,
         this.reportForm.value.endereco,

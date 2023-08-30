@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrudReportService } from 'src/app/services/crud-report.service';
+import { ApiService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-report-view',
@@ -9,10 +10,11 @@ import { CrudReportService } from 'src/app/services/crud-report.service';
 })
 export class ReportViewComponent {
   auth: any;
-  reportDetails: any; // Defina a variável para armazenar os detalhes do relatório
+  reportDetails: any; 
 
   constructor(
     private crudReportService: CrudReportService,
+    private loginService: ApiService,
     private router: Router,
     private route: ActivatedRoute
   ){}
@@ -28,7 +30,7 @@ export class ReportViewComponent {
     const id = idParam ? +idParam : 0;
     this.crudReportService.getReportDetails(id).subscribe(
       reportDetails => {
-        this.reportDetails = reportDetails; // Defina reportDetails para exibir no template
+        this.reportDetails = reportDetails;
       },
       error => {
         console.error('Error loading report details:', error);
@@ -36,3 +38,4 @@ export class ReportViewComponent {
     );
   }
 }
+

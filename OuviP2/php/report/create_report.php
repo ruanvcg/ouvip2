@@ -17,6 +17,8 @@
         $usuarioId = trim($request->usuarioId);
         $nome = trim($request->nome);
         $cpf = trim($request->cpf);
+        $email = trim($request->email);
+        $telefone = trim($request->telefone);
         $tipoReporte = trim($request->tipoReporte);
         $categoria = trim($request->categoria);
         $endereco = trim($request->endereco);
@@ -36,14 +38,16 @@
         $insertSql = "INSERT INTO reportes(
             usuarioId, 
             nome, 
-            cpf, 
+            cpf,
+            email,
+            telefone, 
             tipoReporte, 
             categoria,
             endereco,
             numero,
             descricao,
             statusReporte
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         // Antes de preparar e executar a declaração SQL
         error_log("Preparando e executando a declaração SQL...");
@@ -53,7 +57,7 @@
             die("Erro na preparação da declaração SQL: " . $mysqli->error);
         }
 
-        $stmt->bind_param("isssssiss", $usuarioId, $nome, $cpf, $tipoReporte, $categoria, $endereco, $numero, $descricao, $statusReporte);
+        $stmt->bind_param("isssssssiss", $usuarioId, $nome, $cpf, $email, $telefone, $tipoReporte, $categoria, $endereco, $numero, $descricao, $statusReporte);
 
         // Após a execução da declaração SQL
         error_log("Execução da declaração SQL concluída.");
