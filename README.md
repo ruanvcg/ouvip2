@@ -5,6 +5,7 @@ OuviP2 é parte do meu Trabalho de Conclusão de Curso em Análise e Desenvolvim
 ## Tech Stack:
 - Angular;
 - MySQL;
+- PHP;
 - TypeScript;
 - HTML;
 - CSS;
