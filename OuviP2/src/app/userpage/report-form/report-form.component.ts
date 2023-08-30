@@ -49,7 +49,7 @@ export class ReportFormComponent {
         Validators.maxLength(150)
       ]],
       numero: ['', [Validators.maxLength(999)]],
-      statusReporte: ['Encaminhado']
+      statusReporte: ['Pendente']
     });
   }
 

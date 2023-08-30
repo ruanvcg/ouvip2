@@ -2,17 +2,23 @@
 <h2>Detalhes do Reporte</h2>
 <div *ngIf="reportDetails">
   <p><strong>Id(Protocolo):</strong> {{ reportDetails.id }}</p>
-  <p><strong>Tipo de Reporte:</strong> {{ reportDetails.tipoReporte }}</p>
-  <p><strong>Categoria:</strong> {{ reportDetails.categoria }}</p>
-  <p><strong>Nome:</strong> {{ reportDetails.nome }}, {{reportDetails.cpf}}</p>
-  <p><strong>Contato:</strong> {{ reportDetails.email}}, {{reportDetails.telefone}}</p>
-  <p><strong>Descrição:</strong> {{ reportDetails.descricao }}</p>
+  <p><strong>Tipo de Reporte:</strong> {{ reportDetails.categoria }} | {{ reportDetails.tipoReporte }}</p>
   <p><strong>Endereço:</strong> {{ reportDetails.endereco }} , n° {{ reportDetails.numero }}</p>
   <p><strong>Descrição:</strong> {{ reportDetails.descricao }}</p>
+  <p><strong>Nome:</strong> {{ reportDetails.nome }}, {{reportDetails.cpf}}</p>
+  <p><strong>Contato:</strong> {{ reportDetails.email}}, {{reportDetails.telefone}}</p>
   <p><strong>Data:</strong> {{ reportDetails.dataReporte }}</p>
-  <p><strong>Status do reporte:</strong> {{ reportDetails.statusReporte }}</p>
-</div>
+  <div>
+    <p><strong>Status do reporte:</strong></p>
+    <form [formGroup]="reportViewForm">
+      <select name="status" formControlName="status" id="status" required>
+        <option value="Pendente">Pendente</option>
+        <option value="Encaminhado">Encaminhado</option>
+        <option value="Em processo">Em processo</option>
+        <option value="Concluido">Concluído</option>
+      </select>
 
-<!--
-    SELECT id, nome, cpf, tipo_reporte, categoria, endereco, numero, descricao, status_reporte, data_reporte 
--->
+      <button type="submit">Atualizar Status</button>
+    </form>
+  </div>
+</div>

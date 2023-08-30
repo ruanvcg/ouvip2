@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrudReportService } from 'src/app/services/crud-report.service';
 import { ApiService } from 'src/app/services/login.service';
@@ -10,13 +11,15 @@ import { ApiService } from 'src/app/services/login.service';
 })
 export class ReportViewComponent {
   auth: any;
-  reportDetails: any; 
+  reportDetails: any;
+  reportViewForm!: FormGroup;
 
   constructor(
     private crudReportService: CrudReportService,
     private loginService: ApiService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private fb: FormBuilder 
   ){}
 
   ngOnInit(): void {
@@ -31,6 +34,14 @@ export class ReportViewComponent {
     this.crudReportService.getReportDetails(id).subscribe(
       reportDetails => {
         this.reportDetails = reportDetails;
+
+        // Defina o valor padrão do status usando o valor de statusReporte
+        this.reportDetails.statusReporte = reportDetails.statusReporte;
+
+        // Agora, depois de ter os detalhes do relatório, defina o valor padrão do form
+        this.reportViewForm = this.fb.group({
+          status: [this.reportDetails.statusReporte]
+        });
       },
       error => {
         console.error('Error loading report details:', error);
@@ -38,4 +49,3 @@ export class ReportViewComponent {
     );
   }
 }
-
