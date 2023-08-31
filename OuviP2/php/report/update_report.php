@@ -4,7 +4,7 @@
     header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     header("Content-Type: application/json; charset=UTF-8");
-    
+
     // Pegar o corpo da solicitação
     $postdata = file_get_contents("php://input");
     $request = json_decode($postdata);
@@ -25,7 +25,6 @@
 
             // bind the parameters
             $stmt->bind_param('si', $statusReporte, $id);
-
             // Execute the query
             if ($stmt->execute()) {
                 echo json_encode(array('result' => 'success'));

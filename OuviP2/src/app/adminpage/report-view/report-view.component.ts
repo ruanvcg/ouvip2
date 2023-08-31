@@ -57,7 +57,7 @@ export class ReportViewComponent {
       response => {
         if (response.result === 'success') {
           alert('Status atualizado com sucesso!');
-          this.router.navigate(['adminpage/report-pending-list/']);
+          this.router.navigate(['adminpage/']);
           // Atualizar os detalhes do relatório com o novo status
           this.reportDetails.statusReporte = newStatus;
         } else {
@@ -77,7 +77,7 @@ export class ReportViewComponent {
         response => {
           if (response.result === 'success') {
             alert('Reporte excluído com sucesso!');
-            this.router.navigate(['adminpage/report-list']);
+            this.router.navigate(['adminpage/']);
           } else {
             alert('Falha ao deletar o reporte!');
           }
