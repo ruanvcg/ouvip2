@@ -12,8 +12,10 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ReportFormComponent } from './userpage/report-form/report-form.component';
-import { ReportListComponent } from './adminpage/report-list/report-list.component';
+import { ReportPendingListComponent } from './adminpage/report-pending-list/report-list.component';
 import { ReportViewComponent } from './adminpage/report-view/report-view.component';
+import { ReportForwardedListComponent } from './adminpage/report-forwarded-list/report-forwarded-list.component';
+import { ReportCompletedListComponent } from './adminpage/report-completed-list/report-completed-list.component';
 
 
 @NgModule({
@@ -26,8 +28,10 @@ import { ReportViewComponent } from './adminpage/report-view/report-view.compone
     LoginComponent,
     PageNotFoundComponent,
     ReportFormComponent,
-    ReportListComponent,
-    ReportViewComponent
+    ReportPendingListComponent,
+    ReportViewComponent,
+    ReportForwardedListComponent,
+    ReportCompletedListComponent
   ],
   imports: [
     BrowserModule,

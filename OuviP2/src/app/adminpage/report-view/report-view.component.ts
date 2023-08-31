@@ -57,6 +57,7 @@ export class ReportViewComponent {
       response => {
         if (response.result === 'success') {
           alert('Status atualizado com sucesso!');
+          this.router.navigate(['adminpage/report-pending-list/']);
           // Atualizar os detalhes do relatório com o novo status
           this.reportDetails.statusReporte = newStatus;
         } else {

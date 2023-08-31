@@ -1,3 +1,5 @@
 <h2>Página Admin</h2>
 
-<a routerLink="adminpage/report-list">Reportes pendentes</a>
+<a (click)="navigateToPendingReports()" routerLinkActive="active">Reportes pendentes</a><br>
+<a (click)="navigateToForwardedReports()" routerLinkActive="active">Reportes encaminhados</a><br>
+<a (click)="navigateToCompletedReports()" routerLinkActive="active">Reportes concluídos</a><br>

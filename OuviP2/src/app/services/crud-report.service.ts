@@ -11,8 +11,18 @@ export class CrudReportService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public loadReports(){
-    const url = this.baseUrl + 'view_reports.php';
+  public loadPendingReports(){
+    const url = this.baseUrl + 'view_pending_reports.php';
+    return this.httpClient.get<any[]>(url, { observe: 'response' }).pipe(map(response => response));
+  }
+
+  public loadForwardedReports(){
+    const url = this.baseUrl + 'view_forwarded_reports.php';
+    return this.httpClient.get<any[]>(url, { observe: 'response' }).pipe(map(response => response));
+  }
+
+  public loadCompletedReports(){
+    const url = this.baseUrl + 'view_completed_reports.php';
     return this.httpClient.get<any[]>(url, { observe: 'response' }).pipe(map(response => response));
   }
 

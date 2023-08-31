@@ -21,4 +21,16 @@ export class AdminpageComponent implements OnInit{
     }
   }
 
+  navigateToPendingReports(): void {
+    this.router.navigate(['/adminpage/report-pending-list']);
+  }
+
+  navigateToForwardedReports(): void {
+    this.router.navigate(['/adminpage/report-forwarded-list']);
+  }
+
+  navigateToCompletedReports(): void {
+    this.router.navigate(['/adminpage/report-completed-list']);
+  }
+
 }

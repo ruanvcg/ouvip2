@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CrudReportService } from 'src/app/services/crud-report.service';
 
 @Component({
-  selector: 'app-report-list',
-  templateUrl: './report-list.component.html',
-  styleUrls: ['./report-list.component.css']
+  selector: 'app-report-completed-list',
+  templateUrl: './report-completed-list.component.html',
+  styleUrls: ['./report-completed-list.component.css']
 })
-export class ReportListComponent implements OnInit {
+export class ReportCompletedListComponent {
   auth: any;
   reportList: any = [];
   reportListSubscribe: any;
@@ -28,7 +28,7 @@ export class ReportListComponent implements OnInit {
   }
 
   getReportList() {
-    this.reportListSubscribe = this.crudReportService.loadReports().subscribe(res => {
+    this.reportListSubscribe = this.crudReportService.loadCompletedReports().subscribe(res => {
       this.reportList = res.body; // Use res.body to access the array of reports
       console.log('res', res);
     });
@@ -37,6 +37,6 @@ export class ReportListComponent implements OnInit {
   viewReportDetails(reportId: number) {
     console.log('Clicked report ID:', reportId);
     // Navigate to the details page, passing the report ID as a parameter
-    this.router.navigate(['adminpage/report-list/report-view/', reportId]);
+    this.router.navigate(['adminpage/report-completed-list/report-view/', reportId]);
   }
 }
