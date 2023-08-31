@@ -56,4 +56,25 @@ export class CrudReportService {
       })
     );
   }
+
+  public updateReportStatus(id: number, newStatus: string): Observable<any> {
+    return this.httpClient.post<any>(this.baseUrl + 'update_report.php', { id, statusReporte: newStatus })
+      .pipe(
+        catchError(error => {
+          console.error('Request error:', error);
+          return throwError('Request error.');
+        })
+      );
+  }
+
+  public deleteReport(id: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.baseUrl}delete_report.php?id=${id}`).pipe(
+      catchError(error => {
+        console.error('Request error:', error);
+        return throwError('Request error.');
+      })
+    );
+  }
+  
+  
 }

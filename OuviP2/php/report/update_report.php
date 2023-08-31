@@ -14,17 +14,17 @@
 
         try {
             // write update query
-            $query = "UPDATE reportes SET status_reporte = ? WHERE id = ?";
+            $query = "UPDATE reportes SET statusReporte = ? WHERE id = ?";
 
             // prepare query for execution
             $stmt = $mysqli->prepare($query);
 
             // Pegar os valores do JSON
             $id = $request->id;
-            $status_reporte = $request->status_reporte;
+            $statusReporte = $request->statusReporte;
 
             // bind the parameters
-            $stmt->bind_param('si', $status_reporte, $id);
+            $stmt->bind_param('si', $statusReporte, $id);
 
             // Execute the query
             if ($stmt->execute()) {

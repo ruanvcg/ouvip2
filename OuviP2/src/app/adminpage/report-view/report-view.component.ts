@@ -45,7 +45,48 @@ export class ReportViewComponent {
       },
       error => {
         console.error('Error loading report details:', error);
+        this.router.navigate(['**']);
       }
     );
   }
+
+  updateReportStatus() {
+    const newStatus = this.reportViewForm.value.status;
+  
+    this.crudReportService.updateReportStatus(this.reportDetails.id, newStatus).subscribe(
+      response => {
+        if (response.result === 'success') {
+          alert('Status atualizado com sucesso!');
+          // Atualizar os detalhes do relatório com o novo status
+          this.reportDetails.statusReporte = newStatus;
+        } else {
+          console.error('Failed to update report status.');
+        }
+      },
+      error => {
+        console.error('Error updating report status:', error);
+      }
+    );
+  }
+
+  deleteReport(id: number) {
+    const confirmDelete = confirm('Tem certeza de que deseja excluir este reporte?');
+    if (confirmDelete) {
+      this.crudReportService.deleteReport(id).subscribe(
+        response => {
+          if (response.result === 'success') {
+            alert('Reporte excluído com sucesso!');
+            this.router.navigate(['adminpage/report-list']);
+          } else {
+            alert('Falha ao deletar o reporte!');
+          }
+        },
+        error => {
+          console.error('Error deleting report:', error);
+        }
+      );
+    }
+  }
+  
+  
 }
