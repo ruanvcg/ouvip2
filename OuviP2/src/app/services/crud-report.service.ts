@@ -37,11 +37,13 @@ export class CrudReportService {
     categoria: string,
     endereco: string,
     numero: number,
+    bairro: string,
+    referencia: string,
     descricao: string,
     statusReporte: string
   ): Observable<any> {
     return this.httpClient.post<any>(this.baseUrl + 'create_report.php',
-      { usuarioId, nome, cpf, email, telefone, tipoReporte, categoria, endereco, numero, descricao, statusReporte } // Sending registration data
+      { usuarioId, nome, cpf, email, telefone, tipoReporte, categoria, endereco, numero, bairro, referencia, descricao, statusReporte } // Sending registration data
     ).pipe(
       map(response => {
         if (response.message === 'success') {

@@ -49,6 +49,8 @@ export class ReportFormComponent {
         Validators.maxLength(150)
       ]],
       numero: ['', [Validators.maxLength(999)]],
+      bairro: ['', [Validators.maxLength(100), Validators.required]],
+      referencia: ['', [Validators.maxLength(100)]],
       statusReporte: ['Pendente']
     });
   }
@@ -68,6 +70,8 @@ export class ReportFormComponent {
     const descricaoControl = this.reportForm.get('descricao');
     const enderecoControl = this.reportForm.get('endereco');
     const numeroControl = this.reportForm.get('numero');
+    const referenciaControl = this.reportForm.get('referencia');
+    const bairroControl = this.reportForm.get('bairro');
 
     if(this.reportForm?.invalid){
       if(tipoReporteControl?.invalid){
@@ -110,7 +114,21 @@ export class ReportFormComponent {
       }
       if(numeroControl?.invalid){
         if (numeroControl?.hasError('maxlength')) {
-          alert('O campo "Endereço" deve ter no máximo 999.');
+          alert('Insira um número válido, porfavor');
+        } 
+        return;
+      }
+      if(bairroControl?.invalid){
+        if (bairroControl?.hasError('required')) {
+          alert('O campo "Bairro" é obrigatório.');
+        }else if (bairroControl?.hasError('maxlength')) {
+          alert('O campo "Bairro" deve ter no máximo 100 caracteres.');
+        } 
+        return;
+      }
+      if(referenciaControl?.invalid){
+        if (referenciaControl?.hasError('maxlength')) {
+          alert('O campo "Endereço" deve ter no máximo 100 caracteres.');
         } 
         return;
       }
@@ -128,6 +146,8 @@ export class ReportFormComponent {
         this.reportForm.value.categoria,
         this.reportForm.value.endereco,
         this.reportForm.value.numero,
+        this.reportForm.value.bairro,
+        this.reportForm.value.referencia,
         this.reportForm.value.descricao,
         this.reportForm.value.statusReporte
       ).pipe(first()).subscribe(

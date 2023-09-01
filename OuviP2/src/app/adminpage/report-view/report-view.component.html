@@ -2,7 +2,7 @@
   <h2>Detalhes do Reporte</h2>
   <p><strong>Id(Protocolo):</strong> {{ reportDetails.id }}</p>
   <p><strong>Tipo de Reporte:</strong> {{ reportDetails.categoria }} | {{ reportDetails.tipoReporte }}</p>
-  <p><strong>Endereço:</strong> {{ reportDetails.endereco }} , n° {{ reportDetails.numero }}</p>
+  <p><strong>Endereço:</strong> {{ reportDetails.endereco }} , {{reportDetails.bairro}}, n° {{ reportDetails.numero }} <br> {{reportDetails.referencia}}</p>
   <p><strong>Descrição:</strong> {{ reportDetails.descricao }}</p>
   <p><strong>Nome:</strong> {{ reportDetails.nome }}, {{reportDetails.cpf}}</p>
   <p><strong>Contato:</strong> {{ reportDetails.email}}, {{reportDetails.telefone}}</p>

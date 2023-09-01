@@ -9,7 +9,7 @@
     // Read current record's data
     try {
         // Prepare select query
-        $query = "SELECT id, nome, cpf, email, telefone, tipoReporte, categoria, endereco, numero, descricao, statusReporte, dataReporte FROM reportes WHERE id = ? LIMIT 0,1";
+        $query = "SELECT id, nome, cpf, email, telefone, tipoReporte, categoria, endereco, numero, bairro, referencia, descricao, statusReporte, dataReporte FROM reportes WHERE id = ? LIMIT 0,1";
         $stmt = $mysqli->prepare($query);
 
         // This is the first question mark

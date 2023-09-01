@@ -23,6 +23,8 @@
         $categoria = trim($request->categoria);
         $endereco = trim($request->endereco);
         $numero = trim($request->numero);
+        $bairro = trim($request->bairro);
+        $referencia = trim($request->referencia);
         $descricao = trim($request->descricao);
         $statusReporte = trim($request->statusReporte);
 
@@ -45,9 +47,11 @@
             categoria,
             endereco,
             numero,
+            bairro,
+            referencia,
             descricao,
             statusReporte
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         // Antes de preparar e executar a declaração SQL
         error_log("Preparando e executando a declaração SQL...");
@@ -57,7 +61,7 @@
             die("Erro na preparação da declaração SQL: " . $mysqli->error);
         }
 
-        $stmt->bind_param("isssssssiss", $usuarioId, $nome, $cpf, $email, $telefone, $tipoReporte, $categoria, $endereco, $numero, $descricao, $statusReporte);
+        $stmt->bind_param("isssssssissss", $usuarioId, $nome, $cpf, $email, $telefone, $tipoReporte, $categoria, $endereco, $numero, $bairro, $referencia, $descricao, $statusReporte);
 
         // Após a execução da declaração SQL
         error_log("Execução da declaração SQL concluída.");
