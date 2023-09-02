@@ -16,7 +16,6 @@ export class HeaderComponent {
 
     // Check if the user is logged in
     if (this.dataService.isLoggedIn()) {
-      console.log("LoggedIn");
       this.loginbtn = false;
       this.logoutbtn = true;
     } else {

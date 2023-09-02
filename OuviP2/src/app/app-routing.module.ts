@@ -13,6 +13,7 @@ import { ReportPendingListComponent } from './adminpage/report-pending-list/repo
 import { ReportViewComponent } from './adminpage/report-view/report-view.component';
 import { ReportForwardedListComponent } from './adminpage/report-forwarded-list/report-forwarded-list.component';
 import { ReportCompletedListComponent } from './adminpage/report-completed-list/report-completed-list.component';
+import { ReportFollowComponent } from './userpage/report-follow/report-follow.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'registration', component: RegisterComponent},
   { path: 'userpage', component: UserpageComponent, canActivate: [GuardGuard]},
   { path: 'userpage/report-form', component: ReportFormComponent, canActivate: [GuardGuard] },
+  { path: 'userpage/report-follow', component: ReportFollowComponent, canActivate: [GuardGuard] },
   { path: 'adminpage', component: AdminpageComponent, canActivate: [ GuardGuard ] },
   { path: 'adminpage/report-pending-list', component: ReportPendingListComponent, canActivate: [ GuardGuard ] },
   { path: 'adminpage/report-forwarded-list', component: ReportForwardedListComponent, canActivate: [ GuardGuard ] },

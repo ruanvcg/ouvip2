@@ -5,6 +5,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { UserpageComponent } from './userpage/userpage.component';
@@ -16,6 +17,7 @@ import { ReportPendingListComponent } from './adminpage/report-pending-list/repo
 import { ReportViewComponent } from './adminpage/report-view/report-view.component';
 import { ReportForwardedListComponent } from './adminpage/report-forwarded-list/report-forwarded-list.component';
 import { ReportCompletedListComponent } from './adminpage/report-completed-list/report-completed-list.component';
+import { ReportFollowComponent } from './userpage/report-follow/report-follow.component';
 
 
 @NgModule({
@@ -28,12 +30,14 @@ import { ReportCompletedListComponent } from './adminpage/report-completed-list/
     LoginComponent,
     PageNotFoundComponent,
     ReportFormComponent,
+    ReportFollowComponent,
     ReportPendingListComponent,
     ReportViewComponent,
     ReportForwardedListComponent,
     ReportCompletedListComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,

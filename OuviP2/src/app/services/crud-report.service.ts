@@ -88,5 +88,14 @@ export class CrudReportService {
     );
   }
   
+  public getUserReports(usuarioId: number): Observable<any[]> {
+    const url = `${this.baseUrl}follow_reports.php?usuarioId=${usuarioId}`;
+    return this.httpClient.get<any[]>(url).pipe(
+      catchError(error => {
+        console.error('Request error:', error);
+        return throwError('Request error.');
+      })
+    );
+  }
   
 }
