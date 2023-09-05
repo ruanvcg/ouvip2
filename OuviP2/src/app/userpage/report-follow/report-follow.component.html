@@ -1,5 +1,14 @@
 <section>
     <div *ngFor="let report of userReports">
-      <div style="display: flex; justify-content: space-around;"><p>{{ report.categoria }}</p>  <p>{{ report.tipoReporte }}</p>  <p>{{ report.endereco }}</p>  <p>{{ report.bairro }}</p>  <p>{{ report.descricao }}</p>  <p>{{ report.statusReporte }}</p></div>
+      <div style="display: flex; justify-content: space-around; font-size: small;">
+        <p>{{ report.id }}</p>
+        <p>{{ report.categoria }}</p>
+        <p>{{ report.tipoReporte }}</p>
+        <p>{{ report.endereco }}</p>
+        <p>{{ report.bairro }}</p>
+        <p>{{ report.descricao }}</p>
+        <p>{{ report.dataReporte }}</p>
+        <p>{{ report.statusReporte }}</p>
+      </div>
     </div>
 </section>

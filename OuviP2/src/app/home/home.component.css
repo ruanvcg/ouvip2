@@ -1,0 +1,31 @@
+section{
+    display: flex;
+    margin-top: 4rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.title{
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.title span{
+    color: var(--white);
+    -webkit-text-stroke: 1px var(--primary-color);
+}
+
+.welcome-message h1, p{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.welcome-message > h1 > .register, a{
+    color: var(--primary-color);
+}
+
+img{
+    width: 36.4375rem;
+    height: 27.0625rem;
+    flex-shrink: 0;
+}

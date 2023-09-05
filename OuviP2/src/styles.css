@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('./config-css/variables.css');
+@import url('./config-css/reset.css');
+
+html{
+    font-family: 'Inter', sans-serif;
+    background-color: var(--white);
+    width: 100vw;
+    height: 100vh;
+}
+
+h1{
+    font-size: 2rem;
+}
+
+h2{
+    font-size: 1.6rem;
+}
+
+main{
+    height: 100%;
+    margin: 0.8rem 2rem 2rem 2rem;
+    padding: 0 4rem;
+
+    box-sizing: border-box;
+}

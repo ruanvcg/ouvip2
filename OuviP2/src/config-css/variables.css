@@ -1,0 +1,11 @@
+:root{
+
+    --white: #FCFCFC;
+
+    --primary-color: #267D0D;
+    --secundary-color: #1E1E1E;
+
+    --pendingReports-color: #D83131;
+    --forwardedReports-color: #BBBE27;
+    --completedReports-color: #49C027;
+}
