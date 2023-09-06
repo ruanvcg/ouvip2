@@ -20,8 +20,13 @@ h2{
 
 main{
     height: 100%;
-    margin: 0.8rem 2rem 2rem 2rem;
-    padding: 0 4rem;
+    margin: 4rem;
 
     box-sizing: border-box;
+}
+
+@media (max-width: 870px) {
+    main{
+        margin: 2rem;
+    }
 }

@@ -2,11 +2,11 @@
     <a routerLink="home" class="iconNav" routerLinkActive="active"><img src="assets/icons/headphone.svg"><h2>OuviP2</h2></a>
 
     <div>
-        <ul>
-            <li><a routerLink="/" *ngIf="loginbtn" routerLinkActive="active">Inicio</a></li>
-            <li><a routerLink="login" *ngIf="loginbtn" routerLinkActive="active">Login</a></li>
-            <li><a routerLink="registration" *ngIf="loginbtn" routerLinkActive="active">Register</a></li>
-            <li><button type="button" (click)="logout()" *ngIf="logoutbtn">Logout</button></li>
+        <ul class="menu-list">
+            <li><a routerLink="/" *ngIf="logoutbtn" routerLinkActive="active">Inicio</a></li>
+            <li><a routerLink="login" *ngIf="loginbtn" class="loginbtn" routerLinkActive="active"><img src="assets/icons/login.svg">Login</a></li>
+            <li><button type="button" (click)="logout()" class="logoutbtn" *ngIf="logoutbtn"><img src="assets/icons/logout.svg">Logout</button></li>
+            
         </ul>
     </div>
 </nav>

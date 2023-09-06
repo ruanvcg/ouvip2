@@ -43,4 +43,6 @@ export class HeaderComponent {
     // Refresh the page to update the login status
     window.location.href = window.location.href;
   }
+
+  
 }

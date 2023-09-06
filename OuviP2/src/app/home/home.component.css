@@ -29,3 +29,22 @@ img{
     height: 27.0625rem;
     flex-shrink: 0;
 }
+
+
+@media (max-width: 1075px) and (min-width: 737px) {
+    img{
+        width: 24.4375rem;
+        height: 20.0625rem;
+        flex-shrink: 0;
+    }
+}
+@media (max-width: 737px) {
+    section{
+        flex-direction: column;
+    }
+    img{
+        width: 20.4375rem;
+        height: 15.0625rem;
+        flex-shrink: 0;
+    }
+}
