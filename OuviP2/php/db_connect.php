@@ -8,7 +8,7 @@
     $config = include('config.php');
 
 
-    $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+    $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
     //Credentials
     $db_host = $_ENV['HOST'];
     $db_username = $_ENV['USER'];
