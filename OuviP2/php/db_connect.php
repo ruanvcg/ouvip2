@@ -6,10 +6,10 @@
     header("Content-Type: application/json; charset=UTF-8");
 
     //Credentials
-    $db_host = 'localhost';
-    $db_username = 'root';
-    $db_password = '';
-    $db_name = 'ouvip2';
+    $db_host = 'mysql-ruan.alwaysdata.net';
+    $db_username = 'ruan';
+    $db_password = 'ouvip22023';
+    $db_name = 'ruan_db';
 
     //Connection
     $mysqli = new mysqli($db_host, $db_username, $db_password, $db_name);
