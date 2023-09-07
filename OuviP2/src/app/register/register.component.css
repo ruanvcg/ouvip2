@@ -8,6 +8,15 @@
     text-align: center;
 }
 
+p{
+    margin: 2rem 0;
+}
+
+p, span{
+    color: rgb(187, 8, 8);
+    font-weight: bold;
+}
+
 .info-sec {
     display: flex;
     margin: 1rem 0;
