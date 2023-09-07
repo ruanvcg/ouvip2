@@ -7,7 +7,7 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CrudReportService {
-  baseUrl: string = "https://ruanads.alwaysdata.net/report"; // Base URL for the API
+  baseUrl: string = "https://ruanads.alwaysdata.net/report/"; // Base URL for the API
 
   constructor(private httpClient: HttpClient) { }
 
