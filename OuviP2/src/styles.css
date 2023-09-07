@@ -18,6 +18,15 @@ h2{
     font-size: 1.6rem;
 }
 
+.line{
+    height: 0.125rem;
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: #CCC;
+}
+
+
 main{
     height: 100%;
     margin: 4rem;

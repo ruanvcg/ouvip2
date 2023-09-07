@@ -1,6 +1,6 @@
 <main>
-    <h2>Para continuar, realize seu login</h2>
-    <hr>
+    <h2 class="title">Para continuar, realize seu login</h2>
+    <hr class="line">
 
     <form class="formulario" [formGroup]="angForm" (ngSubmit)="postdata()" autocomplete="off">
         <label class="label-input" for="email">Email:</label>
@@ -9,7 +9,7 @@
         <label class="label-input" for="senha">Senha:</label>
         <input class="input" type="password" name="senha" formControlName="senha" placeholder="Digite sua senha..." autocomplete="off">
         <br>
-        <a routerLink="registration">Ainda não tem uma conta? Crie aqui.</a>
+        <a routerLink="/registration">Ainda não tem uma conta? Crie aqui.</a>
         <button class="button" type="submit">Login</button>
     </form>
 </main>
