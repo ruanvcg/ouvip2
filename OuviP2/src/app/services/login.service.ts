@@ -8,8 +8,7 @@ import { Observable, throwError } from 'rxjs';
 })
 export class ApiService {
   redirectUrl!: string;
-
-  baseUrl: string = "https://github.com/ruanvcg/OuviP2/blob/main/OuviP2/php"; // Base URL for the API
+  baseUrl: string = "https://github.com/ruanvcg/OuviP2/tree/e7e798eb034c9773b3c19689d4f92b12a5e0c546/OuviP2/php"; // Base URL for the API
 
   @Output() getLoggedInName: EventEmitter<any> = new EventEmitter(); // Event emitter for indicating logged-in status
 
