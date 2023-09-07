@@ -2,41 +2,43 @@
     <h2 class="title">Criar conta</h2>
     <hr class="line">
 
+    <p>* Os campos com asterisco são obrigatórios</p>
+    
     <form [formGroup]="angForm" (ngSubmit)="postdata()" autocomplete="off" class="">
         <div class="info-sec">
             <div class="info-one">
-                <label class="label-input">Nome Completo:</label>
+                <label class="label-input"><span>*</span> Nome Completo:</label>
                 <input type="text" name="nome" class="input" formControlName="nome" placeholder="Digite seu nome completo..." autocomplete="off">
             </div>
     
             <br>
 
             <div class="info-two">
-                <label class="label-input">CPF:</label>
+                <label class="label-input"><span>*</span> CPF:</label>
                 <input type="text" name="cpf" class="input" formControlName="cpf" placeholder="XXX.XXX.XXX-XX" autocomplete="off">
             </div>
         </div>
 
         <div class="info-sec">
             <div class="info-one">
-                <label class="label-input">Email:</label>
+                <label class="label-input"><span>*</span> Email:</label>
                 <input type="text" name="email" class="input" formControlName="email" placeholder="Digite seu email..." autocomplete="off">
             </div>
             <br>
             <div class="info-two">
-                <label class="label-input">Telefone:</label>
+                <label class="label-input"><span>*</span> Telefone:</label>
                 <input type="text" name="telefone" class="input" formControlName="telefone" placeholder="(XX)XXXX-XXXX" autocomplete="off">
             </div>
         </div>
 
         <div class="info-sec">
             <div class="info-one">
-                <label class="label-input">Senha:</label>
+                <label class="label-input"><span>*</span> Senha:</label>
                 <input type="password" name="senha" class="input" formControlName="senha" placeholder="Digite sua senha..." autocomplete="off">
             </div>
             <br>
             <div class="info-two">
-                <label class="label-input">Confirmar Senha:</label>
+                <label class="label-input"><span>*</span> Confirmar Senha:</label>
                 <input type="password" name="confirmarSenha" class="input" placeholder="Digite a senha novamente..." formControlName="confirmarSenha" autocomplete="off">
             </div>
         </div>
