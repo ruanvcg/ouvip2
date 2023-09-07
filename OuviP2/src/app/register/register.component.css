@@ -1,0 +1,60 @@
+
+h2{
+    font-size: 2rem;
+    color: var(--primary-color);
+
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+hr{
+    height: 0.125rem;
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: #CCC;
+}
+
+
+.info-sec {
+    display: flex;
+    margin: 1rem 0;
+}
+
+.info-sec .info-one, .info-two{
+    margin: 0 1rem;
+    width: 100%;
+}
+
+.button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 98%;
+    margin: 1rem 1rem;
+}
+
+@media (max-width: 460px) {
+
+    .info-sec{
+        flex-direction: column;
+    }
+
+    main{
+        margin-left: 5%;
+        margin-right: 5%;
+        padding: 0;
+    }
+
+    .info-sec .info-one, .info-two{
+        margin: 0;
+        width: 100%;
+    }
+
+    .button{
+        width: 98%;
+        margin: 0 auto;
+    }
+}

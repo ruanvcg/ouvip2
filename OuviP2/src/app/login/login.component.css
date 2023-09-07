@@ -1,0 +1,38 @@
+h2{
+    font-size: 2rem;
+    color: var(--primary-color);
+
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.label-input{
+    font-size: 1.2rem;
+    text-align: left;
+    margin-bottom: 0.5rem;
+}
+
+.button{
+    width: 100%;
+}
+
+a{
+    color: var(--primary-color);
+    text-decoration: underline;
+    font-size: 1rem;
+
+    margin-bottom: 1rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 737px) {
+    .formulario{
+        margin-top: 10%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}

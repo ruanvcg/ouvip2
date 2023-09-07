@@ -21,8 +21,48 @@ h2{
 main{
     height: 100%;
     margin: 4rem;
+    padding: 0.5rem;
 
     box-sizing: border-box;
+}
+
+.formulario{
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+    margin-top: 5%;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.label-input{
+    font-size: 1.2rem;
+    text-align: left;
+    margin-bottom: 0.5rem;
+}
+
+.input{
+    width: 98%;
+    height: 2.8rem;
+
+    border-radius: 0.625rem;
+    border: 1px solid #AAA;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25), 0px 2px 5px 0px rgba(0, 0, 0, 0.40);
+    
+    padding-left: 0.5rem;
+}
+
+.button{
+    height: 3rem;
+
+    border-radius: 0.625rem;
+    background: var(--primary-color);
+    color: var(--white);
+    font-weight: bold;
+    box-shadow: 1px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+    cursor: pointer;
 }
 
 @media (max-width: 870px) {

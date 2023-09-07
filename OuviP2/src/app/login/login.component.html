@@ -1,11 +1,15 @@
-<h2>Login</h2>
+<main>
+    <h2>Para continuar, realize seu login</h2>
+    <hr>
 
-<form [formGroup]="angForm" (ngSubmit)="postdata()" autocomplete="off">
-    <label for="email">Email</label>
-    <input type="email" name="email" formControlName="email" autocomplete="off">
-    <br>
-    <label for="senha">Senha</label>
-    <input type="password" name="senha" formControlName="senha" autocomplete="off">
-    <br>
-    <button type="submit">Login</button>
-</form>
+    <form class="formulario" [formGroup]="angForm" (ngSubmit)="postdata()" autocomplete="off">
+        <label class="label-input" for="email">Email:</label>
+        <input class="input" type="email" name="email" formControlName="email" placeholder="Digite seu email..." autocomplete="off">
+        <br>
+        <label class="label-input" for="senha">Senha:</label>
+        <input class="input" type="password" name="senha" formControlName="senha" placeholder="Digite sua senha..." autocomplete="off">
+        <br>
+        <a routerLink="registration">Ainda não tem uma conta? Crie aqui.</a>
+        <button class="button" type="submit">Login</button>
+    </form>
+</main>
