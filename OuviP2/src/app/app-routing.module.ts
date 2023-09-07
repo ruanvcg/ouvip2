@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'registration', component: RegisterComponent},
+  { path: 'login/registration', component: RegisterComponent},
   { path: 'userpage', component: UserpageComponent, canActivate: [GuardGuard]},
   { path: 'userpage/report-form', component: ReportFormComponent, canActivate: [GuardGuard] },
   { path: 'userpage/report-follow', component: ReportFollowComponent, canActivate: [GuardGuard] },

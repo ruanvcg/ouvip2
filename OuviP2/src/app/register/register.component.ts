@@ -8,7 +8,7 @@ import { cpf } from 'cpf-cnpj-validator';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css', '../../styles.css']
 })
 export class RegisterComponent implements OnInit {
   angForm: FormGroup;

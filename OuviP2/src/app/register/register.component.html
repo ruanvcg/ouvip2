@@ -1,20 +1,46 @@
-<h2>Criar conta</h2>
+<main>
+    <h2>Criar conta</h2>
+    <hr>
 
-<form [formGroup]="angForm" (ngSubmit)="postdata()" autocomplete="off">
-    <label for="nome">Nome Completo</label>
-    <input type="text" name="nome" formControlName="nome" autocomplete="off">
-    <br>
-    <label for="nome">CPF</label>
-    <input type="text" name="cpf" formControlName="cpf" autocomplete="off">
-    <br>
-    <label for="nome">Email</label>
-    <input type="text" name="email" formControlName="email" autocomplete="off">
-    <br>
-    <label for="nome">Telefone</label>
-    <input type="text" name="telefone" formControlName="telefone" autocomplete="off">
-    <br>
-    <label for="nome">Senha</label>
-    <input type="password" name="senha" formControlName="senha" autocomplete="off">
-    <br>
-    <button type="submit">Criar conta</button>
-</form>
+    <form [formGroup]="angForm" (ngSubmit)="postdata()" autocomplete="off" class="">
+        <div class="info-sec">
+            <div class="info-one">
+                <label class="label-input">Nome Completo:</label>
+                <input type="text" name="nome" class="input" formControlName="nome" autocomplete="off">
+            </div>
+    
+            <br>
+
+            <div class="info-two">
+                <label class="label-input">CPF:</label>
+                <input type="text" name="cpf" class="input" formControlName="cpf" autocomplete="off">
+            </div>
+        </div>
+
+        <div class="info-sec">
+            <div class="info-one">
+                <label class="label-input">Email:</label>
+                <input type="text" name="email" class="input" formControlName="email" autocomplete="off">
+            </div>
+            <br>
+            <div class="info-two">
+                <label class="label-input">Telefone:</label>
+                <input type="text" name="telefone" class="input" formControlName="telefone" autocomplete="off">
+            </div>
+        </div>
+
+        <div class="info-sec">
+            <div class="info-one">
+                <label class="label-input">Senha:</label>
+                <input type="password" name="senha" class="input" formControlName="senha" autocomplete="off">
+            </div>
+            <br>
+            <div class="info-two">
+                <label class="label-input">Confirmar Senha:</label>
+                <input type="password" name="confirmarSenha" class="input" formControlName="confirmarSenha" autocomplete="off">
+            </div>
+        </div>
+    
+        <button class="button" type="submit">Criar conta</button>
+    </form>
+</main>
