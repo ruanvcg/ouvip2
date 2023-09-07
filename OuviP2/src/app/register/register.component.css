@@ -18,6 +18,10 @@
     width: 100%;
 }
 
+input{
+    margin-top: 0.5rem;
+}
+
 .button{
     display: flex;
     align-items: center;
