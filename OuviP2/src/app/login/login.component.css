@@ -7,6 +7,11 @@ h2{
     text-align: center;
 }
 
+.formulario{
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
 .label-input{
     font-size: 1.2rem;
     text-align: left;
@@ -14,6 +19,7 @@ h2{
 }
 
 .button{
+    margin: 0 auto;
     width: 100%;
 }
 
@@ -32,7 +38,7 @@ a{
 @media (max-width: 737px) {
     .formulario{
         margin-top: 10%;
-        margin-left: 10%;
-        margin-right: 10%;
+        margin-left: 0%;
+        margin-right: 0%;
     }
 }
