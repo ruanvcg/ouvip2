@@ -8,8 +8,8 @@
 
     // Credentials
     $db_host = 'mysql-ruan.alwaysdata.net';
-    $db_username = 'ruan';
-    $db_password = 'tccruanouvip22023';
+    $db_username = 'ruan_adm';
+    $db_password = 'ouvip22023';
     $db_name = 'ruan_ouvidb';
 
     //Connection
