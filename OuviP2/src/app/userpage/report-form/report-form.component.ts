@@ -66,14 +66,17 @@ export class ReportFormComponent {
       this.router.navigate(['/login']);
     }
 
-    // Obtenha o tipoReporte da rota
+  
     this.route.params.subscribe(params => {
       this.tipoReporte = params['tipoReporte'];
-      // Defina o tipoReporte no formulário
+
       this.reportForm.patchValue({
         tipoReporte: this.tipoReporte
       });
     });
+
+    // Rola a página para o topo
+    window.scrollTo(0, 0);
   }
 
  
