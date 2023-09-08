@@ -33,7 +33,8 @@ span{
 
 .step h1{
     margin: 0;
-    margin-right: 0.7rem;
+
+    align-items: end;
 }
 
 .step p{

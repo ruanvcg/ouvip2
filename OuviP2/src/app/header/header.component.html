@@ -3,7 +3,6 @@
 
     <div>
         <ul class="menu-list">
-            <li><a routerLink="/" *ngIf="logoutbtn" routerLinkActive="active">Inicio</a></li>
             <li><a routerLink="login" *ngIf="loginbtn" class="loginbtn" routerLinkActive="active"><img src="assets/icons/login.svg">Login</a></li>
             <li><button type="button" (click)="logout()" class="logoutbtn" *ngIf="logoutbtn"><img src="assets/icons/logout.svg">Logout</button></li>
             

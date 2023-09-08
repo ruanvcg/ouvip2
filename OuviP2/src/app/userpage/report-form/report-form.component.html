@@ -1,49 +1,61 @@
-<h2>Reportar</h2>
+<main>
+  <h2 class="title">Reportar</h2>
+  <hr class="line">
+  
+  <p>* Os campos com asterisco são obrigatórios</p>
 
-<form [formGroup]="reportForm" (ngSubmit)="postdata()">
+  <form [formGroup]="reportForm" (ngSubmit)="postdata()" class="formulario">
+    <div class="info-sec">
+      <div class="info-one">
+        <label class="label-input" for="tipo-reporte"><span>*</span> Tipo Reporte: </label>
+        <input type="text" class="input" id="tipoReporte" name="tipoReporte" formControlName="tipoReporte" placeholder="Informe o tipo de reporte..." required>
+      </div>
 
-    <label for="tipo-reporte">Tipo Reporte</label>
-    <input type="text" id="tipoReporte" name="tipoReporte" formControlName="tipoReporte" required>
+      <div class="info-two">
+        <label class="label-input" for="categoria"><span>*</span> Categoria: </label>
+        <select name="categoria" class="input" id="categoria"  required formControlName="categoria">
+          <option value="" disabled selected style="color: gray;">Selecione uma categoria...</option>
+          <option value="Reclamação">Reclamação</option>
+          <option value="Sugestão">Sugestão</option>
+          <option value="Solicitação">Solicitação</option>
+          <option value="Elogio">Elogio</option>
+        </select>
+      </div>
+    </div>
 
-    <br>
-    
-    <label for="categoria">Categoria</label>
-    <select name="categoria" id="categoria" required formControlName="categoria">
-      <option value="Reclamação">Reclamação</option>
-      <option value="Sugestão">Sugestão</option>
-      <option value="Solicitação">Solicitação</option>
-      <option value="Elogio">Elogio</option>
-    </select>
+    <div class="info-sec">
+      <div class="info-one">
+        <label class="label-input" for="descricao"><span>*</span> Descrição: </label>
+        <textarea name="descricao" class="input descricao" id="descricao" placeholder="Descreva o ocorrido..." formControlName="descricao" cols="30" rows="10" maxlength="3000"required></textarea>
+      </div>
+    </div>
 
+    <div class="info-sec">
+      <div class="info-one">
+        <label class="label-input" for="endereco"><span>*</span> Endereço: </label>
+        <input type="text" class="input" id="endereco" name="endereco" placeholder="Informe o endereço..." formControlName="endereco" required>
+      </div>
+      <div class="info-two">
+        <label class="label-input" for="numero">Número: </label>
+        <input type="number" class="input" id="numero" placeholder="Informe o número..." formControlName="numero" name="numero">
+      </div>
+    </div>
 
-    <br>
+    <div class="info-sec">
+      <div class="info-one">
+        <label class="label-input" for="bairro"><span>*</span> Bairro: </label>
+        <input type="text" class="input" id="bairro" placeholder="Informe o bairro..." formControlName="bairro" name="bairro">
+      </div>
+      <div class="info-two">
+        <label class="label-input" for="referencia">Referência: </label>
+        <input type="text" class="input" id="referencia" placeholder="Informe uma referência..." formControlName="referencia" name="referencia">
+      </div>
+    </div>
 
-    <label for="descricao">Descrição</label>
-    <textarea name="descricao" id="descricao" formControlName="descricao" cols="30" rows="10" maxlength="3000" required></textarea>
+    <input type="hidden" value="Pendente" id="statusReporte" name="statusReporte" formControlName="statusReporte"
+      readonly>
 
-    <br>
+    <button type="submit" class="button">Reportar</button>
+  </form>
 
-    <label for="endereco">Endereço</label>
-    <input type="text" id="endereco" name="endereco" formControlName="endereco" required>
-
-    <br>
-
-    <label for="numero">Número</label>
-    <input type="number" id="numero" formControlName="numero" name="numero">
-
-    <br>
-
-    <label for="bairro">Bairro</label>
-    <input type="text" id="bairro" formControlName="bairro" name="bairro">
-
-    <br>
-
-    <label for="referencia">Referência</label>
-    <input type="text" id="referencia" formControlName="referencia" name="referencia">
-
-    <br>
-
-    <input type="hidden" value="Pendente" id="statusReporte" name="statusReporte" formControlName="statusReporte" readonly>
-
-    <button type="submit">Reportar</button>
-</form>
+</main>

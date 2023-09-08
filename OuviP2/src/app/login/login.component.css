@@ -1,22 +1,9 @@
-.title{
-    font-size: 2rem;
-    color: var(--primary-color);
-
-    display: flex;
-    justify-content: center;
-    text-align: center;
-}
 
 .formulario{
     margin-left: 30%;
     margin-right: 30%;
 }
 
-.label-input{
-    font-size: 1.2rem;
-    text-align: left;
-    margin-bottom: 0.5rem;
-}
 
 .button{
     margin: 0 auto;
