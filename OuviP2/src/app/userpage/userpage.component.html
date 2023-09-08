@@ -1,4 +1,74 @@
-<h2>Bem vindo!</h2>
+<main>
+    <section class="user-section">
+        <section class="how-report">
+            <div class="tutorial-image">
+                <img src="assets/images/tutorial_image.svg" alt="Icone de Tutorial">
+            </div>
 
-<h4><a routerLink="/userpage/report-form">Como fazer um reporte??</a></h4>
-<h4><a routerLink="/userpage/report-follow">Acompanhar reportes...</a></h4>
+            <div class="tutorial">
+                <h1><span>Como</span> Reportar <span>um problema?</span></h1>
+                <section class="steps">
+                    <div class="step">
+                        <h1>1.</h1>
+                        <p> Acesse a seção “Reportar” e selecione o tipo de problema;</p>
+                    </div>
+
+                    <div class="step">
+                        <h1>2.</h1>
+                        <p>Preencha o formulário com as principais informações sobre o problema; </p>
+                    </div>
+
+                    <div class="step">
+                        <h1>3.</h1>
+                        <p>Pronto! Após você enviar o formulário, poderá acompanhar o status na área: <a routerLink="/userpage/report-follow">Acompanhar reportes</a>;</p>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <section class="reports" id="reports">
+            <h1>Reportar</h1>
+            <hr class="line">
+
+            <div class="reports-list">
+                <a routerLink="/userpage/report-form"><div class="report">
+                    <img src="assets/icons/reports/trash.svg" alt="Lixo">
+                    <p>Lixo</p>
+                </div></a>
+
+                <a routerLink="/userpage/report-form"><div class="report">
+                    <img src="assets/icons/reports/sound.svg" alt="Pertubação sonora">
+                    <p>Perturbação sonora</p>
+                </div></a>
+
+                <a routerLink="/userpage/report-form"><div class="report">
+                    <img src="assets/icons/reports/fire.svg" alt="Queimada">
+                    <p>Queimada</p>
+                </div></a>
+
+                <a routerLink="/userpage/report-form"><div class="report">
+                    <img src="assets/icons/reports/hole.svg" alt="Buracos">
+                    <p>Buracos / Pavimentação</p>
+                </div></a>
+
+                <a routerLink="/userpage/report-form"><div class="report">
+                    <img src="assets/icons/reports/tree.svg" alt="Árvores">
+                    <p>Árvores</p>
+                </div></a>
+
+                <a routerLink="/userpage/report-form"><div class="report">
+                    <img src="assets/icons/reports/park.svg" alt="Praças e parques">
+                    <p>Praças e Parques</p>
+                </div></a>
+            </div>
+        </section>
+    </section>
+</main>
+
+<footer>
+    <div>
+        <p>© Copyright 2023</p>
+        <p>Prefeitura Municipal de Pedro II</p>
+        <p><a href="https://ruanvcg.github.io/Portfolio/" target="_blank">Desenvolvedor</a></p>
+    </div>
+</footer>

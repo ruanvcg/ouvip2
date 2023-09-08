@@ -1,8 +1,10 @@
-section{
+main .welcome-content{
+    padding: 5% 0;
     display: flex;
-    margin-top: 4rem;
+    -ms-flex-align: center;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
 }
 
 .title{
@@ -39,7 +41,7 @@ img{
     }
 }
 @media (max-width: 737px) {
-    section{
+    .welcome-content{
         flex-direction: column;
     }
     img{
