@@ -31,34 +31,34 @@
             <hr class="line">
 
             <div class="reports-list">
-                <a routerLink="/userpage/report-form"><div class="report">
+                <a (click)="onClickReport('Lixo')"><div class="report">
                     <img src="assets/icons/reports/trash.svg" alt="Lixo">
-                    <p>Lixo</p>
+                    <p id="tipoReporteLixo">Lixo</p>
                 </div></a>
 
-                <a routerLink="/userpage/report-form"><div class="report">
+                <a (click)="onClickReport('Perturbação sonora')"><div class="report">
                     <img src="assets/icons/reports/sound.svg" alt="Pertubação sonora">
-                    <p>Perturbação sonora</p>
+                    <p id="tipoReporteSom">Perturbação sonora</p>
                 </div></a>
 
-                <a routerLink="/userpage/report-form"><div class="report">
+                <a (click)="onClickReport('Queimada')"><div class="report">
                     <img src="assets/icons/reports/fire.svg" alt="Queimada">
-                    <p>Queimada</p>
+                    <p id="tipoReporteQueimada">Queimada</p>
                 </div></a>
 
-                <a routerLink="/userpage/report-form"><div class="report">
+                <a (click)="onClickReport('Buracos ou Pavimentação')"><div class="report">
                     <img src="assets/icons/reports/hole.svg" alt="Buracos">
-                    <p>Buracos / Pavimentação</p>
+                    <p id="tipoReporteBuraco">Buracos / Pavimentação</p>
                 </div></a>
 
-                <a routerLink="/userpage/report-form"><div class="report">
+                <a (click)="onClickReport('Árvores')"><div class="report">
                     <img src="assets/icons/reports/tree.svg" alt="Árvores">
-                    <p>Árvores</p>
+                    <p id="tipoReporteArvore">Árvores</p>
                 </div></a>
 
-                <a routerLink="/userpage/report-form"><div class="report">
+                <a (click)="onClickReport('Praças e Parques')"><div class="report">
                     <img src="assets/icons/reports/park.svg" alt="Praças e parques">
-                    <p>Praças e Parques</p>
+                    <p id="tipoReportePraças">Praças e Parques</p>
                 </div></a>
             </div>
         </section>

@@ -13,8 +13,8 @@
 
       <div class="info-two">
         <label class="label-input" for="categoria"><span>*</span> Categoria: </label>
-        <select name="categoria" class="input" id="categoria"  required formControlName="categoria">
-          <option value="" disabled selected style="color: gray;">Selecione uma categoria...</option>
+        <select name="categoria" class="input categoria" id="categoria"  required formControlName="categoria">
+          <option value="" disabled selected>Selecione uma categoria...</option>
           <option value="Reclamação">Reclamação</option>
           <option value="Sugestão">Sugestão</option>
           <option value="Solicitação">Solicitação</option>
@@ -26,29 +26,29 @@
     <div class="info-sec">
       <div class="info-one">
         <label class="label-input" for="descricao"><span>*</span> Descrição: </label>
-        <textarea name="descricao" class="input descricao" id="descricao" placeholder="Descreva o ocorrido..." formControlName="descricao" cols="30" rows="10" maxlength="3000"required></textarea>
+        <textarea name="descricao" class="input descricao" id="descricao" placeholder="Descreva o ocorrido..." formControlName="descricao" cols="30" rows="10" autocomplete="off" maxlength="3000"required></textarea>
       </div>
     </div>
 
     <div class="info-sec">
       <div class="info-one">
         <label class="label-input" for="endereco"><span>*</span> Endereço: </label>
-        <input type="text" class="input" id="endereco" name="endereco" placeholder="Informe o endereço..." formControlName="endereco" required>
+        <input type="text" class="input" id="endereco" name="endereco" placeholder="Informe o endereço..." formControlName="endereco" autocomplete="off" required>
       </div>
       <div class="info-two">
         <label class="label-input" for="numero">Número: </label>
-        <input type="number" class="input" id="numero" placeholder="Informe o número..." formControlName="numero" name="numero">
+        <input type="number" class="input" id="numero" placeholder="Informe o número..." autocomplete="off" formControlName="numero" name="numero">
       </div>
     </div>
 
     <div class="info-sec">
       <div class="info-one">
         <label class="label-input" for="bairro"><span>*</span> Bairro: </label>
-        <input type="text" class="input" id="bairro" placeholder="Informe o bairro..." formControlName="bairro" name="bairro">
+        <input type="text" class="input" id="bairro" placeholder="Informe o bairro..." formControlName="bairro" name="bairro" autocomplete="off">
       </div>
       <div class="info-two">
         <label class="label-input" for="referencia">Referência: </label>
-        <input type="text" class="input" id="referencia" placeholder="Informe uma referência..." formControlName="referencia" name="referencia">
+        <input type="text" class="input" id="referencia" placeholder="Informe uma referência..." formControlName="referencia" name="referencia" autocomplete="off">
       </div>
     </div>
 

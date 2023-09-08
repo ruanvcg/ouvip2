@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { enableDebugTools } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { ActivatedRoute , Router } from '@angular/router';
 import { first } from 'rxjs';
 import { CrudReportService } from 'src/app/services/crud-report.service';
 import { ApiService } from 'src/app/services/login.service';
@@ -16,17 +16,21 @@ export class ReportFormComponent {
   auth: any;
   // @ts-ignore
   reportForm: FormGroup;
+  tipoReporte: string = '';
   userCpfd: string | null = null; // Store user CPF here
   userNamed: string | null = null; // Store user name here
   userEmaild: string | null = null; // Store user Email here
   userPhoned: string | null = null; // Store user Phone here
   userIdd: string | null = null; // Store user ID here
 
+  
+
   constructor(
     private router: Router,
     private crudReportService: CrudReportService,
     private formBuilder: FormBuilder,
     private loginService: ApiService,
+    private route: ActivatedRoute
   ) {
     // Set user information
     this.userIdd = this.loginService.getTokenUserId();
@@ -41,7 +45,7 @@ export class ReportFormComponent {
       cpf: [this.userCpfd],
       email: [this.userEmaild],
       telefone: [this.userPhoned],
-      tipoReporte: ['', [Validators.required, Validators.maxLength(100), Validators.pattern(/^[\p{L} ]+$/u)]],
+      tipoReporte: [ this.tipoReporte, [Validators.required, Validators.maxLength(100), Validators.pattern(/^[\p{L} ]+$/u)]],
       categoria: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^[\p{L} ]+$/u)]],
       descricao: ['', [Validators.required, Validators.maxLength(3000)]],
       endereco: ['', [
@@ -61,7 +65,18 @@ export class ReportFormComponent {
     if (!this.auth || this.auth == undefined || this.auth == null) {
       this.router.navigate(['/login']);
     }
+
+    // Obtenha o tipoReporte da rota
+    this.route.params.subscribe(params => {
+      this.tipoReporte = params['tipoReporte'];
+      // Defina o tipoReporte no formulário
+      this.reportForm.patchValue({
+        tipoReporte: this.tipoReporte
+      });
+    });
   }
+
+ 
 
   // Handle form submission
   postdata() {

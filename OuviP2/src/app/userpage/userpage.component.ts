@@ -22,4 +22,10 @@ export class UserpageComponent implements OnInit{
     }
   }
 
+  // Função para lidar com o clique em um elemento "report"
+  onClickReport(tipoReporte: string) {
+    // Navegue para a página de formulário e passe o tipoReporte como parâmetro
+    this.router.navigate(['/userpage/report-form', { tipoReporte }]);
+  }
+
 }
