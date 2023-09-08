@@ -38,6 +38,7 @@ p, span{
 @media (max-width: 460px) {
 
     .info-sec{
+        margin: 0;
         flex-direction: column;
     }
 

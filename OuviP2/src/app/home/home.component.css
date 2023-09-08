@@ -10,6 +10,7 @@ main .welcome-content{
 .title{
     font-weight: bold;
     color: var(--primary-color);
+    justify-content: left;
 }
 
 .title span{
