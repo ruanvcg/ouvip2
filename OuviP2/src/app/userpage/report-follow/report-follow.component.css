@@ -1,3 +1,40 @@
+.status-organization-colors{
+    width: 100%;
+    
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.pending, .forwarded, .completed{
+    display: flex;
+
+    align-items: center;
+}
+
+.pending .circle{
+    background-color: #D83131;
+}
+
+.forwarded .circle{
+    background-color: #BBBE27;
+}
+
+.completed .circle{
+    background-color: #49C027;
+}
+
+.circle{
+    width: 10px;
+    height: 10px;
+
+    margin-right: 0.5rem;
+
+    border-radius: 100%;
+}
+
 .my-reports{
     display: grid;
     grid-gap: 10px;
@@ -80,5 +117,16 @@
 @media (max-width: 615px){
     .tipo-manifestacao{
         font-size: 0.9rem;
+    }
+
+    .pending, .forwarded, .completed p{
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 315px){
+
+    .pending, .forwarded, .completed p{
+        font-size: 0.6rem;
     }
 }
