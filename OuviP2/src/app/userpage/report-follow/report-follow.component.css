@@ -38,7 +38,7 @@
 .my-reports{
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 
     align-items: center;
     justify-content: center;
@@ -101,6 +101,9 @@
 
     .info p{
         font-size: 0.8rem;
+    }
+    .my-reports{
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
 }
 
