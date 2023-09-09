@@ -52,4 +52,18 @@ export class ReportFollowComponent implements OnInit {
       console.error('Invalid usuarioId:', usuarioId);
     }
   }
+
+  getStatusColor(status: string): string {
+    switch (status) {
+      case 'Pendente':
+        return '#D83131';
+      case 'Encaminhado':
+        return '#BBBE27';
+      case 'Concluido':
+        return '#49C027';
+      default:
+        return ''; // Cor padrão ou vazia se nenhum valor corresponder
+    }
+  }
+  
 }

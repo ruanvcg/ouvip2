@@ -86,3 +86,9 @@ main{
         margin: 2rem;
     }
 }
+
+@media (max-width: 360px) {
+    main{
+        margin: 1rem;
+    }
+}

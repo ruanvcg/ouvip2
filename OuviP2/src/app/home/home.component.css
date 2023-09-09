@@ -52,3 +52,15 @@ img{
         flex-shrink: 0;
     }
 }
+
+@media (max-width: 328px) {
+    .title {
+        display: flex;
+        flex-direction: column;
+    }
+    img{
+        width: 15.4375rem;
+        height: 14.0625rem;
+        flex-shrink: 0;
+    }
+}

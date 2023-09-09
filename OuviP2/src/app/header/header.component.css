@@ -91,3 +91,9 @@ li a .loginbtn , img{
         font-size: small;
     }
 }
+
+@media (max-width: 360px) {
+    nav{
+        padding: 1rem 1rem;
+    }
+}

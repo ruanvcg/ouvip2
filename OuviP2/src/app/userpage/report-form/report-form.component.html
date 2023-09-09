@@ -7,7 +7,7 @@
   <form [formGroup]="reportForm" (ngSubmit)="postdata()" class="formulario">
     <div class="info-sec">
       <div class="info-one">
-        <label class="label-input" for="tipo-reporte"><span>*</span> Tipo Reporte: </label>
+        <label class="label-input" for="tipo-reporte"><span>*</span> Tipo Manifestação: </label>
         <input type="text" class="input" id="tipoReporte" name="tipoReporte" formControlName="tipoReporte" placeholder="Informe o tipo de reporte..." required>
       </div>
 
@@ -15,6 +15,7 @@
         <label class="label-input" for="categoria"><span>*</span> Categoria: </label>
         <select name="categoria" class="input categoria" id="categoria"  required formControlName="categoria">
           <option value="" disabled selected>Selecione uma categoria...</option>
+          <option value="Denúncia">Denúncia</option>
           <option value="Reclamação">Reclamação</option>
           <option value="Sugestão">Sugestão</option>
           <option value="Solicitação">Solicitação</option>
@@ -25,8 +26,8 @@
 
     <div class="info-sec">
       <div class="info-one">
-        <label class="label-input" for="descricao"><span>*</span> Descrição: </label>
-        <textarea name="descricao" class="input descricao" id="descricao" placeholder="Descreva o ocorrido..." formControlName="descricao" cols="30" rows="10" autocomplete="off" maxlength="3000"required></textarea>
+        <label class="label-input" for="descricao"><span>*</span> Descrição Manifestação: </label>
+        <textarea name="descricao" class="input descricao" id="descricao" placeholder="Escreva aqui sua manifestação..." formControlName="descricao" cols="30" rows="10" autocomplete="off" maxlength="3000"required></textarea>
       </div>
     </div>
 
