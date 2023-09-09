@@ -27,7 +27,7 @@
 }
 
 .reporte .infos{
-    padding: 1rem;
+    padding: 0.5rem;
 }
 
 .tipo-manifestacao{
@@ -53,6 +53,32 @@
 }
 
 .icon-tipo-manifestacao{
-    width: 1.5625rem;
-    height: 1.5625rem;
+    width: 20px;
+    height: 20px;
+}
+
+@media (max-width: 986px) {
+    .tipo-manifestacao{
+        font-size: 0.9rem;
+    }
+
+    .info p{
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 738px) {
+    .tipo-manifestacao{
+        font-size: 0.8rem;
+    }
+
+    .info p{
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 615px){
+    .tipo-manifestacao{
+        font-size: 0.9rem;
+    }
 }
