@@ -1,0 +1,56 @@
+.admin-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+
+.pending-reports,
+.forwarded-reports,
+.completed-reports {
+    display: flex;
+    width: 19%;
+    border-radius: 5px;
+    box-shadow: 2px 4px 10px 0px rgba(0, 0, 0, 0.25);
+    
+    align-items: center;
+    justify-content: center;
+
+    padding: 2rem;
+    margin: 1rem;
+
+    font-size: 0.8rem;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+h1 {
+    align-items: center;
+    text-align: center;
+    color: var(--white);
+}
+
+.pending-reports {
+    background-color: #D83131;
+}
+
+.forwarded-reports {
+    background-color: #BBBE27;
+}
+
+.completed-reports {
+    background-color: #49C027;
+}
+
+@media (max-width: 737px) {
+    .admin-actions {
+        flex-direction: column;
+    }
+
+    .pending-reports,
+    .forwarded-reports,
+    .completed-reports {
+        width: 80%;
+    }
+}

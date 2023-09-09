@@ -1,5 +1,10 @@
-<h2>Página Admin</h2>
+<main>
+    <h2 class="title">Página Admin</h2>
+    <hr class="line">
 
-<a (click)="navigateToPendingReports()" routerLinkActive="active">Reportes pendentes</a><br>
-<a (click)="navigateToForwardedReports()" routerLinkActive="active">Reportes encaminhados</a><br>
-<a (click)="navigateToCompletedReports()" routerLinkActive="active">Reportes concluídos</a><br>
+    <div class="admin-actions">
+        <a class="pending-reports" (click)="navigateToPendingReports()" routerLinkActive="active"><h1>Manifestações Pendentes</h1></a>
+        <a class="forwarded-reports" (click)="navigateToForwardedReports()" routerLinkActive="active"><h1>Manifestações Encaminhadas</h1></a>
+        <a class="completed-reports" (click)="navigateToCompletedReports()" routerLinkActive="active"><h1>Manifestações Concluídas</h1></a>
+    </div>
+</main>
