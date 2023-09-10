@@ -18,6 +18,7 @@ import { ReportViewComponent } from './adminpage/report-view/report-view.compone
 import { ReportForwardedListComponent } from './adminpage/report-forwarded-list/report-forwarded-list.component';
 import { ReportCompletedListComponent } from './adminpage/report-completed-list/report-completed-list.component';
 import { ReportFollowComponent } from './userpage/report-follow/report-follow.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ReportFollowComponent } from './userpage/report-follow/report-follow.co
     ReportPendingListComponent,
     ReportViewComponent,
     ReportForwardedListComponent,
-    ReportCompletedListComponent
+    ReportCompletedListComponent,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,

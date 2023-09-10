@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class ReportFollowComponent implements OnInit {
   auth: any;
   userReports: any[] = [];
+  public isLoading: boolean = true;
 
   constructor(private router: Router, private crudReportService: CrudReportService, private dataService: ApiService) {}
   
@@ -37,6 +38,7 @@ export class ReportFollowComponent implements OnInit {
               // Trate o erro de acordo com suas necessidades, como redirecionar para a página de login.
             } else if (Array.isArray(response.data)) {
               this.userReports = response.data;
+              this.isLoading = false;
             } else {
               console.error('API response is not in the expected format:', response);
             }

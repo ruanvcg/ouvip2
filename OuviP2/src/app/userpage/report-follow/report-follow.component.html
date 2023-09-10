@@ -2,7 +2,11 @@
   <h2 class="title">Minhas Manifestações</h2>
   <hr class="line">
 
-  <div class="status-organization-colors">
+  <div *ngIf="isLoading">
+    <app-spinner></app-spinner>
+  </div>
+
+  <div *ngIf="!isLoading" class="status-organization-colors">
     <div class="pending">
       <div class="circle"></div>
       <p>Pendentes</p>
