@@ -1,27 +1,61 @@
-<div *ngIf="reportDetails; else notFound">
-  <h2>Detalhes do Reporte</h2>
-  <p><strong>Id(Protocolo):</strong> {{ reportDetails.id }}</p>
-  <p><strong>Tipo de Reporte:</strong> {{ reportDetails.categoria }} | {{ reportDetails.tipoReporte }}</p>
-  <p><strong>Endereço:</strong> {{ reportDetails.endereco }} , {{reportDetails.bairro}}, n° {{ reportDetails.numero }} <br> {{reportDetails.referencia}}</p>
-  <p><strong>Descrição:</strong> {{ reportDetails.descricao }}</p>
-  <p><strong>Nome:</strong> {{ reportDetails.nome }}, {{reportDetails.cpf}}</p>
-  <p><strong>Contato:</strong> {{ reportDetails.email}}, {{reportDetails.telefone}}</p>
-  <p><strong>Data:</strong> {{ reportDetails.dataReporte }}</p>
-  <div>
-    <p><strong>Status do reporte:</strong></p>
-    <form [formGroup]="reportViewForm" (ngSubmit)="updateReportStatus()" autocomplete="off">
-      <select name="status" formControlName="status" id="status" required>
-        <option value="Pendente">Pendente</option>
-        <option value="Encaminhado">Encaminhado</option>
-        <option value="Concluido">Concluído</option>
-      </select>
+<main>
+  <div *ngIf="reportDetails; else notFound">
+    <h2 class="title">Manifestação (#{{ reportDetails.id }})</h2>
+    <hr class="line">
 
-      <button type="submit">Atualizar Status</button>
-    </form>
-    
-    <button type="button" (click)="deleteReport(reportDetails.id)">Excluir Reporte</button>
+    <div class="report-info">
+      <img src="assets/icons/reports-info/problem.svg" alt="Tipo de Manifestação">
+      <p>{{ reportDetails.categoria }} | {{ reportDetails.tipoReporte }}</p>
+    </div>
+  
+    <div class="report-info">
+      <img src="assets/icons/reports-info/local.svg" alt="Localização">
+      <p>
+        {{ reportDetails.endereco }} , {{reportDetails.bairro}} , n° {{ reportDetails.numero }} , {{reportDetails.referencia}}
+      </p>
+    </div>
+
+    <div class="report-info">
+      <img src="assets/icons/reports-info/description.svg" alt="Descrição">
+      <textarea name="descricao" class="input descricao" id="descricao" placeholder="Escreva aqui sua manifestação..." formControlName="descricao" cols="30" rows="10" autocomplete="off" maxlength="3000" value="{{reportDetails.descricao}}" readonly></textarea>
+    </div>
+
+    <div class="report-info">
+      <img src="assets/icons/reports-info/user.svg" alt="Usuario Solicitante">
+      <p>
+        {{ reportDetails.nome }}, {{reportDetails.cpf}}
+      </p>
+    </div>
+
+    <div class="report-info">
+      <img src="assets/icons/reports-info/contact.svg" alt="Contatos">
+      <p>
+        {{ reportDetails.email}}, {{reportDetails.telefone}}
+      </p>
+    </div>
+
+    <div class="report-info">
+      <img src="assets/icons/reports-info/date.svg" alt="Data Manifestação">
+      <p>
+        {{ reportDetails.dataReporte }}
+      </p>
+    </div>
+
+    <div class="report-info">
+      <img src="assets/icons/reports-info/status.svg" alt="Status Manifestação">
+      <form [formGroup]="reportViewForm" (ngSubmit)="updateReportStatus()" autocomplete="off">
+        <select class="input" name="status" formControlName="status" id="status" required>
+          <option value="Pendente">Pendente</option>
+          <option value="Encaminhado">Encaminhado</option>
+          <option value="Concluido">Concluído</option>
+        </select>
+  
+        <button class="button update" type="submit">Atualizar Status</button>
+      </form>
+    </div>
+    <button class="button remove" type="button" (click)="deleteReport(reportDetails.id)">Excluir Manifestação</button>
   </div>
-</div>
+</main>
 
 <ng-template #notFound>
   <app-page-not-found></app-page-not-found>

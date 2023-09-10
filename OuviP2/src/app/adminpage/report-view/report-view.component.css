@@ -1,0 +1,84 @@
+.title{
+    justify-content: left;
+}
+
+.report-info {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.report-info img{
+    width: 25px;
+    height: 25px;
+}
+
+.report-info p{
+    display: flex;
+    margin-left: 0.5rem;
+    text-align: center;
+    align-items: center;
+}
+
+.report-info textarea, .input{
+    width: 40%;
+    margin: 0 0 0 0.5rem;
+}
+
+form{
+    display: flex;
+    width: 60%;
+}
+
+.input{
+    margin-right: 0.5rem;
+}
+
+.update{
+    width: 20%;
+}
+
+.remove{
+    background-color: #D83131;
+    width: 20%;
+}
+
+@media (max-width: 784px) {
+    .report-info p{
+        display: flex;
+        margin-left: 0.5rem;
+        text-align: left;
+        align-items: left;
+    }
+
+    .update{
+        margin-left: 0.5rem;
+        width: 40%;
+    }
+
+    .report-info textarea, .input{
+        width: 80%;
+        margin: 0 0 0 0.5rem;
+    }
+    
+    form{
+        display: flex;
+        width: 80%;
+    }
+
+    .remove{
+        background-color: #D83131;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        margin-top: 1.5rem;
+        width: 100%;
+    }
+}
+
+@media (max-width: 400px) {
+    .update{
+        margin-left: 0.5rem;
+        width: 90%;
+    }
+}
