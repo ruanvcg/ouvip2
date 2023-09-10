@@ -24,7 +24,8 @@ export class RegisterComponent implements OnInit {
       cpf: ['', [Validators.required, this.validateCpf]],
       email: ['', [Validators.required, Validators.email, Validators.maxLength(255)]], // Added maxLength validation
       telefone: ['', [Validators.required, this.validateTelefone]],
-      senha: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(255)]] // Added maxLength validation
+      senha: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(255)]], // Added maxLength validation
+      confirmarSenha: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(255)]] // Added maxLength
     });
   }
 
@@ -52,6 +53,7 @@ export class RegisterComponent implements OnInit {
     const emailControl = this.angForm.get('email');
     const telefoneControl = this.angForm.get('telefone');
     const senhaControl = this.angForm.get('senha');
+    const confirmarSenhaControl = this.angForm.get('confirmarSenha');
 
     // Validate form fields
     if (nomeControl?.invalid) {
@@ -84,6 +86,20 @@ export class RegisterComponent implements OnInit {
       } else if (senhaControl?.hasError('minlength')) {
         alert("A sua senha deve ter no mínimo 8 caracteres.");
       }
+      return;
+    }
+
+    if (confirmarSenhaControl?.invalid) {
+      if (confirmarSenhaControl?.hasError('required')) {
+        alert("O campo de Confirmar Senha é obrigatório.");
+      } else if (confirmarSenhaControl?.hasError('minlength')) {
+        alert("A sua senha deve ter no mínimo 8 caracteres.");
+      }
+      return;
+    }
+
+    if (confirmarSenhaControl?.value != senhaControl?.value){
+      alert("Você deve informar a mesma senha nos campos 'Senha' e 'Confirmar senha'!");
       return;
     }
 
