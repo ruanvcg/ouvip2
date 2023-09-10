@@ -2,7 +2,16 @@
   <h2 class="title">Manifestações Encaminhadas</h2>
   <hr class="line">
 
-  <section class="my-reports">
+  <div *ngIf="isLoading">
+    <app-spinner></app-spinner>
+  </div>
+
+  <section class="my-reports" *ngIf="!isLoading">
+
+    <div *ngIf="!isLoading && reportList.length === 0">
+      <p style="text-align: center; margin: 2rem;">Ainda não há manifestações!</p>
+    </div>
+
     <div class="reporte" *ngFor="let report of reportList">
       <div class="header" [style.background-color]="getStatusColor('Encaminhado')">
         <div class="info">

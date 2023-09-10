@@ -22,8 +22,12 @@
       <p>Concluidos</p>
     </div>
   </div>
-
   <section class="my-reports">
+
+    <div *ngIf="!isLoading && userReports.length === 0">
+      <p style="text-align: center; margin: 2rem;">Voce ainda não fez nenhuma manifestação!</p>
+    </div>
+    
     <div class="reporte" *ngFor="let report of userReports">
       <div class="header" [style.background-color]="getStatusColor(report.statusReporte)">
         <div class="info">
@@ -69,7 +73,6 @@
           <p>{{ report.statusReporte }}</p>
         </div>
       </div>
-
     </div>
   </section>
 </main>

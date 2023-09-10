@@ -15,6 +15,7 @@ export class ReportForwardedListComponent implements OnInit {
   auth: any;
   reportList: any = [];
   reportListSubscribe: any;
+  public isLoading: boolean = true;
 
   constructor(
     private crudReportService: CrudReportService,
@@ -34,7 +35,7 @@ export class ReportForwardedListComponent implements OnInit {
   getReportList() {
     this.reportListSubscribe = this.crudReportService.loadForwardedReports().subscribe(res => {
       this.reportList = res.body; // Use res.body to access the array of reports
-      console.log('res', res);
+      this.isLoading = false;
     });
   }
   
