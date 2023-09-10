@@ -5,6 +5,7 @@
 .report-info {
     display: flex;
     margin-bottom: 1rem;
+    align-items: center;
 }
 
 .report-info img{
@@ -17,6 +18,10 @@
     margin-left: 0.5rem;
     text-align: center;
     align-items: center;
+}
+
+.report-info textarea{
+    padding: 0.5rem;
 }
 
 .report-info textarea, .input{
@@ -56,13 +61,13 @@ form{
     }
 
     .report-info textarea, .input{
-        width: 80%;
+        width: 100%;
         margin: 0 0 0 0.5rem;
     }
     
     form{
         display: flex;
-        width: 80%;
+        width: 100%;
     }
 
     .remove{
