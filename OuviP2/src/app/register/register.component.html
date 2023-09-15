@@ -15,7 +15,7 @@
 
             <div class="info-two">
                 <label class="label-input"><span>*</span> CPF:</label>
-                <input type="text" name="cpf" class="input" formControlName="cpf" placeholder="XXX.XXX.XXX-XX" autocomplete="off">
+                <input type="text" name="cpf" class="input" formControlName="cpf" placeholder="Digite seu CPF..." autocomplete="off" [maxlength]="14" (input)="applyCpfMask($event)">
             </div>
         </div>
 
@@ -27,7 +27,7 @@
             <br>
             <div class="info-two">
                 <label class="label-input"><span>*</span> Telefone:</label>
-                <input type="text" name="telefone" class="input" formControlName="telefone" placeholder="(XX)XXXX-XXXX" autocomplete="off">
+                <input type="text" name="telefone" class="input" formControlName="telefone" placeholder="(XX) XXXXX-XXXX" autocomplete="off" (input)="applyTelefoneMask($event)">
             </div>
         </div>
 

@@ -71,15 +71,15 @@ export class ReportViewComponent {
   }
 
   deleteReport(id: number) {
-    const confirmDelete = confirm('Tem certeza de que deseja excluir este reporte?');
+    const confirmDelete = confirm('Tem certeza de que deseja excluir esta manifestação?');
     if (confirmDelete) {
       this.crudReportService.deleteReport(id).subscribe(
         response => {
           if (response.result === 'success') {
-            alert('Reporte excluído com sucesso!');
+            alert('Manifestação excluida com sucesso!');
             this.router.navigate(['adminpage/']);
           } else {
-            alert('Falha ao deletar o reporte!');
+            alert('Falha ao deletar a manifestação!');
           }
         },
         error => {
