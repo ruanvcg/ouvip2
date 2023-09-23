@@ -58,9 +58,10 @@
       </div>
       
       <div class="infos-maps">
-        <google-map height="60%" width="100%" [center]="markerPositions[0]" [zoom]="zoom">
+        <google-map *ngIf="markerPositions.length > 0" height="60%" width="100%" [center]="markerPositions[0]" [zoom]="zoom">
           <map-marker [position]="markerPositions[0]" [options]="markerOptions"></map-marker>
-        </google-map>        
+        </google-map>
+        <p class="no-location-message" *ngIf="markerPositions.length === 0">O cidadão não informou uma localização precisa no Google Maps!</p>
       </div>
     </section>
   </div>
