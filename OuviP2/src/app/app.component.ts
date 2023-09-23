@@ -43,4 +43,17 @@ export class AppComponent {
     // Refresh the page to update the login status
     window.location.href = window.location.href;
   }
+
+  center: google.maps.LatLngLiteral = {
+    lat: 24,
+    lng: 12
+  };
+  zoom = 4;
+  markerOptions: google.maps.MarkerOptions = {
+    draggable: false
+  };
+  markerPositions: google.maps.LatLngLiteral[] = [];
+  addMarker(event: google.maps.MapMouseEvent) {
+    if (event.latLng != null) this.markerPositions.push(event.latLng.toJSON());
+  }
 }

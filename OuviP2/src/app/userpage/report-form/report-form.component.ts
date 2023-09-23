@@ -80,6 +80,27 @@ export class ReportFormComponent {
   }
 
  
+  
+  center: google.maps.LatLngLiteral = {
+    lat: -4.433538687705652,
+    lng: -41.45794006677537
+  };
+  zoom = 15;
+  markerOptions: google.maps.MarkerOptions = {
+    draggable: false
+  };
+  markerPositions: google.maps.LatLngLiteral[] = [];
+  
+  addMarker(event: google.maps.MapMouseEvent) {
+    if (event.latLng != null) {
+      // Limpe todas as marcações existentes
+      this.markerPositions = [];
+      // Adicione a nova marcação
+      this.markerPositions.push(event.latLng.toJSON());
+    }
+  }
+  
+
 
   // Handle form submission
   postdata() {

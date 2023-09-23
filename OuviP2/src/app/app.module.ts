@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { GoogleMapsModule} from '@angular/google-maps';
 
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
@@ -44,7 +45,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    GoogleMapsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
