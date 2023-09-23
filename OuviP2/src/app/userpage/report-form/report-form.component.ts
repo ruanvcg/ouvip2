@@ -48,6 +48,8 @@ export class ReportFormComponent {
       tipoReporte: [this.tipoReporte, [Validators.required, Validators.maxLength(100), Validators.pattern(/^[\p{L} ]+$/u)]],
       categoria: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^[\p{L} ]+$/u)]],
       descricao: ['', [Validators.required, Validators.maxLength(3000)]],
+      lat: [''],
+      longi: [''],
       endereco: ['', [
         Validators.required,
         Validators.maxLength(150)
@@ -123,10 +125,23 @@ export class ReportFormComponent {
 
   addMarker(event: google.maps.MapMouseEvent) {
     const latLng = event.latLng;
-    console.log(latLng)
     if (latLng) {
       this.markerPositions = [];
       this.markerPositions.push(latLng.toJSON());
+  
+      // Arredonde as coordenadas para um número específico de casas decimais
+      const lat = latLng.lat().toFixed(3); // Por exemplo, arredondei para 6 casas decimais
+      const lng = latLng.lng().toFixed(3);
+  
+      // Preencher os campos "lat" e "long" com os valores arredondados
+      const latControl = this.reportForm.get('lat');
+      const longControl = this.reportForm.get('longi');
+      if (latControl && longControl) {
+        latControl.setValue(lat);
+        longControl.setValue(lng);
+        console.log('Latitude:', latControl.value);
+        console.log('Longitude:', longControl.value);
+      }
   
       this.getAddressFromLatLng(latLng.toJSON())
         .then((addressArray) => {
@@ -141,6 +156,9 @@ export class ReportFormComponent {
         });
     }
   }
+  
+  
+  
   
   
   
@@ -229,6 +247,8 @@ export class ReportFormComponent {
         this.reportForm.value.telefone,
         this.reportForm.value.tipoReporte,
         this.reportForm.value.categoria,
+        this.reportForm.value.lat,
+        this.reportForm.value.longi,
         this.reportForm.value.endereco,
         this.reportForm.value.numero,
         this.reportForm.value.bairro,

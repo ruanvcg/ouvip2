@@ -39,6 +39,8 @@
         <google-map height="300px" width="98%" [center]="center" [zoom]="zoom" (mapClick)="addMarker($event)">
           <map-marker [position]="markerPositions[0]" [options]="markerOptions"></map-marker>
         </google-map>
+        <input type="hidden" class="input" id="lat" name="lat" formControlName="lat">
+        <input type="hidden" class="input" id="longi" name="longi" formControlName="longi">
       </div>
     </div>
 
