@@ -1,6 +1,22 @@
 .title{
     justify-content: left;
 }
+main, .main{
+    height: 100vh;
+}
+.infos{
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.infos-text{
+    width: 100%;
+}
+.infos-maps{
+    width: 100%;
+    height: 100vh;
+}
 
 .report-info {
     display: flex;
@@ -39,15 +55,28 @@ form{
 }
 
 .update{
-    width: 20%;
+    width: 30%;
 }
 
 .remove{
     background-color: #D83131;
-    width: 20%;
+
+    margin: 1rem 0;
+    padding: 0.7rem;
+
+    width: 35%;
+    height: 8%;
 }
 
 @media (max-width: 784px) {
+    .infos{
+        flex-direction: column;
+    }
+
+    .infos-maps{
+        margin: 1rem 0;
+    }
+
     .report-info p{
         display: flex;
         margin-left: 0.5rem;

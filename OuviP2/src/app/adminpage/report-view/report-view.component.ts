@@ -29,6 +29,8 @@ export class ReportViewComponent {
       this.router.navigate(['/login']);
     }
 
+
+
     const idParam = this.route.snapshot.paramMap.get('id');
     const id = idParam ? +idParam : 0;
     this.crudReportService.getReportDetails(id).subscribe(
@@ -42,6 +44,16 @@ export class ReportViewComponent {
         this.reportViewForm = this.fb.group({
           status: [this.reportDetails.statusReporte]
         });
+
+        // Defina a posição do marcador
+        if (this.reportDetails.lat && this.reportDetails.longi) {
+          this.markerPositions = [
+            {
+              lat: parseFloat(this.reportDetails.lat),
+              lng: parseFloat(this.reportDetails.longi)
+            }
+          ];
+        }
       },
       error => {
         console.error('Error loading report details:', error);
@@ -49,6 +61,16 @@ export class ReportViewComponent {
       }
     );
   }
+
+  center: google.maps.LatLngLiteral = {
+    lat: -4.433538687705652,
+    lng: -41.45794006677537
+  };
+  zoom = 15;
+  markerOptions: google.maps.MarkerOptions = {
+    draggable: false
+  };
+  markerPositions: google.maps.LatLngLiteral[] = [];
 
   updateReportStatus() {
     const newStatus = this.reportViewForm.value.status;

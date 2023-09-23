@@ -1,60 +1,70 @@
 <main>
-  <div *ngIf="reportDetails; else notFound">
+  <div  class="main " *ngIf="reportDetails; else notFound">
     <h2 class="title">Manifestação (#{{ reportDetails.id }})</h2>
     <hr class="line">
-
-    <div class="report-info">
-      <img src="assets/icons/reports-info/problem.svg" alt="Tipo de Manifestação">
-      <p>{{ reportDetails.categoria }} | {{ reportDetails.tipoReporte }}</p>
-    </div>
-  
-    <div class="report-info">
-      <img src="assets/icons/reports-info/local.svg" alt="Localização">
-      <p>
-        {{ reportDetails.endereco }} , {{reportDetails.bairro}} , n° {{ reportDetails.numero }} , {{reportDetails.referencia}}
-      </p>
-    </div>
-
-    <div class="report-info">
-      <img src="assets/icons/reports-info/description.svg" alt="Descrição">
-      <textarea name="descricao" class="input descricao" id="descricao" placeholder="Escreva aqui sua manifestação..." formControlName="descricao" cols="30" rows="30" autocomplete="off" maxlength="3000" value="{{reportDetails.descricao}}" readonly></textarea>
-    </div>
-
-    <div class="report-info">
-      <img src="assets/icons/reports-info/user.svg" alt="Usuario Solicitante">
-      <p>
-        {{ reportDetails.nome }}, {{reportDetails.cpf}}
-      </p>
-    </div>
-
-    <div class="report-info">
-      <img src="assets/icons/reports-info/contact.svg" alt="Contatos">
-      <p>
-        {{ reportDetails.email}}, {{reportDetails.telefone}}
-      </p>
-    </div>
-
-    <div class="report-info">
-      <img src="assets/icons/reports-info/date.svg" alt="Data Manifestação">
-      <p>
-        {{ reportDetails.dataReporte }}
-      </p>
-    </div>
-
-    <div class="report-info">
-      <img src="assets/icons/reports-info/status.svg" alt="Status Manifestação">
-      <form [formGroup]="reportViewForm" (ngSubmit)="updateReportStatus()" autocomplete="off">
-        <select class="input" name="status" formControlName="status" id="status" required>
-          <option value="Pendente">Pendente</option>
-          <option value="Encaminhado">Encaminhado</option>
-          <option value="Concluido">Concluído</option>
-        </select>
-  
-        <button class="button update" type="submit">Atualizar Status</button>
-      </form>
-    </div>
-    <button class="button remove" type="button" (click)="deleteReport(reportDetails.id)">Excluir Manifestação</button>
+    <section class="infos">
+      <div class="infos-text">
+        <div class="report-info">
+          <img src="assets/icons/reports-info/problem.svg" alt="Tipo de Manifestação">
+          <p>{{ reportDetails.categoria }} | {{ reportDetails.tipoReporte }}</p>
+        </div>
+      
+        <div class="report-info">
+          <img src="assets/icons/reports-info/local.svg" alt="Localização">
+          <p>
+            {{ reportDetails.endereco }} , {{reportDetails.bairro}} , n° {{ reportDetails.numero }} , {{reportDetails.referencia}}
+          </p>
+        </div>
+    
+        <div class="report-info">
+          <img src="assets/icons/reports-info/description.svg" alt="Descrição">
+          <textarea name="descricao" class="input descricao" id="descricao" placeholder="Escreva aqui sua manifestação..." formControlName="descricao" cols="30" rows="30" autocomplete="off" maxlength="3000" value="{{reportDetails.descricao}}" readonly></textarea>
+        </div>
+    
+        <div class="report-info">
+          <img src="assets/icons/reports-info/user.svg" alt="Usuario Solicitante">
+          <p>
+            {{ reportDetails.nome }}, {{reportDetails.cpf}}
+          </p>
+        </div>
+    
+        <div class="report-info">
+          <img src="assets/icons/reports-info/contact.svg" alt="Contatos">
+          <p>
+            {{ reportDetails.email}}, {{reportDetails.telefone}}
+          </p>
+        </div>
+    
+        <div class="report-info">
+          <img src="assets/icons/reports-info/date.svg" alt="Data Manifestação">
+          <p>
+            {{ reportDetails.dataReporte }}
+          </p>
+        </div>
+    
+        <div class="report-info">
+          <img src="assets/icons/reports-info/status.svg" alt="Status Manifestação">
+          <form [formGroup]="reportViewForm" (ngSubmit)="updateReportStatus()" autocomplete="off">
+            <select class="input" name="status" formControlName="status" id="status" required>
+              <option value="Pendente">Pendente</option>
+              <option value="Encaminhado">Encaminhado</option>
+              <option value="Concluido">Concluído</option>
+            </select>
+      
+            <button class="button update" type="submit">Atualizar Status</button>
+          </form>
+        </div>
+        <button class="button remove" type="button" (click)="deleteReport(reportDetails.id)">Excluir Manifestação</button>
+      </div>
+      
+      <div class="infos-maps">
+        <google-map height="100%" width="100%" [center]="markerPositions[0]" [zoom]="zoom">
+          <map-marker [position]="markerPositions[0]" [options]="markerOptions"></map-marker>
+        </google-map>        
+      </div>
+    </section>
   </div>
+
 </main>
 
 <ng-template #notFound>
