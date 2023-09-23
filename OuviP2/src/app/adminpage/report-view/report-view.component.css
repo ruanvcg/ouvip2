@@ -29,6 +29,12 @@ main, .main{
     height: 25px;
 }
 
+.textarea-descricao, #descricao{
+    width: 70%; 
+    height: 44px;
+
+    text-align: justify;
+}
 .report-info p{
     display: flex;
     margin-left: 0.5rem;
@@ -41,13 +47,14 @@ main, .main{
 }
 
 .report-info textarea, .input{
-    width: 40%;
+    width: 100%;
     margin: 0 0 0 0.5rem;
 }
 
 form{
     display: flex;
-    width: 60%;
+    justify-content: space-between;
+    width: 70%;
 }
 
 .input{
@@ -55,7 +62,7 @@ form{
 }
 
 .update{
-    width: 30%;
+    width: 40%;
 }
 
 .remove{
@@ -75,6 +82,10 @@ form{
 
     .infos-maps{
         margin: 1rem 0;
+    }
+
+    .textarea-descricao, #descricao{
+        width: 100%;
     }
 
     .report-info p{
