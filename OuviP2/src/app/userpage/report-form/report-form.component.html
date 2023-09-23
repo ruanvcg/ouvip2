@@ -35,10 +35,10 @@
 
     <div class="info-sec">
       <div class="info-one">
-        <google-map height="300px" width="100%" [center]="center" [zoom]="zoom" (mapClick)="addMarker($event)">
+        <label class="label-input" for="descricao">Marcar Localização Exata: </label>
+        <google-map height="300px" width="98%" [center]="center" [zoom]="zoom" (mapClick)="addMarker($event)">
           <map-marker [position]="markerPositions[0]" [options]="markerOptions"></map-marker>
         </google-map>
-        
       </div>
     </div>
 
@@ -71,7 +71,7 @@
     <input type="hidden" value="Pendente" id="statusReporte" name="statusReporte" formControlName="statusReporte"
       readonly>
 
-    <button type="submit" class="button">Reportar</button>
+    <button type="submit" class="button">Manifestar</button>
   </form>
 
 </main>

@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { enableDebugTools } from '@angular/platform-browser';
-import { ActivatedRoute , Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
 import { CrudReportService } from 'src/app/services/crud-report.service';
 import { ApiService } from 'src/app/services/login.service';
@@ -23,7 +23,7 @@ export class ReportFormComponent {
   userPhoned: string | null = null; // Store user Phone here
   userIdd: string | null = null; // Store user ID here
 
-  
+
 
   constructor(
     private router: Router,
@@ -45,7 +45,7 @@ export class ReportFormComponent {
       cpf: [this.userCpfd],
       email: [this.userEmaild],
       telefone: [this.userPhoned],
-      tipoReporte: [ this.tipoReporte, [Validators.required, Validators.maxLength(100), Validators.pattern(/^[\p{L} ]+$/u)]],
+      tipoReporte: [this.tipoReporte, [Validators.required, Validators.maxLength(100), Validators.pattern(/^[\p{L} ]+$/u)]],
       categoria: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^[\p{L} ]+$/u)]],
       descricao: ['', [Validators.required, Validators.maxLength(3000)]],
       endereco: ['', [
@@ -66,7 +66,7 @@ export class ReportFormComponent {
       this.router.navigate(['/login']);
     }
 
-  
+
     this.route.params.subscribe(params => {
       this.tipoReporte = params['tipoReporte'];
 
@@ -79,8 +79,38 @@ export class ReportFormComponent {
     window.scrollTo(0, 0);
   }
 
- 
-  
+
+  getAddressFromLatLng(latlng: google.maps.LatLngLiteral): Promise<string[]> {
+    return new Promise<string[]>((resolve, reject) => {
+      const geocoder = new google.maps.Geocoder();
+      geocoder.geocode({ location: latlng }, (results, status) => {
+        if (status === google.maps.GeocoderStatus.OK) {
+          if (results && results[0]) {
+            const addressComponents = results[0].address_components;
+            const addressArray: string[] = [];
+
+            for (const component of addressComponents) {
+              // Verifique se o componente não contém partes adicionais que você deseja omitir
+              if (!component.types.includes('locality') && !component.types.includes('administrative_area_level_1') && !component.types.includes('country') && !component.types.includes('postal_code')) {
+                addressArray.push(component.long_name);
+              }
+            }
+
+            resolve(addressArray);
+          } else {
+            reject('Nenhum resultado encontrado');
+          }
+        } else {
+          reject('Geocodificação falhou devido a: ' + status);
+        }
+      });
+    });
+  }
+
+
+
+
+
   center: google.maps.LatLngLiteral = {
     lat: -4.433538687705652,
     lng: -41.45794006677537
@@ -90,16 +120,32 @@ export class ReportFormComponent {
     draggable: false
   };
   markerPositions: google.maps.LatLngLiteral[] = [];
-  
+
   addMarker(event: google.maps.MapMouseEvent) {
-    if (event.latLng != null) {
-      // Limpe todas as marcações existentes
+    const latLng = event.latLng;
+    console.log(latLng)
+    if (latLng) {
       this.markerPositions = [];
-      // Adicione a nova marcação
-      this.markerPositions.push(event.latLng.toJSON());
+      this.markerPositions.push(latLng.toJSON());
+  
+      this.getAddressFromLatLng(latLng.toJSON())
+        .then((addressArray) => {
+          const enderecoControl = this.reportForm.get('endereco');
+  
+          if (enderecoControl) {
+            enderecoControl.setValue(addressArray.join(', '));
+          }
+        })
+        .catch((error) => {
+          console.error('Erro na geocodificação:', error);
+        });
     }
   }
   
+  
+  
+
+
 
 
   // Handle form submission
@@ -112,8 +158,8 @@ export class ReportFormComponent {
     const referenciaControl = this.reportForm.get('referencia');
     const bairroControl = this.reportForm.get('bairro');
 
-    if(this.reportForm?.invalid){
-      if(tipoReporteControl?.invalid){
+    if (this.reportForm?.invalid) {
+      if (tipoReporteControl?.invalid) {
         if (tipoReporteControl?.hasError('required')) {
           alert('O campo "Tipo de Reporte" é obrigatório.');
         } else if (tipoReporteControl?.hasError('maxlength')) {
@@ -124,7 +170,7 @@ export class ReportFormComponent {
         return;
       }
 
-      if(categoriaControl?.invalid){
+      if (categoriaControl?.invalid) {
         if (categoriaControl?.hasError('required')) {
           alert('O campo "Categoria" é obrigatório.');
         } else if (categoriaControl?.hasError('maxlength')) {
@@ -135,45 +181,45 @@ export class ReportFormComponent {
         return;
       }
 
-      if(descricaoControl?.invalid){
+      if (descricaoControl?.invalid) {
         if (descricaoControl?.hasError('required')) {
           alert('O campo "Descrição" é obrigatório.');
         } else if (descricaoControl?.hasError('maxlength')) {
           alert('O campo "Descrição" deve ter no máximo 3000 caracteres.');
-        } 
+        }
         return;
       }
-      if(enderecoControl?.invalid){
+      if (enderecoControl?.invalid) {
         if (enderecoControl?.hasError('required')) {
           alert('O campo "Endereço" é obrigatório.');
         } else if (enderecoControl?.hasError('maxlength')) {
           alert('O campo "Endereço" deve ter no máximo 150 caracteres.');
-        } 
+        }
         return;
       }
-      if(numeroControl?.invalid){
+      if (numeroControl?.invalid) {
         if (numeroControl?.hasError('maxlength')) {
           alert('Insira um número válido, porfavor');
-        } 
+        }
         return;
       }
-      if(bairroControl?.invalid){
+      if (bairroControl?.invalid) {
         if (bairroControl?.hasError('required')) {
           alert('O campo "Bairro" é obrigatório.');
-        }else if (bairroControl?.hasError('maxlength')) {
+        } else if (bairroControl?.hasError('maxlength')) {
           alert('O campo "Bairro" deve ter no máximo 100 caracteres.');
-        } 
+        }
         return;
       }
-      if(referenciaControl?.invalid){
+      if (referenciaControl?.invalid) {
         if (referenciaControl?.hasError('maxlength')) {
           alert('O campo "Endereço" deve ter no máximo 100 caracteres.');
-        } 
+        }
         return;
       }
 
       return;
-    }else{
+    } else {
       // Submit registration data to the service
       this.crudReportService.createReport(
         this.reportForm.value.usuarioId,
