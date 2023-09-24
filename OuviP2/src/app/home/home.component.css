@@ -45,7 +45,6 @@ img{
 }
 @media (max-width: 737px) {
     main{
-        padding-top: 6rem;
         align-items: flex-start;
         justify-content: flex-start;
     }
