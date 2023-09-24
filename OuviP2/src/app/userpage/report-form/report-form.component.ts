@@ -90,14 +90,14 @@ export class ReportFormComponent {
           if (results && results[0]) {
             const addressComponents = results[0].address_components;
             const addressArray: string[] = [];
-
+  
             for (const component of addressComponents) {
-              // Verifique se o componente não contém partes adicionais que você deseja omitir
-              if (!component.types.includes('locality') && !component.types.includes('administrative_area_level_1') && !component.types.includes('country') && !component.types.includes('postal_code')) {
+              // Filtrar apenas os tipos de componente desejados (neste caso, 'route' que representa o endereço)
+              if (component.types.includes('route')) {
                 addressArray.push(component.long_name);
               }
             }
-
+  
             resolve(addressArray);
           } else {
             reject('Nenhum resultado encontrado');
@@ -108,6 +108,7 @@ export class ReportFormComponent {
       });
     });
   }
+  
 
 
 
