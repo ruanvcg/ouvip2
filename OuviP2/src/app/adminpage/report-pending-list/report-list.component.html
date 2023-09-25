@@ -6,13 +6,18 @@
     <app-spinner></app-spinner>
   </div>
 
+  <div *ngIf="!isLoading && reportList.length > 0">
+    <input type="text" class="input" placeholder="Busque por uma manifestação..." [(ngModel)]="searchText" (input)="filterReports()">
+  </div>
+  
+
   <section class="my-reports" *ngIf="!isLoading">
 
-    <div *ngIf="!isLoading && reportList.length === 0">
+    <div *ngIf="!isLoading && (useFilteredReports ? filteredReports.length : reportList.length) === 0">
       <p style="text-align: center; margin: 2rem;">Ainda não há manifestações!</p>
     </div>
     
-    <div class="reporte" *ngFor="let report of reportList">
+    <div class="reporte" *ngFor="let report of (useFilteredReports ? filteredReports : reportList)">
 
       <div class="header" [style.background-color]="getStatusColor('Pendente')">
         <div class="info">
