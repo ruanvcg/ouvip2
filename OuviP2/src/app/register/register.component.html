@@ -42,6 +42,8 @@
                 <input type="password" name="confirmarSenha" class="input" placeholder="Digite a senha novamente..." formControlName="confirmarSenha" autocomplete="off">
             </div>
         </div>
+
+        <ngx-recaptcha2 class="recaptcha" [siteKey]="suaSiteKey" (success)="onRecaptchaResolved($event)"></ngx-recaptcha2>
     
         <button class="button" type="submit">Cadastrar-se</button>
     </form>

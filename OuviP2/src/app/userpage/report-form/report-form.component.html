@@ -96,6 +96,8 @@
     <input type="hidden" value="Pendente" id="statusReporte" name="statusReporte" formControlName="statusReporte"
       readonly>
 
+    <ngx-recaptcha2 class="recaptcha" [siteKey]="suaSiteKey" (success)="onRecaptchaResolved($event)"></ngx-recaptcha2>
+
     <button type="submit" class="button">Manifestar</button>
   </form>
 

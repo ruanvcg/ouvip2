@@ -23,7 +23,14 @@ export class ReportFormComponent {
   userPhoned: string | null = null; // Store user Phone here
   userIdd: string | null = null; // Store user ID here
 
+  suaSiteKey = '6Ldob1UoAAAAAAJ-k9mvpfJVvjNU4x7A3WZ4bu0M'; 
+  recaptchaValue: string = '';
+  recaptchaValidated: boolean = false;
 
+  onRecaptchaResolved(event: any) {
+    this.recaptchaValidated = event;
+  }
+  
 
   constructor(
     private router: Router,
@@ -169,6 +176,7 @@ export class ReportFormComponent {
 
   // Handle form submission
   postdata() {
+
     const tipoReporteControl = this.reportForm.get('tipoReporte');
     const categoriaControl = this.reportForm.get('categoria');
     const descricaoControl = this.reportForm.get('descricao');
@@ -239,6 +247,12 @@ export class ReportFormComponent {
 
       return;
     } else {
+
+      if (this.recaptchaValidated == false) {
+        alert('Por favor, complete o reCAPTCHA antes de manifestar.');
+        return;
+      }
+      
       // Submit registration data to the service
       this.crudReportService.createReport(
         this.reportForm.value.usuarioId,

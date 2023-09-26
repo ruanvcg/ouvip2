@@ -13,6 +13,14 @@ import { cpf } from 'cpf-cnpj-validator';
 export class RegisterComponent implements OnInit {
   angForm: FormGroup;
 
+  suaSiteKey = '6Ldob1UoAAAAAAJ-k9mvpfJVvjNU4x7A3WZ4bu0M';
+  recaptchaValue: string = '';
+  recaptchaValidated: boolean = false;
+
+  onRecaptchaResolved(event: any) {
+    this.recaptchaValidated = event;
+  }
+
   constructor(
     private fb: FormBuilder,
     private dataService: ApiService,
@@ -29,7 +37,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   // Custom validator function for CPF
   validateCpf(control: any) {
@@ -101,7 +109,7 @@ export class RegisterComponent implements OnInit {
     }
 
     if (cpfControl?.invalid) {
-      alert("Porfavor, informe um CPF válido. Lembre-se de usar o formato: (xxx.xxx.xxx-xx)");
+      alert("Porfavor, informe um CPF válido.");
       return;
     }
 
@@ -137,31 +145,38 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    if (confirmarSenhaControl?.value != senhaControl?.value){
+    if (confirmarSenhaControl?.value != senhaControl?.value) {
       alert("Você deve informar a mesma senha nos campos 'Senha' e 'Confirmar senha'!");
       return;
     }
 
-
-    // Submit registration data to the service
-    this.dataService.userregistration(
-      this.angForm.value.nome,
-      this.angForm.value.cpf,
-      this.angForm.value.email,
-      this.angForm.value.telefone,
-      this.angForm.value.senha
-    ).pipe(first()).subscribe(
-      data => {
-        if (data.success) {
-          alert(data.message);
-          this.router.navigate(['login']); // Navigate to login page on successful registration
-        } else {
-          alert(data.message);
-        }
-      },
-      error => {
-        alert("Erro encontrado durante o registro.");
+    else {
+      if (this.recaptchaValidated == false) {
+        alert('Por favor, complete o reCAPTCHA antes de cadastrar-se.');
+        return;
       }
-    );
+
+      // Submit registration data to the service
+      this.dataService.userregistration(
+        this.angForm.value.nome,
+        this.angForm.value.cpf,
+        this.angForm.value.email,
+        this.angForm.value.telefone,
+        this.angForm.value.senha
+      ).pipe(first()).subscribe(
+        data => {
+          if (data.success) {
+            alert(data.message);
+            this.router.navigate(['login']); // Navigate to login page on successful registration
+          } else {
+            alert(data.message);
+          }
+        },
+        error => {
+          alert("Erro encontrado durante o registro.");
+        }
+      );
+    }
+
   }
 }

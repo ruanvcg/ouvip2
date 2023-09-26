@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { GoogleMapsModule} from '@angular/google-maps';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
@@ -46,6 +47,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    NgxCaptchaModule, 
     GoogleMapsModule
   ],
   providers: [],
