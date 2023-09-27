@@ -129,7 +129,7 @@ footer div{
 }
 
 footer div p, a{
-    margin: 0.5rem;
+    margin: 1rem;
     color: var(--white);
 }
 
