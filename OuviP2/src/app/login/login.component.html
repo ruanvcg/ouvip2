@@ -9,7 +9,10 @@
         <label class="label-input" for="senha">Senha:</label>
         <input class="input" type="password" name="senha" formControlName="senha" placeholder="Digite sua senha..." autocomplete="off">
         <br>
-        <a routerLink="/registration">Ainda não tem cadastro? Cadastre-se aqui.</a>
+        <div class="others">
+            <a routerLink="/recover-pass">Esqueci a senha.</a>
+            <a routerLink="/registration">Cadastre-se aqui.</a>
+        </div>
         <button class="button" type="submit">Login</button>
     </form>
 </main>

@@ -83,31 +83,40 @@ export class ApiService {
     return false; // Neither user nor admin is logged in
   }
 
+  public requestPasswordReset(email: string): Observable<any> {
+    return this.httpClient.post<any>(`${this.baseUrl}/recover-pass.php`, { email }).pipe(
+      catchError(error => {
+        console.error('Request error:', error);
+        return throwError('Request error.');
+      })
+    );
+  }
+
   // Method to set user token in session storage
   setUserToken(token: string) {
     sessionStorage.setItem('tokenUser', token);
   }
 
-  setUserInfo(tokenUserName: string, tokenUserCpf: string, tokenUserPhone: string, tokenUserId: string){
+  setUserInfo(tokenUserName: string, tokenUserCpf: string, tokenUserPhone: string, tokenUserId: string) {
     sessionStorage.setItem('tokenUserName', tokenUserName);
     sessionStorage.setItem('tokenUserCpf', tokenUserCpf);
     sessionStorage.setItem('tokenUserPhone', tokenUserPhone);
     sessionStorage.setItem('tokenUserId', tokenUserId)
   }
-  getTokenUserName(){
+  getTokenUserName() {
     console.log(sessionStorage.getItem('tokenUserName'));
     return sessionStorage.getItem('tokenUserName');
   }
-  getTokenUserId(){
+  getTokenUserId() {
     console.log(sessionStorage.getItem('tokenUserId'));
     return sessionStorage.getItem('tokenUserId');
 
   }
-  getTokenUserCpf(){
+  getTokenUserCpf() {
     console.log(sessionStorage.getItem('tokenUserCpf'));
     return sessionStorage.getItem('tokenUserCpf');
   }
-  getTokenUserPhone(){
+  getTokenUserPhone() {
     console.log(sessionStorage.getItem('tokenUserPhone'));
     return sessionStorage.getItem('tokenUserPhone');
   }
@@ -120,16 +129,16 @@ export class ApiService {
   deleteUserToken() {
     sessionStorage.removeItem('tokenUser');
   }
-  deleteTokenUserName(){
+  deleteTokenUserName() {
     sessionStorage.removeItem('tokenUserName');
   }
-  deleteTokenUserCpf(){
+  deleteTokenUserCpf() {
     sessionStorage.removeItem('tokenUserCpf');
   }
-  deleteTokenUserPhone(){
+  deleteTokenUserPhone() {
     sessionStorage.removeItem('tokenUserPhone');
   }
-  deleteTokenUserId(){
+  deleteTokenUserId() {
     sessionStorage.removeItem('tokenUserId');
   }
 

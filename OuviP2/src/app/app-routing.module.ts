@@ -14,12 +14,14 @@ import { ReportViewComponent } from './adminpage/report-view/report-view.compone
 import { ReportForwardedListComponent } from './adminpage/report-forwarded-list/report-forwarded-list.component';
 import { ReportCompletedListComponent } from './adminpage/report-completed-list/report-completed-list.component';
 import { ReportFollowComponent } from './userpage/report-follow/report-follow.component';
+import { RecoverPassComponent } from './recover-pass/recover-pass.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegisterComponent},
+  { path: 'recover-pass', component: RecoverPassComponent},
   { path: 'userpage', component: UserpageComponent, canActivate: [GuardGuard]},
   { path: 'userpage/report-form', component: ReportFormComponent, canActivate: [GuardGuard] },
   { path: 'userpage/report-follow', component: ReportFollowComponent, canActivate: [GuardGuard] },

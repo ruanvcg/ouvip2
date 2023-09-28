@@ -1,0 +1,29 @@
+.formulario{
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+p, span{
+    margin: 0 0 1.5rem 0;
+
+    color: rgb(187, 8, 8);
+    font-weight: bold;
+    text-align: justify;
+}
+
+.button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+@media (max-width: 949px) {
+    .formulario{
+        margin-top: 10%;
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+}

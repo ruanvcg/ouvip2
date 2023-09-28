@@ -1,0 +1,14 @@
+
+<main>
+    <h2 class="title">Redefinir Senha</h2>
+    <hr class="line">
+  
+    <form class="formulario" autocomplete="off" [formGroup]="recoveryForm" (ngSubmit)="requestPasswordReset()">
+      <p>Para redefinir sua senha, forneça o email em que a conta foi criada, enviaremos um código de recuperação.</p>
+      <label class="label-input" for="email">Email:</label>
+      <input class="input" type="email" formControlName="email" placeholder="Digite seu email..." autocomplete="off">
+  
+      <button class="button" type="submit">Redefinir</button>
+    </form>
+  </main>
+  
