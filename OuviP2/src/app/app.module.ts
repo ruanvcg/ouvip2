@@ -21,6 +21,7 @@ import { ReportForwardedListComponent } from './adminpage/report-forwarded-list/
 import { ReportCompletedListComponent } from './adminpage/report-completed-list/report-completed-list.component';
 import { ReportFollowComponent } from './userpage/report-follow/report-follow.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { RecoverPassComponent } from './recover-pass/recover-pass.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
     ReportViewComponent,
     ReportForwardedListComponent,
     ReportCompletedListComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    RecoverPassComponent
   ],
   imports: [
     CommonModule,

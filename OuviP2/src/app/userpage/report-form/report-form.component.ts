@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { enableDebugTools } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
@@ -52,18 +52,22 @@ export class ReportFormComponent {
       cpf: [this.userCpfd],
       email: [this.userEmaild],
       telefone: [this.userPhoned],
-      tipoReporte: [this.tipoReporte, [Validators.required, Validators.maxLength(100), Validators.pattern(/^[\p{L} ]+$/u)]],
+      tipoReporte: [this.tipoReporte, [Validators.required, Validators.maxLength(30), Validators.pattern(/^[\p{L} ]+$/u)]],
       categoria: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^[\p{L} ]+$/u)]],
       descricao: ['', [Validators.required, Validators.maxLength(3000)]],
       lat: [''],
       longi: [''],
       endereco: ['', [
         Validators.required,
-        Validators.maxLength(150)
+        Validators.maxLength(40)
       ]],
-      numero: ['', [Validators.maxLength(999)]],
+      numero: ['', [
+        Validators.maxLength(3), 
+        Validators.pattern(/^[0-9]*$/), 
+        this.validateNumeroRange.bind(this) 
+      ]],
       bairro: ['', [Validators.maxLength(100), Validators.required]],
-      referencia: ['', [Validators.maxLength(100)]],
+      referencia: ['', [Validators.maxLength(35)]],
       statusReporte: ['Pendente']
     });
   }
@@ -186,9 +190,20 @@ export class ReportFormComponent {
   
   
   
+
+  validateNumeroRange(control: AbstractControl): ValidationErrors | null {
+    const numero = control.value;
   
+    // Defina o intervalo permitido para o número
+    const minNumero = 1;
+    const maxNumero = 999;
   
+    if (numero !== null && (isNaN(numero) || numero < minNumero || numero > maxNumero)) {
+      return { 'numeroRange': true };
+    }
   
+    return null; // A validação passou
+  }
 
 
 
@@ -214,7 +229,7 @@ export class ReportFormComponent {
         if (tipoReporteControl?.hasError('required')) {
           alert('O campo "Tipo de Reporte" é obrigatório.');
         } else if (tipoReporteControl?.hasError('maxlength')) {
-          alert('O campo "Tipo de Reporte" deve ter no máximo 100 caracteres.');
+          alert('O campo "Tipo de Reporte" deve ter no máximo 30 caracteres.');
         } else if (tipoReporteControl?.hasError('pattern')) {
           alert('O campo "Tipo de Reporte" deve conter apenas letras e espaços.');
         }
@@ -244,13 +259,15 @@ export class ReportFormComponent {
         if (enderecoControl?.hasError('required')) {
           alert('O campo "Endereço" é obrigatório.');
         } else if (enderecoControl?.hasError('maxlength')) {
-          alert('O campo "Endereço" deve ter no máximo 150 caracteres.');
+          alert('O campo "Endereço" deve ter no máximo 40 caracteres.');
         }
         return;
       }
       if (numeroControl?.invalid) {
         if (numeroControl?.hasError('maxlength')) {
-          alert('Insira um número válido, porfavor');
+          alert('Insira um número válido, por favor');
+        } else if (numeroControl?.hasError('numeroRange')) {
+          alert('O campo "Número" deve estar entre 1 e 999');
         }
         return;
       }
@@ -264,7 +281,7 @@ export class ReportFormComponent {
       }
       if (referenciaControl?.invalid) {
         if (referenciaControl?.hasError('maxlength')) {
-          alert('O campo "Endereço" deve ter no máximo 100 caracteres.');
+          alert('O campo "Ponto de referencia" deve ter no máximo 35 caracteres.');
         }
         return;
       }

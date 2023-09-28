@@ -20,6 +20,9 @@ export class UserpageComponent implements OnInit{
     if (!this.auth || this.auth == undefined || this.auth == null || this.auth == NONE_TYPE) {
       this.router.navigate(['/login']);
     }
+
+    // Rola a página para o topo
+    window.scrollTo(0, 0);
   }
 
   // Função para lidar com o clique em um elemento "report"
