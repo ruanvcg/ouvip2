@@ -49,9 +49,9 @@ export class CrudReportService {
     ).pipe(
       map(response => {
         if (response.message === 'success') {
-          return { success: true, message: 'Reporte enviado com sucesso.' };
+          return { success: true, message: 'Manifestação enviada com sucesso.' };
         } else {
-          return { success: false, message: 'Erro ao enviar o reporte' };
+          return { success: false, message: 'Erro ao enviar a maniifestação.' };
         }
       }),
       catchError(error => {

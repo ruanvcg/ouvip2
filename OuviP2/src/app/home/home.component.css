@@ -25,6 +25,10 @@ main .welcome-content{
     margin-bottom: 1rem;
 }
 
+.welcome-message p{
+    text-align: justify;
+}
+
 .welcome-message > h1 > .register, a{
     color: var(--primary-color);
 }

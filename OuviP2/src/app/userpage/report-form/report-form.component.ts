@@ -131,6 +131,25 @@ export class ReportFormComponent {
   };
   markerPositions: google.maps.LatLngLiteral[] = [];
 
+
+  mapOptions: google.maps.MapOptions = {
+    zoom: 15,
+    center: this.center,
+    disableDefaultUI: true,
+    gestureHandling: 'greedy', // Desativa o controle de rotação
+    mapTypeControl: false, // Desativa o controle do tipo de mapa
+    scaleControl: true,
+    zoomControl: true,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    styles: [
+      {
+        featureType: 'poi.business',
+        elementType: 'labels',
+        stylers: [{ visibility: 'off' }],
+      },
+    ],
+  };
+
   addMarker(event: google.maps.MapMouseEvent) {
     const latLng = event.latLng;
     if (latLng) {
@@ -176,6 +195,11 @@ export class ReportFormComponent {
 
   // Handle form submission
   postdata() {
+    const isConfirmed = confirm('Deseja realmente enviar a manifestação?');
+
+    if (!isConfirmed) {
+      return;
+    }
 
     const tipoReporteControl = this.reportForm.get('tipoReporte');
     const categoriaControl = this.reportForm.get('categoria');

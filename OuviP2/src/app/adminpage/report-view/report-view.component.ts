@@ -72,6 +72,24 @@ export class ReportViewComponent {
   };
   markerPositions: google.maps.LatLngLiteral[] = [];
 
+  mapOptions: google.maps.MapOptions = {
+    zoom: 15,
+    center: this.center,
+    disableDefaultUI: true,
+    gestureHandling: 'greedy', // Desativa o controle de rotação
+    mapTypeControl: false, // Desativa o controle do tipo de mapa
+    scaleControl: true,
+    zoomControl: true,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    styles: [
+      {
+        featureType: 'poi.business',
+        elementType: 'labels',
+        stylers: [{ visibility: 'off' }],
+      },
+    ],
+  };
+
   updateReportStatus() {
     const newStatus = this.reportViewForm.value.status;
   
