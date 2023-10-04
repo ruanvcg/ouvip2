@@ -149,7 +149,9 @@ footer div p, a{
 }
 
 @media (max-width: 648px) {
-
+    .reports-list{
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    }
     .how-report{
         flex-direction: column-reverse;
     }
