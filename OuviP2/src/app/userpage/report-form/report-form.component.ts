@@ -194,16 +194,23 @@ export class ReportFormComponent {
   validateNumeroRange(control: AbstractControl): ValidationErrors | null {
     const numero = control.value;
   
-    // Defina o intervalo permitido para o número
-    const minNumero = 1;
-    const maxNumero = 999;
+    // Check if the field is empty
+    if (numero === null || numero === '') {
+      return null; // If empty, no validation is needed
+    }
   
-    if (numero !== null && (isNaN(numero) || numero < minNumero || numero > maxNumero)) {
+    // Define the allowed range for the number
+    const minNumero = 1;
+    const maxNumero = 9999;
+  
+    // Check if the number is within the allowed range
+    if (isNaN(numero) || numero < minNumero || numero > maxNumero) {
       return { 'numeroRange': true };
     }
   
-    return null; // A validação passou
+    return null; // Validation passed
   }
+  
 
 
 
@@ -267,7 +274,7 @@ export class ReportFormComponent {
         if (numeroControl?.hasError('maxlength')) {
           alert('Insira um número válido, por favor');
         } else if (numeroControl?.hasError('numeroRange')) {
-          alert('O campo "Número" deve estar entre 1 e 999');
+          alert('Insira um número válido, por favor');
         }
         return;
       }
