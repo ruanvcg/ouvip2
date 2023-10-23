@@ -7,14 +7,31 @@ OuviP2 é parte do meu Trabalho de Conclusão de Curso em Análise e Desenvolvim
 </div>
 
 ## Tech Stack:
-- Angular;
-- MySQL;
-- PHP;
-- TypeScript;
-- HTML;
-- CSS;
+<div align="left">
+ <p>
+    <a>
+      <img src="https://skillicons.dev/icons?i=html"/>
+    </a>
+    <a>
+      <img src="https://skillicons.dev/icons?i=css"/>
+    </a>
+    <a>
+      <img src="https://skillicons.dev/icons?i=ts"/>
+    </a>
+    <a>
+      <img src="https://skillicons.dev/icons?i=angular"/>
+    </a>
+    <a>
+     <img src="https://skillicons.dev/icons?i=php"/>
+    </a>
+    <a>
+     <img src="https://skillicons.dev/icons?i=mysql"/>
+    </a>
+    <a>
+     <img src="https://skillicons.dev/icons?i=figma"/>
+    </a>
+ </p>
+</div>
 
-## ⚠️ Em desenvolvimento...
-
-### Figma:
+### Design Figma:
 https://www.figma.com/file/SqFWhGEvQTtn323ruqUUVy/OuviP2?type=design&node-id=0%3A1&mode=design&t=UanjvKREeRSkuJLR-1
