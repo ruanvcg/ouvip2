@@ -89,14 +89,6 @@ Por todo o apoio e contribuição ao projeto. "Uma salva de palmas aos Líderes 
       </a>
     </td>
     <td align="center">
-      <a href="https://github.com/paulinhaRibeiro">
-        <img src="https://avatars.githubusercontent.com/u/121119077?v=4" width="100px;" alt="Foto de Paula Vitória no GitHub"/><br>
-        <sub>
-          <b>Paula Vitória</b>
-        </sub>
-      </a>
-    </td>
-    <td align="center">
       <a href="https://github.com/faau666">
         <img src="https://avatars.githubusercontent.com/u/117466716?v=4" width="100px;" alt="Foto do Augusto dos Santos no GitHub"/><br>
         <sub>
