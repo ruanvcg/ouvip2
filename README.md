@@ -11,10 +11,10 @@ OuviP2 is part of my Final Course Project in Systems Analysis and Development. T
 <br></br>
 <a href="https://ouvi-p2.vercel.app/home"><strong>Live Project »</strong></a>
 
-<a href="https://github.com/ruanvcg/ouvip2"><strong>Explore the docs »</strong></a>
+<a href="https://github.com/ruanvcg/ouvip2"><strong>Explore the Docs »</strong></a>
 <br></br>
 
-https://github.com/ruanvcg/ouvip2/assets/62728646/24950052-9255-473a-acaf-6c30fb007613
+https://github.com/ruanvcg/ouvip2/assets/62728646/4dc42580-9655-441b-a34e-fb3be5b267c1
 </div>
 
 <div align="left">
