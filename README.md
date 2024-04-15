@@ -169,7 +169,7 @@ For all the support and contribution to the project. "A round of applause for th
 
 
 ## Contact
-For any inquiries or feedback, please contact: [ruanvictorp221112gmail.com](ruanvictorp221112gmail.com).
+For any inquiries or feedback, please contact: [ruanvictorp22111@gmail.com](ruanvictorp22111@gmail.com).
 
 Thanks! :)
 </div>
