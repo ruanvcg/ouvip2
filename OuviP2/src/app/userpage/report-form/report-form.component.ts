@@ -330,36 +330,21 @@ export class ReportFormComponent {
         this.reportForm.value.descricao,
         this.reportForm.value.statusReporte,
         this.reportForm.value.media
-      ).subscribe((event: HttpEvent<any>) => {
-        switch (event.type) {
-          case HttpEventType.Response:
-            if (event.body.success) {
-              alert(event.body.message);
-              this.router.navigate(['userpage']);
-            } else {
-              alert(event.body.error);
-            }
-            break;
-          case HttpEventType.UploadProgress:
-            // Handle upload progress
-            break;
-          case HttpEventType.DownloadProgress:
-            // Handle download progress
-            break;
-          case HttpEventType.Sent:
-            // Handle request sent
-            break;
-          case HttpEventType.ResponseHeader:
-            // Handle response header
-            break;
-          default:
-            // Handle other events
-            break;
+      ).subscribe(
+        data => {
+          if (data.success) {
+            setTimeout(() => {
+              alert(data.message);
+              this.router.navigate(['userpage']); // Navigate to login page on successful registration
+            }, 0);
+          } else {
+            alert(data.message);
+          }
+        },
+        error => {
+          alert("Erro encontrado durante o registro.");
         }
-      }, (error) => {
-        console.error('Erro ao enviar dados do formulário:', error);
-        alert('Erro ao enviar dados do formulário.');
-      });
+      );
     }
 
   }

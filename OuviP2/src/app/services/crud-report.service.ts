@@ -63,9 +63,17 @@ export class CrudReportService {
     formData.append("media", media);
   
     return this.httpClient.post(`${this.baseUrl}create_report.php`, formData, {
-      observe: 'events',
+      observe: 'response',
       responseType: 'json'
-    });
+    }).pipe(
+      map(response => {
+        const body = response.body as any;
+        return {
+          success: body.success,
+          message: body.message
+        };
+      })
+    );
   }
 
 
