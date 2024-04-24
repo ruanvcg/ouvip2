@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpEventType } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,22 +11,21 @@ export class CrudReportService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public loadPendingReports(){
+  public loadPendingReports() {
     const url = this.baseUrl + 'view_pending_reports.php';
     return this.httpClient.get<any[]>(url, { observe: 'response' }).pipe(map(response => response));
   }
 
-  public loadForwardedReports(){
+  public loadForwardedReports() {
     const url = this.baseUrl + 'view_forwarded_reports.php';
     return this.httpClient.get<any[]>(url, { observe: 'response' }).pipe(map(response => response));
   }
 
-  public loadCompletedReports(){
+  public loadCompletedReports() {
     const url = this.baseUrl + 'view_completed_reports.php';
     return this.httpClient.get<any[]>(url, { observe: 'response' }).pipe(map(response => response));
   }
 
-  // Method for user registration
   public createReport(
     usuarioId: number,
     nome: string,
@@ -42,25 +41,34 @@ export class CrudReportService {
     bairro: string,
     referencia: string,
     descricao: string,
-    statusReporte: string
+    statusReporte: string,
+    media: File
   ): Observable<any> {
-    return this.httpClient.post<any>(this.baseUrl + 'create_report.php',
-      { usuarioId, nome, cpf, email, telefone, tipoReporte, categoria, lat, longi, endereco, numero, bairro, referencia, descricao, statusReporte } // Sending registration data
-    ).pipe(
-      map(response => {
-        if (response.message === 'success') {
-          return { success: true, message: 'Manifestação enviada com sucesso.' };
-        } else {
-          return { success: false, message: 'Erro ao enviar a maniifestação.' };
-        }
-      }),
-      catchError(error => {
-        console.error('Request error:', error);
-        return throwError('Request error.');
-      })
-    );
-  }
+    const formData: FormData = new FormData();
+    formData.append("usuarioId", usuarioId.toString());
+    formData.append("nome", nome);
+    formData.append("cpf", cpf);
+    formData.append("email", email);
+    formData.append("telefone", telefone);
+    formData.append("tipoReporte", tipoReporte);
+    formData.append("categoria", categoria);
+    formData.append("lat", lat);
+    formData.append("longi", longi);
+    formData.append("endereco", endereco);
+    formData.append("numero", numero.toString());
+    formData.append("bairro", bairro);
+    formData.append("referencia", referencia);
+    formData.append("descricao", descricao);
+    formData.append("statusReporte", statusReporte);
+    formData.append("media", media);
   
+    return this.httpClient.post(`${this.baseUrl}create_report.php`, formData, {
+      observe: 'events',
+      responseType: 'json'
+    });
+  }
+
+
   public getReportDetails(id: number): Observable<any> {
     const url = `${this.baseUrl}view_one_report.php?id=${id}`;
     return this.httpClient.get<any>(url).pipe(
@@ -89,7 +97,7 @@ export class CrudReportService {
       })
     );
   }
-  
+
   public getUserReports(usuarioId: number): Observable<any[]> {
     const url = `${this.baseUrl}follow_reports.php?usuarioId=${usuarioId}`;
     return this.httpClient.get<any[]>(url).pipe(
@@ -99,5 +107,5 @@ export class CrudReportService {
       })
     );
   }
-  
+
 }

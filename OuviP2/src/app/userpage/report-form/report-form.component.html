@@ -4,7 +4,7 @@
 
   <p>* Os campos com asterisco são obrigatórios</p>
 
-  <form [formGroup]="reportForm" (ngSubmit)="postdata()" class="formulario">
+  <form [formGroup]="reportForm" (ngSubmit)="postdata()" enctype="multipart/form-data" class="formulario">
     <div class="info-sec">
       <div class="info-one">
         <label class="label-input" for="tipo-reporte"><span>*</span> Tipo de Manifestação: </label>
@@ -92,6 +92,13 @@
         <label class="label-input" for="referencia"> Ponto de Referência: </label>
         <input type="text" class="input" id="referencia" placeholder="Insira um ponto de referência..."
           formControlName="referencia" name="referencia" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="info-sec">
+      <div class="info-one">
+        <label class="label-input" for="media"> Selecione uma Imagem: </label>
+        <input type="file" (change)="uploadFile($event)">
       </div>
     </div>
 

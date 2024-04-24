@@ -1,3 +1,4 @@
+import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { enableDebugTools } from '@angular/platform-browser';
@@ -23,14 +24,14 @@ export class ReportFormComponent {
   userPhoned: string | null = null; // Store user Phone here
   userIdd: string | null = null; // Store user ID here
 
-  suaSiteKey = '6Ldob1UoAAAAAAJ-k9mvpfJVvjNU4x7A3WZ4bu0M'; 
+  suaSiteKey = '6Ldob1UoAAAAAAJ-k9mvpfJVvjNU4x7A3WZ4bu0M';
   recaptchaValue: string = '';
   recaptchaValidated: boolean = false;
 
   onRecaptchaResolved(event: any) {
     this.recaptchaValidated = event;
   }
-  
+
 
   constructor(
     private router: Router,
@@ -62,13 +63,14 @@ export class ReportFormComponent {
         Validators.maxLength(40)
       ]],
       numero: ['', [
-        Validators.maxLength(3), 
-        Validators.pattern(/^[0-9]*$/), 
-        this.validateNumeroRange.bind(this) 
+        Validators.maxLength(3),
+        Validators.pattern(/^[0-9]*$/),
+        this.validateNumeroRange.bind(this)
       ]],
       bairro: ['', [Validators.maxLength(100), Validators.required]],
       referencia: ['', [Validators.maxLength(35)]],
-      statusReporte: ['Pendente']
+      statusReporte: ['Pendente'],
+      media: [null]
     });
   }
 
@@ -101,14 +103,14 @@ export class ReportFormComponent {
           if (results && results[0]) {
             const addressComponents = results[0].address_components;
             const addressArray: string[] = [];
-  
+
             for (const component of addressComponents) {
               // Filtrar apenas os tipos de componente desejados (neste caso, 'route' que representa o endereço)
               if (component.types.includes('route')) {
                 addressArray.push(component.long_name);
               }
             }
-  
+
             resolve(addressArray);
           } else {
             reject('Nenhum resultado encontrado');
@@ -119,7 +121,7 @@ export class ReportFormComponent {
       });
     });
   }
-  
+
 
 
 
@@ -159,11 +161,11 @@ export class ReportFormComponent {
     if (latLng) {
       this.markerPositions = [];
       this.markerPositions.push(latLng.toJSON());
-  
+
       // Arredonde as coordenadas para um número específico de casas decimais
       const lat = latLng.lat().toFixed(3); // Por exemplo, arredondei para 6 casas decimais
       const lng = latLng.lng().toFixed(3);
-  
+
       // Preencher os campos "lat" e "long" com os valores arredondados
       const latControl = this.reportForm.get('lat');
       const longControl = this.reportForm.get('longi');
@@ -173,11 +175,11 @@ export class ReportFormComponent {
         console.log('Latitude:', latControl.value);
         console.log('Longitude:', longControl.value);
       }
-  
+
       this.getAddressFromLatLng(latLng.toJSON())
         .then((addressArray) => {
           const enderecoControl = this.reportForm.get('endereco');
-  
+
           if (enderecoControl) {
             enderecoControl.setValue(addressArray.join(', '));
           }
@@ -187,37 +189,46 @@ export class ReportFormComponent {
         });
     }
   }
-  
-  
-  
+
+
+
 
   validateNumeroRange(control: AbstractControl): ValidationErrors | null {
     const numero = control.value;
-  
+
     // Check if the field is empty
     if (numero === null || numero === '') {
       return null; // If empty, no validation is needed
     }
-  
+
     // Define the allowed range for the number
     const minNumero = 1;
     const maxNumero = 9999;
-  
+
     // Check if the number is within the allowed range
     if (isNaN(numero) || numero < minNumero || numero > maxNumero) {
       return { 'numeroRange': true };
     }
-  
+
     return null; // Validation passed
   }
-  
 
 
+  uploadFile(event: any) {
+    const file = event?.target.files ? event.target.files[0] : '';
+    console.log(file);
+    this.reportForm.patchValue({
+      media: file
+    });
+    this.reportForm.get('media')?.updateValueAndValidity()
+  }
 
 
   // Handle form submission
   postdata() {
     const isConfirmed = confirm('Deseja realmente enviar a manifestação?');
+
+    console.log(this.reportForm.value);
 
     if (!isConfirmed) {
       return;
@@ -300,7 +311,7 @@ export class ReportFormComponent {
         alert('Por favor, complete o reCAPTCHA antes de manifestar.');
         return;
       }
-      
+
       // Submit registration data to the service
       this.crudReportService.createReport(
         this.reportForm.value.usuarioId,
@@ -317,20 +328,38 @@ export class ReportFormComponent {
         this.reportForm.value.bairro,
         this.reportForm.value.referencia,
         this.reportForm.value.descricao,
-        this.reportForm.value.statusReporte
-      ).pipe(first()).subscribe(
-        data => {
-          if (data.success) {
-            alert(data.message);
-            this.router.navigate(['userpage']); // Navigate to login page on successful registration
-          } else {
-            alert(data.message);
-          }
-        },
-        error => {
-          alert("Erro encontrado durante o registro.");
+        this.reportForm.value.statusReporte,
+        this.reportForm.value.media
+      ).subscribe((event: HttpEvent<any>) => {
+        switch (event.type) {
+          case HttpEventType.Response:
+            if (event.body.success) {
+              alert(event.body.message);
+              this.router.navigate(['userpage']);
+            } else {
+              alert(event.body.error);
+            }
+            break;
+          case HttpEventType.UploadProgress:
+            // Handle upload progress
+            break;
+          case HttpEventType.DownloadProgress:
+            // Handle download progress
+            break;
+          case HttpEventType.Sent:
+            // Handle request sent
+            break;
+          case HttpEventType.ResponseHeader:
+            // Handle response header
+            break;
+          default:
+            // Handle other events
+            break;
         }
-      );
+      }, (error) => {
+        console.error('Erro ao enviar dados do formulário:', error);
+        alert('Erro ao enviar dados do formulário.');
+      });
     }
 
   }
