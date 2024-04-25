@@ -1,7 +1,6 @@
-import { HttpEvent, HttpEventType } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
-import { enableDebugTools } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
 import { CrudReportService } from 'src/app/services/crud-report.service';
@@ -35,6 +34,7 @@ export class ReportFormComponent {
 
   constructor(
     private router: Router,
+    private http: HttpClient,
     private crudReportService: CrudReportService,
     private formBuilder: FormBuilder,
     private loginService: ApiService,
@@ -213,14 +213,30 @@ export class ReportFormComponent {
     return null; // Validation passed
   }
 
-
-  uploadFile(event: any) {
-    const file = event?.target.files ? event.target.files[0] : '';
-    console.log(file);
-    this.reportForm.patchValue({
-      media: file
+  checkFileSize(file: File): Promise<boolean> {
+    return new Promise((resolve) => {
+      const fileReader = new FileReader();
+      fileReader.onload = () => {
+        const fileSizeInMB = (fileReader.result as ArrayBuffer).byteLength / (1024 * 1024);
+        resolve(fileSizeInMB <= 30); // Resolve true if file size is less than or equal to 10MB, false otherwise
+      };
+      fileReader.readAsArrayBuffer(file);
     });
-    this.reportForm.get('media')?.updateValueAndValidity()
+  }
+
+  async uploadFile(event: any) {
+    const file = event?.target.files ? event.target.files[0] : '';
+    if (file) {
+      const isFileSizeValid = await this.checkFileSize(file);
+      if (isFileSizeValid) {
+        this.reportForm.patchValue({
+          media: file
+        });
+        this.reportForm.get('media')?.updateValueAndValidity();
+      } else {
+        alert('O arquivo excede o limite máximo de 30MB.');
+      }
+    }
   }
 
 
@@ -330,15 +346,13 @@ export class ReportFormComponent {
         this.reportForm.value.descricao,
         this.reportForm.value.statusReporte,
         this.reportForm.value.media
-      ).subscribe(
+      ).pipe(first()).subscribe(
         data => {
-          if (data.success) {
-            setTimeout(() => {
-              alert(data.message);
-              this.router.navigate(['userpage']); // Navigate to login page on successful registration
-            }, 0);
+          if (data.message === 'success') {
+            alert('Manifestação realizada com sucesso!');
+            this.router.navigate(['userpage']); // Navigate to login page on successful registration
           } else {
-            alert(data.message);
+            alert('Erro ao realizar Manifestação: ' + data.error);
           }
         },
         error => {

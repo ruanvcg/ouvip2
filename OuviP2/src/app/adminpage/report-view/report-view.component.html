@@ -64,6 +64,21 @@
         <p class="no-location-message" *ngIf="markerPositions.length === 0">O cidadão não informou uma localização precisa no Google Maps!</p>
       </div>
     </section>
+    
+    <section>
+      <h2 class="title">Galeria</h2>
+      <hr class="line">
+      <div class="galery">
+        <ng-container [ngSwitch]="getFileType(reportDetails.pathImage)">
+          <img *ngSwitchCase="'img'" [src]="'https://ruanads.alwaysdata.net/report/' + reportDetails.pathImage" alt="">
+          <video *ngSwitchCase="'video'" controls>
+            <source [src]="'https://ruanads.alwaysdata.net/report/' + reportDetails.pathImage" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <p class="no-location-message" *ngSwitchDefault>O cidadão não forneceu um arquivo de imagem ou vídeo sobre a manifestação.</p>
+        </ng-container>
+      </div>
+    </section>
   </div>
 
 </main>

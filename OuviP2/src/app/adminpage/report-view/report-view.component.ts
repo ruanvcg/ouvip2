@@ -90,6 +90,17 @@ export class ReportViewComponent {
     ],
   };
 
+  getFileType(filePath: string): string {
+    const fileExtension = filePath.split('.').pop()?.toLowerCase();
+    if (fileExtension === 'jpg' || fileExtension === 'jpeg' || fileExtension === 'png' || fileExtension === 'gif') {
+      return 'img';
+    } else if (fileExtension === 'mp4' || fileExtension === 'webm' || fileExtension === 'ogg') {
+      return 'video';
+    } else {
+      return 'unknown';
+    }
+  }
+
   updateReportStatus() {
     const newStatus = this.reportViewForm.value.status;
   
