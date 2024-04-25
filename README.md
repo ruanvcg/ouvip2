@@ -38,6 +38,7 @@ https://github.com/ruanvcg/ouvip2/assets/62728646/4dc42580-9655-441b-a34e-fb3be5
 - **Urban Problems Reporting**: Allows citizens to report issues such as potholes on roads, lack of public lighting, accumulated trash, among others.
 - **Clean Interface**: Developed a user-friendly web interface so that users can report problems quickly and easily.
 - **Geolocation**: Integrates a geolocation feature to identify the precise location of reported problems.
+- **Medias Upload**: Integrates a way to upload files (Image and Video).
 - **Status Tracking**: Provides users with the ability to track the status of reported problems, from submission to resolution.
 - **Real-Time Notifications**: Implements a real-time notification system to inform users about updates on reported problems.
 - **Data Security**: Ensure the security and privacy of user data, following best practices in data protection.
