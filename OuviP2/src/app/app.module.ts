@@ -22,6 +22,7 @@ import { ReportCompletedListComponent } from './adminpage/report-completed-list/
 import { ReportFollowComponent } from './userpage/report-follow/report-follow.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { RecoverPassComponent } from './recover-pass/recover-pass.component';
+import { AnonympageComponent } from './anonympage/anonympage.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { RecoverPassComponent } from './recover-pass/recover-pass.component';
     ReportForwardedListComponent,
     ReportCompletedListComponent,
     SpinnerComponent,
-    RecoverPassComponent
+    RecoverPassComponent,
+    AnonympageComponent
   ],
   imports: [
     CommonModule,

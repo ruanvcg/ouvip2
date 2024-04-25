@@ -72,4 +72,23 @@ export class LoginComponent implements OnInit {
       );
   }
 
+  anonym() {
+    let user = 'anonimo@gmail.com';
+    let pass = 'anonimo'
+    this.dataService.userlogin(user, pass)
+      .pipe(first())
+      .subscribe(
+        response => {
+          if (response.success) {
+            this.router.navigate(['/anonympage']); // Navigate to user page on successful login
+          } else{
+            alert('Erro ao logar.');
+          }
+        },
+        userError => {
+          alert('An error occurred while logging in as a user');
+          this.loginInProgress = false;
+        }
+      );
+  }
 }
