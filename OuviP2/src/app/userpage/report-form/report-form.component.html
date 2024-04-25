@@ -97,8 +97,11 @@
 
     <div class="info-sec">
       <div class="info-one">
-        <label class="label-input" for="media"> Selecione uma Imagem: </label>
-        <input type="file" (change)="uploadFile($event)">
+        <label class="label-input" for="media"> Selecione uma Imagem ou Vídeo Sobre a Manifestação: </label><br>
+        <label class="picture" tabindex="0">
+          <input class="media" type="file" (change)="uploadFile($event)">
+          <p id="file-name">Escolha um arquivo.</p>
+        </label>
       </div>
     </div>
 

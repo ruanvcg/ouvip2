@@ -236,6 +236,13 @@ export class ReportFormComponent {
       } else {
         alert('O arquivo excede o limite máximo de 30MB.');
       }
+
+      // Update the #file-name element with the file name
+      const fileName = file.name;
+      const fileElement = document.getElementById('file-name');
+      if (fileElement) {
+        fileElement.textContent = 'Arquivo Selecionado: ' + fileName;
+      }
     }
   }
 
