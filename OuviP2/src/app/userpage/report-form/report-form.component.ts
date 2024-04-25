@@ -357,7 +357,11 @@ export class ReportFormComponent {
         data => {
           if (data.message === 'success') {
             alert('Manifestação realizada com sucesso!');
-            this.router.navigate(['userpage']); // Navigate to login page on successful registration
+            if(this.userNamed !== 'Anônimo'){
+              this.router.navigate(['userpage']);
+            }else{
+              this.router.navigate(['anonympage']);
+            }
           } else {
             alert('Erro ao realizar Manifestação: ' + data.error);
           }
