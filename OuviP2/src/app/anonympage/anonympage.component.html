@@ -1,0 +1,91 @@
+<main>
+    <section class="user-section">
+        <section class="how-report">
+            <div class="tutorial-image">
+                <img src="assets/images/tutorial_image.svg" alt="Icone de Tutorial">
+            </div>
+
+            <div class="tutorial">
+                <h1><span>Como fazer uma</span> Manifestação?</h1>
+                <section class="steps">
+                    <div class="step">
+                        <h1>1.</h1>
+                        <p> Acesse a seção “Manifestar” e selecione o tipo de manifestação;</p>
+                    </div>
+
+                    <div class="step">
+                        <h1>2.</h1>
+                        <p>Preencha o formulário com as principais informações sobre a manifestação; </p>
+                    </div>
+
+                    <div class="step">
+                        <h1>3.</h1>
+                        <p>Pronto, manifestação enviada! No entanto, lembre-se: para acompanhar o andamento de sua manifestação é necessário estar cadastado.</p>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <section class="reports" id="reports">
+            <h1>Manifestar</h1>
+            <hr class="line">
+
+            <div class="reports-list">
+                <a (click)="onClickReport('Lixo')"><div class="report">
+                    <img src="assets/icons/reports/trash.svg" alt="Lixo">
+                    <p id="tipoReporteLixo">Lixo</p>
+                </div></a>
+
+                <a (click)="onClickReport('Perturbação sonora')"><div class="report">
+                    <img src="assets/icons/reports/sound.svg" alt="Pertubação sonora">
+                    <p id="tipoReporteSom">Perturbação sonora</p>
+                </div></a>
+
+                <a (click)="onClickReport('Queimada')"><div class="report">
+                    <img src="assets/icons/reports/fire.svg" alt="Queimada">
+                    <p id="tipoReporteQueimada">Queimada</p>
+                </div></a>
+
+                <a (click)="onClickReport('Buracos ou Pavimentação')"><div class="report">
+                    <img src="assets/icons/reports/hole.svg" alt="Buracos">
+                    <p id="tipoReporteBuraco">Buracos / Pavimentação</p>
+                </div></a>
+
+                <a (click)="onClickReport('Árvores')"><div class="report">
+                    <img src="assets/icons/reports/tree.svg" alt="Árvores">
+                    <p id="tipoReporteArvore">Árvores</p>
+                </div></a>
+
+                <a (click)="onClickReport('Praças e Parques')"><div class="report">
+                    <img src="assets/icons/reports/park.svg" alt="Praças e parques">
+                    <p id="tipoReportePraças">Praças e Parques</p>
+                </div></a>
+
+                <a (click)="onClickReport('Segurança')"><div class="report">
+                    <img src="assets/icons/reports/security.svg" alt="Segurança">
+                    <p id="tipoReporteSegurança">Segurança</p>
+                </div></a>
+
+                <a (click)="onClickReport('Iluminação Pública')"><div class="report">
+                    <img src="assets/icons/reports/light.svg" alt="Iluminação Pública">
+                    <p id="tipoReporteIluminação Pública">Iluminação Pública</p>
+                </div></a>
+
+                <a (click)="onClickReport('Outro')"><div class="report">
+                    <img src="assets/icons/reports/other.svg" alt="Outro">
+                    <p id="tipoReporteOutro">Outro</p>
+                </div></a>
+            </div>
+        </section>
+    </section>
+</main>
+
+<footer>
+    <div>
+        <p>Ouvidoria Municipal de Pedro II</p>
+        <p>Praça Domingos Mourão Filho, 345 - Bairro: Centro - CEP: 64255000 - Pedro II/PI</p>
+        <a href="mailto:ouvidoria@pedroii.pi.gov.br">ouvidoria@pedroii.pi.gov.br</a>
+        <p><a href="https://ruanvcg.github.io/portfolio/" target="_blank">Desenvolvedor</a></p>
+    </div>
+</footer>
+
