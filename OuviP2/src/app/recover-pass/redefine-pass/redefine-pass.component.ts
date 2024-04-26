@@ -29,20 +29,36 @@ export class RedefinePassComponent {
   }
 
   postdata() {
-    if (this.recoveryForm.invalid) {
+    const senhaControl = this.recoveryForm.get('senha');
+    const confirmSenhaControl = this.recoveryForm.get('confirmSenha');
+  
+    // Validate form fields
+    if (senhaControl?.invalid) {
+      if (senhaControl?.hasError('required')) {
+        alert("O campo de Senha é obrigatório.");
+      } else if (senhaControl?.hasError('minlength')) {
+        alert("A sua senha deve ter no mínimo 8 caracteres.");
+      }
       return;
     }
-
-    const senha = this.recoveryForm.value.senha;
-    const confirmSenha = this.recoveryForm.value.confirmSenha;
-
-    if (senha !== confirmSenha) {
-      alert('As senhas não coincidem.');
+  
+    if (confirmSenhaControl?.invalid) {
+      if (confirmSenhaControl?.hasError('required')) {
+        alert("O campo de Confirmar Senha é obrigatório.");
+      } else if (confirmSenhaControl?.hasError('minlength')) {
+        alert("A sua senha deve ter no mínimo 8 caracteres.");
+      }
       return;
     }
-
-    this.apiService.redefineSenha(this.email, senha)
-      .subscribe(
+  
+    if (confirmSenhaControl?.value!= senhaControl?.value) {
+      alert("Você deve informar a mesma senha nos campos 'Senha' e 'Confirmar senha'!");
+      return;
+    }
+  
+    // Se tudo estiver válido, envia a solicitação para redefinir a senha
+    this.apiService.redefineSenha(this.email, senhaControl?.value)
+     .subscribe(
         (response: any) => {
           if (response.success) {
             alert('Senha redefinida com sucesso.');

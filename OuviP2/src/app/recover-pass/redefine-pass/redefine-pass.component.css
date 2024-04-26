@@ -2,6 +2,9 @@
     margin-left: 30%;
     margin-right: 30%;
 }
+.label-input{
+    margin-top: 0.5rem;
+}
 
 p, span{
     margin: 0 0 1.5rem 0;
