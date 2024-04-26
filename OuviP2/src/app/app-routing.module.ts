@@ -16,6 +16,7 @@ import { ReportCompletedListComponent } from './adminpage/report-completed-list/
 import { ReportFollowComponent } from './userpage/report-follow/report-follow.component';
 import { RecoverPassComponent } from './recover-pass/recover-pass.component';
 import { AnonympageComponent } from './anonympage/anonympage.component';
+import { RedefinePassComponent } from './recover-pass/redefine-pass/redefine-pass.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegisterComponent},
   { path: 'recover-pass', component: RecoverPassComponent},
+  { path: 'recover-pass/redefine-pass', component: RedefinePassComponent},
   { path: 'userpage', component: UserpageComponent, canActivate: [GuardGuard]},
   { path: 'anonympage', component: AnonympageComponent, canActivate: [GuardGuard]},
   { path: 'userpage/report-form', component: ReportFormComponent, canActivate: [GuardGuard] },

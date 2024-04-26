@@ -1,0 +1,15 @@
+
+<main>
+    <h2 class="title">Redefinir Senha</h2>
+    <hr class="line">
+  
+    <form class="formulario" autocomplete="off"  (ngSubmit)="postdata()"[formGroup]="recoveryForm">
+      <label class="label-input" for="senha">Digite sua Nova Senha:</label>
+      <input class="input" type="password" formControlName="senha" placeholder="Digite sua nova senha..." autocomplete="off">
+        
+      <label class="label-input" for="confirmSenha">Confirmar sua Nova Senha:</label>
+      <input class="input" type="password" formControlName="confirmSenha" placeholder="Confirme sua nova senha..." autocomplete="off">
+      <button class="button" type="submit">Redefinir Senha</button>
+    </form>
+</main>
+  

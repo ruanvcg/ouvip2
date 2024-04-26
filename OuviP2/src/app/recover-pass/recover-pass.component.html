@@ -8,7 +8,10 @@
       <label class="label-input" for="email">Email:</label>
       <input class="input" type="email" formControlName="email" placeholder="Digite seu email..." autocomplete="off">
   
-      <button class="button" type="submit">Redefinir</button>
+      <button class="button" type="submit">Enviar Código de Verificação</button>
+
+      <hr *ngIf="codeSent" class="line">
+      <button class="button-anonimo" *ngIf="codeSent" (click)="verifyCode()">Verificar Código</button>
     </form>
-  </main>
+</main>
   

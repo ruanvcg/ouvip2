@@ -92,6 +92,24 @@ export class ApiService {
     );
   }
 
+  public verifyCode(email: string, code: string): Observable<any> {
+    return this.httpClient.post<any>(`${this.baseUrl}/recover-pass.php`, { email, code }).pipe(
+      catchError(error => {
+        console.error('Request error:', error);
+        return throwError('Request error.');
+      })
+    );
+  }
+
+  public redefineSenha(email: string, senha: string): Observable<any> {
+    return this.httpClient.post<any>(this.baseUrl + '/redefine-pass.php', { email, senha, confirmSenha: senha }).pipe(
+      catchError(error => {
+        console.error('Request error:', error);
+        return throwError('Request error.');
+      })
+    );
+  }
+
   // Method to set user token in session storage
   setUserToken(token: string) {
     sessionStorage.setItem('tokenUser', token);
