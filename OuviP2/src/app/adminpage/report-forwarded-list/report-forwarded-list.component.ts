@@ -77,7 +77,6 @@ export class ReportForwardedListComponent implements OnInit {
   }
 
   viewReportDetails(reportId: number) {
-    console.log('Clicked report ID:', reportId);
     // Navigate to the details page, passing the report ID as a parameter
     this.router.navigate(['adminpage/report-forwarded-list/report-view/', reportId]);
   }

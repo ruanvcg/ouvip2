@@ -76,7 +76,6 @@ export class ReportCompletedListComponent {
   }
 
   viewReportDetails(reportId: number) {
-    console.log('Clicked report ID:', reportId);
     // Navigate to the details page, passing the report ID as a parameter
     this.router.navigate(['adminpage/report-completed-list/report-view/', reportId]);
   }

@@ -172,8 +172,6 @@ export class ReportFormComponent {
       if (latControl && longControl) {
         latControl.setValue(lat);
         longControl.setValue(lng);
-        console.log('Latitude:', latControl.value);
-        console.log('Longitude:', longControl.value);
       }
 
       this.getAddressFromLatLng(latLng.toJSON())
@@ -250,8 +248,6 @@ export class ReportFormComponent {
   // Handle form submission
   postdata() {
     const isConfirmed = confirm('Deseja realmente enviar a manifestação?');
-
-    console.log(this.reportForm.value);
 
     if (!isConfirmed) {
       return;
