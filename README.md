@@ -14,7 +14,7 @@ OuviP2 is part of my Final Course Project in Systems Analysis and Development. T
 <a href="https://github.com/ruanvcg/ouvip2"><strong>Explore the Docs »</strong></a>
 <br></br>
 
-https://github.com/ruanvcg/ouvip2/assets/62728646/4dc42580-9655-441b-a34e-fb3be5b267c1
+https://github.com/ruanvcg/ouvip2/assets/62728646/f4e06a9e-d894-4d53-8d63-37c4b440711b
 </div>
 
 <div align="left">
