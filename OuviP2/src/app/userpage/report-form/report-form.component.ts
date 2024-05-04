@@ -211,35 +211,34 @@ export class ReportFormComponent {
     return null; // Validation passed
   }
 
-  checkFileSize(file: File): Promise<boolean> {
-    return new Promise((resolve) => {
-      const fileReader = new FileReader();
-      fileReader.onload = () => {
-        const fileSizeInMB = (fileReader.result as ArrayBuffer).byteLength / (1024 * 1024);
-        resolve(fileSizeInMB <= 30); // Resolve true if file size is less than or equal to 10MB, false otherwise
-      };
-      fileReader.readAsArrayBuffer(file);
+  checkFileSize(file: File): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const fileSizeInMB = file.size / (1024 * 1024);
+      if (fileSizeInMB > 30) {
+        reject('O arquivo excede o limite máximo de 30MB.');
+      } else {
+        resolve();
+      }
     });
   }
 
   async uploadFile(event: any) {
     const file = event?.target.files ? event.target.files[0] : '';
     if (file) {
-      const isFileSizeValid = await this.checkFileSize(file);
-      if (isFileSizeValid) {
+      try {
+        await this.checkFileSize(file);
         this.reportForm.patchValue({
           media: file
         });
         this.reportForm.get('media')?.updateValueAndValidity();
-      } else {
-        alert('O arquivo excede o limite máximo de 30MB.');
-      }
-
-      // Update the #file-name element with the file name
-      const fileName = file.name;
-      const fileElement = document.getElementById('file-name');
-      if (fileElement) {
-        fileElement.textContent = 'Arquivo Selecionado: ' + fileName;
+  
+        const fileName = file.name;
+        const fileElement = document.getElementById('file-name');
+        if (fileElement) {
+          fileElement.textContent = 'Arquivo Selecionado: ' + fileName;
+        }
+      } catch (error) {
+        alert(error); // Exibir mensagem de erro
       }
     }
   }
