@@ -38,7 +38,7 @@
         <div class="report-info">
           <img src="assets/icons/reports-info/date.svg" alt="Data Manifestação">
           <p>
-            {{ reportDetails.dataReporte }}
+            {{ reportDetails.dataReporte | date: 'dd/MM/yyyy' }}
           </p>
         </div>
     
