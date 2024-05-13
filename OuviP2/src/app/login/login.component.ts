@@ -80,6 +80,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         response => {
           if (response.success) {
+            alert('AVISO: As manifestações registradas de forma anônima são consideradas "Comunicações" e não é possível o seu acompanhamento. Caso deseje acompanhar o andamento da sua manifestação e receber uma resposta do órgão ou entidade, por favor cadastre-se.')
             this.router.navigate(['/anonympage']); // Navigate to user page on successful login
           } else{
             alert('Erro ao logar.');

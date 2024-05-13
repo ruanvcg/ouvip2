@@ -23,7 +23,6 @@ export class AnonympageComponent {
 
     // Rola a página para o topo
     window.scrollTo(0, 0);
-    alert('AVISO: As manifestações registradas de forma anônima são consideradas "Comunicações" e não é possível o seu acompanhamento. Caso deseje acompanhar o andamento da sua manifestação e receber uma resposta do órgão ou entidade, por favor cadastre-se.')
   }
 
   // Função para lidar com o clique em um elemento "report"
